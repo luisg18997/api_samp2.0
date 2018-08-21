@@ -1,0 +1,41 @@
+{
+  "name": "UCV",
+  "version": "1.0.0",
+  "description": "Aplicacion de  movimiento de personal de la Facultad de Humanidades y Educacion de la Universidad Central de Venezuela",
+  "main": "app.js",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "jest",
+    "eslintest": "eslint --ignore-path .gitignore ."
+  },
+  "keywords": [],
+  "author": [
+    "Luis González",
+    "Daniel Davila",
+    "Leonardo Monascal",
+    "Denis Osuna"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "debug": "^3.1.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "pg": "^7.4.3",
+    "util": "^0.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jest": "^21.21.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "jest": "^23.5.0",
+    "nodemon": "^1.18.3",
+    "supertest": "^3.1.0"
+  }
+}

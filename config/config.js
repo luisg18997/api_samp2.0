@@ -3,7 +3,7 @@ const config = {
     db: 'postgres',
     host: 'localhost',
     port: 5432,
-    database: 'DB_UCV_FHE_SIST',
+    database: 'db_ucv_fhe_sist',
     user: 'postgres',
     password: 'postgresql',
   },

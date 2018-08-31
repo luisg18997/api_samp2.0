@@ -4,9 +4,14 @@ const express = require('express');
 const router = express.Router();
 
 // controllers files
-// const Usercontroller = require("../controllers/usercontroller.js");
+const Usercontroller = require('../controllers/usercontroller.js');
 // const Indexcontroller = require("../controllers/indexcontroller.js");
 
+router.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 // routes
 router.get('/', (req, res) => {
@@ -18,9 +23,7 @@ router.get('/admin', (req, res) => {
 });
 
 
-router.get('/school', (req, res) => {
-  res.send('school page');
-});
+router.get('/school', Usercontroller.getAllSchoolList);
 
 
 router.get('/rrhh', (req, res) => {

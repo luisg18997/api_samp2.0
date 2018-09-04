@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 // controllers files
-const Usercontroller = require('../controllers/usercontroller.js');
+const Usercontroller = require('../controllers/facultyController.js');
 // const Indexcontroller = require("../controllers/indexcontroller.js");
 
 router.use((req, res, next) => {
@@ -24,6 +24,10 @@ router.get('/admin', (req, res) => {
 
 
 router.get('/school', Usercontroller.getAllSchoolList);
+
+router.get('/institute', Usercontroller.getAllInstituteList);
+
+router.get('/coordination', Usercontroller.getAllCoordinationList);
 
 
 router.get('/rrhh', (req, res) => {

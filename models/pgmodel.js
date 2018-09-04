@@ -8,7 +8,6 @@ const connectionString = postgres;
 const pool = new pg.Pool(connectionString);
 
 const query = (Pgquery, callback) => {
-  debug(postgres)
   const start = Date.now();
   return pool.query(Pgquery, (err, res) => {
     const duration = Date.now() - start;

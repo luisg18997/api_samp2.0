@@ -26,6 +26,10 @@ module.exports = (router) => {
 
   router.get('/coordinationList', Usercontroller.getAllCoordinationList);
 
+  router.post('/departament', Usercontroller.getAllDepartamentList);
+
+  router.post('/chair', Usercontroller.getAllChairList);
+
 
   router.get('/rrhh', (req, res) => {
     res.send('RRHH page');

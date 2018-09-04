@@ -38,8 +38,40 @@ const getAllCoordinationList = (req, res) => {
   }
 };
 
+const getAllDepartamentList = (req, res) => {
+  try {
+    if (req.body.schoolID != undefined) {
+      UserModel.getDepartamentBySchoolLists(req.body.schoolID, (departamentBySchoolData) => {
+        debug('UserController: ', departamentBySchoolData);
+        res.send(departamentBySchoolData);
+      });
+    } else{
+      UserModel.getDepartamentByInstituteLists(req.body.instituteID, (departamentByInstituteData) => {
+        debug('UserController: ', departamentByInstituteData);
+        res.send(departamentByInstituteData);
+      });
+    }
+  } catch (e) {
+    debug('error: ', e);
+  }
+};
+
+
+const getAllChairList = (req, res) => {
+  try {
+    UserModel.getChairsLists(req.body.departamentID, (chairData) => {
+      debug('UserController: ', chairData);
+      res.send(chairData);
+    });
+  } catch (e) {
+    debug('error: ', e);
+  }
+};
+
 module.exports = {
   getAllSchoolList,
   getAllInstituteList,
   getAllCoordinationList,
+  getAllDepartamentList,
+  getAllChairList,
 };

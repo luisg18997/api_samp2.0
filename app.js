@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // routes
-app.use(routes);
+routes(app);
 
 // start the server
 app.listen(port, () => {

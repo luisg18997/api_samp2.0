@@ -20,11 +20,11 @@ module.exports = (router) => {
   });
 
 
-  router.get('/school', Usercontroller.getAllSchoolList);
+  router.get('/schoolList', Usercontroller.getAllSchoolList);
 
-  router.get('/institute', Usercontroller.getAllInstituteList);
+  router.get('/instituteList', Usercontroller.getAllInstituteList);
 
-  router.get('/coordination', Usercontroller.getAllCoordinationList);
+  router.get('/coordinationList', Usercontroller.getAllCoordinationList);
 
 
   router.get('/rrhh', (req, res) => {

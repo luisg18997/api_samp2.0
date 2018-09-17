@@ -40,16 +40,17 @@ const getAllCoordinationList = (req, res) => {
 
 const getAllDepartamentList = (req, res) => {
   try {
-    if (req.body.schoolID != undefined) {
+    if (req.body.schoolID !== undefined) {
       UserModel.getDepartamentBySchoolLists(req.body.schoolID, (departamentBySchoolData) => {
         debug('UserController: ', departamentBySchoolData);
         res.send(departamentBySchoolData);
       });
-    } else{
-      UserModel.getDepartamentByInstituteLists(req.body.instituteID, (departamentByInstituteData) => {
-        debug('UserController: ', departamentByInstituteData);
-        res.send(departamentByInstituteData);
-      });
+    } else {
+      UserModel.getDepartamentByInstituteLists(req.body.instituteID,
+        (departamentByInstituteData) => {
+          debug('UserController: ', departamentByInstituteData);
+          res.send(departamentByInstituteData);
+        });
     }
   } catch (e) {
     debug('error: ', e);
@@ -68,10 +69,34 @@ const getAllChairList = (req, res) => {
   }
 };
 
+const getSchool = (req, res) => {
+  try {
+    UserModel.getSchool(facutly, req.body.schoolID, (schoolData) => {
+      debug('UserController: ', schoolData);
+      res.send(schoolData);
+    });
+  } catch (e) {
+    debug('error: ', e);
+  }
+};
+
+const getInstitute = (req, res) => {
+  try {
+    UserModel.getInstitute(facutly, req.body.instituteID, (instituteData) => {
+      debug('UserController: ', instituteData);
+      res.send(instituteData);
+    });
+  } catch (e) {
+    debug('error: ', e);
+  }
+};
+
 module.exports = {
   getAllSchoolList,
   getAllInstituteList,
   getAllCoordinationList,
   getAllDepartamentList,
   getAllChairList,
+  getInstitute,
+  getSchool,
 };

@@ -1,5 +1,5 @@
 // controllers files
-const Usercontroller = require('../controllers/facultyController.js');
+const FalcutyController = require('../controllers/facultyController.js');
 // const Indexcontroller = require("../controllers/indexcontroller.js");
 
 
@@ -20,16 +20,19 @@ module.exports = (router) => {
   });
 
 
-  router.get('/schoolList', Usercontroller.getAllSchoolList);
+  router.get('/schoolList', FalcutyController.getAllSchoolList);
 
-  router.get('/instituteList', Usercontroller.getAllInstituteList);
+  router.get('/instituteList', FalcutyController.getAllInstituteList);
 
-  router.get('/coordinationList', Usercontroller.getAllCoordinationList);
+  router.get('/coordinationList', FalcutyController.getAllCoordinationList);
 
-  router.post('/departament', Usercontroller.getAllDepartamentList);
+  router.post('/departament', FalcutyController.getAllDepartamentList);
 
-  router.post('/chair', Usercontroller.getAllChairList);
+  router.post('/chair', FalcutyController.getAllChairList);
 
+  router.post('/school', FalcutyController.getSchool);
+
+  router.post('/institute', FalcutyController.getInstitute);
 
   router.get('/rrhh', (req, res) => {
     res.send('RRHH page');
@@ -43,4 +46,4 @@ module.exports = (router) => {
   router.get('*', (req, res) => {
     res.send('invalided page');
   });
-}
+};

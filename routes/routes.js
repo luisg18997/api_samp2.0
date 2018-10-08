@@ -1,5 +1,6 @@
-// controllers files
-const Usercontroller = require('../controllers/facultyController.js');
+// Routers files
+const FacultyRouter = require("./facultyRoutes");
+const EmployeeRouter = require("./employeeRoutes");
 // const Indexcontroller = require("../controllers/indexcontroller.js");
 
 
@@ -10,26 +11,19 @@ module.exports = (router) => {
     next();
   });
 
+
   // routes
   router.get('/', (req, res) => {
     res.send('Home page');
   });
 
+  router.use('/faculty', FacultyRouter);
+
+  router.use('/employee', EmployeeRouter);
+
   router.get('/admin', (req, res) => {
     res.send('admin page');
   });
-
-
-  router.get('/schoolList', Usercontroller.getAllSchoolList);
-
-  router.get('/instituteList', Usercontroller.getAllInstituteList);
-
-  router.get('/coordinationList', Usercontroller.getAllCoordinationList);
-
-  router.post('/departament', Usercontroller.getAllDepartamentList);
-
-  router.post('/chair', Usercontroller.getAllChairList);
-
 
   router.get('/rrhh', (req, res) => {
     res.send('RRHH page');
@@ -41,6 +35,6 @@ module.exports = (router) => {
   });
 
   router.get('*', (req, res) => {
-    res.send('invalided page');
+    res.status(404).send('invalided page');
   });
 }

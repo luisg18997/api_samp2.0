@@ -1,14 +1,25 @@
-const appName = 'UserController';
+const appName = 'FacultyController';
 const debug = require('debug')(appName);
 
-const UserModel = require('../models/facultyModel.js');
+const FacultyModel = require('../models/facultyModel.js');
 
 const facutly = 1;
 
+const getAllFacultyList = (req, res) => {
+  try {
+    FacultyModel.getFacultyLists((facultyData) => {
+      debug('FacultyController: ', facultyData);
+      res.send(facultyData);
+    }); 
+  } catch (e) {
+    debug('error: ', e);
+  }
+};
+
 const getAllSchoolList = (req, res) => {
   try {
-    UserModel.getSchoolLists(facutly, (schoolData) => {
-      debug('UserController: ', schoolData);
+    FacultyModel.getSchoolLists(facutly, (schoolData) => {
+      debug('FacultyController: ', schoolData);
       res.send(schoolData);
     });
   } catch (e) {
@@ -18,8 +29,8 @@ const getAllSchoolList = (req, res) => {
 
 const getAllInstituteList = (req, res) => {
   try {
-    UserModel.getInstituteLists(facutly, (instituteData) => {
-      debug('UserController: ', instituteData);
+    FacultyModel.getInstituteLists(facutly, (instituteData) => {
+      debug('FacultyController: ', instituteData);
       res.send(instituteData);
     });
   } catch (e) {
@@ -29,8 +40,8 @@ const getAllInstituteList = (req, res) => {
 
 const getAllCoordinationList = (req, res) => {
   try {
-    UserModel.getCoordinationLists(facutly, (coordinationData) => {
-      debug('UserController: ', coordinationData);
+    FacultyModel.getCoordinationLists(facutly, (coordinationData) => {
+      debug('FacultyController: ', coordinationData);
       res.send(coordinationData);
     });
   } catch (e) {
@@ -41,13 +52,13 @@ const getAllCoordinationList = (req, res) => {
 const getAllDepartamentList = (req, res) => {
   try {
     if (req.body.schoolID != undefined) {
-      UserModel.getDepartamentBySchoolLists(req.body.schoolID, (departamentBySchoolData) => {
-        debug('UserController: ', departamentBySchoolData);
+      FacultyModel.getDepartamentBySchoolLists(req.body.schoolID, (departamentBySchoolData) => {
+        debug('FacultyController: ', departamentBySchoolData);
         res.send(departamentBySchoolData);
       });
     } else{
-      UserModel.getDepartamentByInstituteLists(req.body.instituteID, (departamentByInstituteData) => {
-        debug('UserController: ', departamentByInstituteData);
+      FacultyModel.getDepartamentByInstituteLists(req.body.instituteID, (departamentByInstituteData) => {
+        debug('FacultyController: ', departamentByInstituteData);
         res.send(departamentByInstituteData);
       });
     }
@@ -59,8 +70,8 @@ const getAllDepartamentList = (req, res) => {
 
 const getAllChairList = (req, res) => {
   try {
-    UserModel.getChairsLists(req.body.departamentID, (chairData) => {
-      debug('UserController: ', chairData);
+    FacultyModel.getChairsLists(req.body.departamentID, (chairData) => {
+      debug('FacultyController: ', chairData);
       res.send(chairData);
     });
   } catch (e) {
@@ -69,6 +80,7 @@ const getAllChairList = (req, res) => {
 };
 
 module.exports = {
+  getAllFacultyList,
   getAllSchoolList,
   getAllInstituteList,
   getAllCoordinationList,

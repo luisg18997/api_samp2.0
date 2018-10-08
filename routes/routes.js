@@ -1,7 +1,6 @@
 // Routers files
 const FacultyRouter = require("./facultyRoutes");
 const EmployeeRouter = require("./employeeRoutes");
-// const Indexcontroller = require("../controllers/indexcontroller.js");
 
 
 module.exports = (router) => {
@@ -37,4 +36,4 @@ module.exports = (router) => {
   router.get('*', (req, res) => {
     res.status(404).send('invalided page');
   });
-}
+};

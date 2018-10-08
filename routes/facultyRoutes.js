@@ -18,4 +18,8 @@ facultyRouter.post('/institute/departamentList', FacultyController.getAllDeparta
 
 facultyRouter.post('/chairList', FacultyController.getAllChairList);
 
+facultyRouter.post('/school', FacultyController.getSchool);
+
+facultyRouter.post('/institute', FacultyController.getInstitute);
+
 module.exports = facultyRouter;

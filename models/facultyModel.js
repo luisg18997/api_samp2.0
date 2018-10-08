@@ -95,6 +95,32 @@ const getChairsLists = (departamentID, callback) => {
   });
 };
 
+const getSchool = (facultyID, schoolID, callback) => {
+  const query = util.format('SELECT faculty_data.get_school(param_id := %d, param_faculty_id := %d);',schoolID ,facultyID);
+  return pool.query(query, (err, res) => {
+    if (err) {
+      debug(err.stack);
+    } else {
+      const school = res.rows[0].get_school;
+      debug('usermodel: ', school);
+      callback(school);
+    }
+  });
+};
+
+const getInstitute = (facultyID, instituteID, callback) => {
+  const query = util.format('SELECT faculty_data.get_institute(param_id := %d, param_faculty_id := %d);', instituteID, facultyID);
+  return pool.query(query, (err, res) => {
+    if (err) {
+      debug(err.stack);
+    } else {
+      const institute = res.rows[0].get_institute;
+      debug('usermodel: ', institute);
+      callback(institute);
+    }
+  });
+};
+
 module.exports = {
   getFacultyLists,
   getSchoolLists,
@@ -103,4 +129,6 @@ module.exports = {
 	getDepartamentBySchoolLists,
 	getDepartamentByInstituteLists,
 	getChairsLists,
+  getInstitute,
+  getSchool,
 };

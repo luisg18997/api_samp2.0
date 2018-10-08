@@ -79,6 +79,28 @@ const getAllChairList = (req, res) => {
   }
 };
 
+const getSchool = (req, res) => {
+  try {
+    UserModel.getSchool(facutly, req.body.schoolID, (schoolData) => {
+      debug('UserController: ', schoolData);
+      res.send(schoolData);
+    });
+  } catch (e) {
+    debug('error: ', e);
+  }
+};
+
+const getInstitute = (req, res) => {
+  try {
+    UserModel.getInstitute(facutly, req.body.instituteID, (instituteData) => {
+      debug('UserController: ', instituteData);
+      res.send(instituteData);
+    });
+  } catch (e) {
+    debug('error: ', e);
+  }
+};
+
 module.exports = {
   getAllFacultyList,
   getAllSchoolList,
@@ -86,4 +108,6 @@ module.exports = {
   getAllCoordinationList,
   getAllDepartamentList,
   getAllChairList,
+  getInstitute,
+  getSchool,
 };

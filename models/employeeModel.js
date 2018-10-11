@@ -5,8 +5,8 @@ const util = require('util');
 const pool = require('./pgmodel.js');
 
 const getStatesList = (callback) => {
-	const query = util.format('SELECT employee_data.get_states_list();');
-	return pool.query(query, (err, res) => {
+  const query = util.format('SELECT employee_data.get_states_list();');
+  return pool.query(query, (err, res) => {
     if (err) {
       debug(err.stack);
     } else {
@@ -15,8 +15,8 @@ const getStatesList = (callback) => {
       callback(statelist);
     }
   });
-}
+};
 
 module.exports = {
-	getStatesList,
-}
+  getStatesList,
+};

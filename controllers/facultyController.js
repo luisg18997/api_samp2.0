@@ -7,10 +7,16 @@ const facutly = 1;
 
 const getAllFacultyList = (req, res) => {
   try {
-    FacultyModel.getFacultyLists((facultyData) => {
-      debug('FacultyController: ', facultyData);
-      res.send(facultyData);
-    }); 
+    FacultyModel.getFacultyLists((err, facultyData) => {
+      if (err) {
+        const errFalcuty = {};
+        errFalcuty.message = err;
+        res.status(404).send(errFalcuty);
+      } else {
+        debug('FacultyController: ', facultyData);
+        res.send(facultyData);
+      }
+    });
   } catch (e) {
     debug('error: ', e);
   }
@@ -18,9 +24,15 @@ const getAllFacultyList = (req, res) => {
 
 const getAllSchoolList = (req, res) => {
   try {
-    FacultyModel.getSchoolLists(facutly, (schoolData) => {
-      debug('FacultyController: ', schoolData);
-      res.send(schoolData);
+    FacultyModel.getSchoolLists(facutly, (err, schoolData) => {
+      if (err) {
+        const errSchool = {};
+        errSchool.message = err;
+        res.status(404).send(errSchool);
+      } else {
+        debug('FacultyController: ', schoolData);
+        res.send(schoolData);
+      }
     });
   } catch (e) {
     debug('error: ', e);
@@ -51,12 +63,12 @@ const getAllCoordinationList = (req, res) => {
 
 const getAllDepartamentList = (req, res) => {
   try {
-    if (req.body.schoolID != undefined) {
+    if (req.body.schoolID !== undefined) {
       FacultyModel.getDepartamentBySchoolLists(req.body.schoolID, (departamentBySchoolData) => {
         debug('FacultyController: ', departamentBySchoolData);
         res.send(departamentBySchoolData);
       });
-    } else{
+    } else {
       FacultyModel.getDepartamentByInstituteLists(req.body.instituteID, (departamentByInstituteData) => {
         debug('FacultyController: ', departamentByInstituteData);
         res.send(departamentByInstituteData);
@@ -81,7 +93,7 @@ const getAllChairList = (req, res) => {
 
 const getSchool = (req, res) => {
   try {
-    UserModel.getSchool(facutly, req.body.schoolID, (schoolData) => {
+    FacultyModel.getSchool(facutly, req.body.schoolID, (schoolData) => {
       debug('UserController: ', schoolData);
       res.send(schoolData);
     });
@@ -92,7 +104,7 @@ const getSchool = (req, res) => {
 
 const getInstitute = (req, res) => {
   try {
-    UserModel.getInstitute(facutly, req.body.instituteID, (instituteData) => {
+    FacultyModel.getInstitute(facutly, req.body.instituteID, (instituteData) => {
       debug('UserController: ', instituteData);
       res.send(instituteData);
     });

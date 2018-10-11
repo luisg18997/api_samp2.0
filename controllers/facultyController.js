@@ -19,6 +19,7 @@ const getAllFacultyList = (req, res) => {
     });
   } catch (e) {
     debug('error: ', e);
+    res.status(500).send(e);
   }
 };
 
@@ -36,6 +37,7 @@ const getAllSchoolList = (req, res) => {
     });
   } catch (e) {
     debug('error: ', e);
+    res.status(500).send(e);
   }
 };
 
@@ -47,6 +49,7 @@ const getAllInstituteList = (req, res) => {
     });
   } catch (e) {
     debug('error: ', e);
+    res.status(500).send(e);
   }
 };
 
@@ -63,16 +66,20 @@ const getAllCoordinationList = (req, res) => {
 
 const getAllDepartamentList = (req, res) => {
   try {
-    if (req.body.schoolID !== undefined) {
-      FacultyModel.getDepartamentBySchoolLists(req.body.schoolID, (departamentBySchoolData) => {
-        debug('FacultyController: ', departamentBySchoolData);
-        res.send(departamentBySchoolData);
-      });
+    if (JSON.stringify(req.body) === '{}'){
+
     } else {
-      FacultyModel.getDepartamentByInstituteLists(req.body.instituteID, (departamentByInstituteData) => {
-        debug('FacultyController: ', departamentByInstituteData);
-        res.send(departamentByInstituteData);
-      });
+      if (req.body.schoolID !== undefined) {
+        FacultyModel.getDepartamentBySchoolLists(req.body.schoolID, (departamentBySchoolData) => {
+          debug('FacultyController: ', departamentBySchoolData);
+          res.send(departamentBySchoolData);
+        });
+      } else {
+        FacultyModel.getDepartamentByInstituteLists(req.body.instituteID, (departamentByInstituteData) => {
+          debug('FacultyController: ', departamentByInstituteData);
+          res.send(departamentByInstituteData);
+        });
+      }
     }
   } catch (e) {
     debug('error: ', e);

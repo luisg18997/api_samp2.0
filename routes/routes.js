@@ -1,6 +1,6 @@
 // Routers files
-const FacultyRouter = require("./facultyRoutes");
-const EmployeeRouter = require("./employeeRoutes");
+const FacultyRouter = require('./facultyRoutes');
+const EmployeeRouter = require('./employeeRoutes');
 
 
 module.exports = (router) => {

@@ -7,11 +7,11 @@ const facutly = 1;
 
 const getAllFacultyList = (req, res) => {
   try {
+    const result = {};
     FacultyModel.getFacultyLists((err, facultyData) => {
       if (err) {
-        const errFalcuty = {};
-        errFalcuty.message = err;
-        res.status(404).send(errFalcuty);
+        result.messageError = err;
+        res.status(404).send(result);
       } else {
         debug('FacultyController: ', facultyData);
         res.send(facultyData);
@@ -25,11 +25,11 @@ const getAllFacultyList = (req, res) => {
 
 const getAllSchoolList = (req, res) => {
   try {
+    const result = {};
     FacultyModel.getSchoolLists(facutly, (err, schoolData) => {
       if (err) {
-        const errSchool = {};
-        errSchool.message = err;
-        res.status(404).send(errSchool);
+        result.messageError = err;
+        res.status(404).send(result);
       } else {
         debug('FacultyController: ', schoolData);
         res.send(schoolData);
@@ -43,9 +43,15 @@ const getAllSchoolList = (req, res) => {
 
 const getAllInstituteList = (req, res) => {
   try {
-    FacultyModel.getInstituteLists(facutly, (instituteData) => {
-      debug('FacultyController: ', instituteData);
-      res.send(instituteData);
+    const result = {};
+    FacultyModel.getInstituteLists(facutly, (err, instituteData) => {
+      if (err) {
+        result.messageError = err;
+        res.status(404).send(result);
+      } else {
+        debug('FacultyController: ', instituteData);
+        res.send(instituteData);
+      }
     });
   } catch (e) {
     debug('error: ', e);
@@ -55,9 +61,15 @@ const getAllInstituteList = (req, res) => {
 
 const getAllCoordinationList = (req, res) => {
   try {
-    FacultyModel.getCoordinationLists(facutly, (coordinationData) => {
-      debug('FacultyController: ', coordinationData);
-      res.send(coordinationData);
+    const result = {};
+    FacultyModel.getCoordinationLists(facutly, (err, coordinationData) => {
+       if (err) {
+        result.messageError = err;
+        res.status(404).send(result);
+      } else {
+        debug('FacultyController: ', coordinationData);
+        res.send(coordinationData);
+      }
     });
   } catch (e) {
     debug('error: ', e);
@@ -66,16 +78,26 @@ const getAllCoordinationList = (req, res) => {
 
 const getAllDepartamentList = (req, res) => {
   try {
+    const result = {};
     if (JSON.stringify(req.body) === '{}'){
-
+      debug('request bad params not received')
+      result.parambad = 'request bad';
+      res.status(400).send(result);
     } else {
+      const schoolID = req.body.schoolID;
+      const instituteID = req.body.instituteID;
       if (req.body.schoolID !== undefined) {
-        FacultyModel.getDepartamentBySchoolLists(req.body.schoolID, (departamentBySchoolData) => {
-          debug('FacultyController: ', departamentBySchoolData);
-          res.send(departamentBySchoolData);
+        FacultyModel.getDepartamentBySchoolLists(schoolID, (err ,departamentBySchoolData) => {
+           if (err) {
+            result.messageError = err;
+            res.status(404).send(result);
+          } else {
+            debug('FacultyController: ', departamentBySchoolData);
+            res.send(departamentBySchoolData);
+          }
         });
       } else {
-        FacultyModel.getDepartamentByInstituteLists(req.body.instituteID, (departamentByInstituteData) => {
+        FacultyModel.getDepartamentByInstituteLists(instituteID, (departamentByInstituteData) => {
           debug('FacultyController: ', departamentByInstituteData);
           res.send(departamentByInstituteData);
         });

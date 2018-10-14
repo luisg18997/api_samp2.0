@@ -6,13 +6,7 @@
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error",
-    "prefer-destructuring": ["error", {
-      "array": true,
-      "object": true
-    }, {
-      "enforceForRenamedProperties": false
-    }]
+    "jest/valid-expect": "error"
   },
   "parserOptions": {
     "ecmaVersion": 2017

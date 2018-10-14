@@ -163,6 +163,26 @@ const getSchool = (facultyID, schoolID, callback) => {
   });
 };
 
+const getCoordination = (facultyID, coordinationID, callback) => {
+  const query = util.format('SELECT faculty_data.get_coordination(param_id := %d, param_faculty_id := %d) as result;',
+    coordinationID, facultyID);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      debug('res.rows: ',  res.rows[0].result.length);
+      if((res.rowCount !== 0) && (res.rows[0].result != null)){
+        debug('result obtain rowCount: ',  res.rowCount)
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
 const getInstitute = (facultyID, instituteID, callback) => {
   const query = util.format('SELECT faculty_data.get_institute(param_id := %d, param_faculty_id := %d) as result;',
     instituteID, facultyID);
@@ -283,6 +303,7 @@ module.exports = {
   getChairsLists,
   getInstitute,
   getSchool,
+  getCoordination,
   getDepartamentBySchool,
   getDepartamentByInstitute,
   getChair,

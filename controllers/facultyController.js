@@ -162,7 +162,7 @@ const getSchool = (req, res) => {
   try {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
-    if (rObject.keys(req.body).length !== 1){
+    if (Object.keys(req.body).length !== 1){
       debug('request bad params not received')
       result.parambad = 'request bad';
       res.status(400).send(result);
@@ -176,6 +176,33 @@ const getSchool = (req, res) => {
         } else{
           debug('FacultyController: ', schoolData);
           res.send(schoolData);
+        }
+      });
+    }
+  } catch (e) {
+    debug('error: ', e);
+    res.status(500).send(e);
+  }
+};
+
+const getCoordination = (req, res) => {
+  try {
+    const result = {};
+    debug('req.body.length: ', Object.keys(req.body).length);
+    if (Object.keys(req.body).length !== 1){
+      debug('request bad params not received')
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const coordinationID = req.body.coordinationID;
+
+      FacultyModel.getCoordination(facutly, coordinationID, (err, coordinationData) => {
+        if (err) {
+          result.messageError = err;
+          res.status(404).send(result);
+        } else{
+          debug('FacultyController: ', coordinationData);
+          res.send(coordinationData);
         }
       });
     }
@@ -356,6 +383,7 @@ module.exports = {
   getAllDepartamentBySchoolList,
   getAllChairList,
   getInstitute,
+  getCoordination,
   getSchool,
   getDepartamentBySchool,
   getDepartamentByInstitute,

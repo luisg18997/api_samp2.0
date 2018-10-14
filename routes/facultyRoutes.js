@@ -12,6 +12,8 @@ facultyRouter.get('/institutes', FacultyController.getAllInstituteList);
 
 facultyRouter.get('/coordinations', FacultyController.getAllCoordinationList);
 
+facultyRouter.post('/coordination', FacultyController.getCoordination);
+
 facultyRouter.post('/school/departaments', FacultyController.getAllDepartamentBySchoolList);
 
 facultyRouter.post('/institute/departaments', FacultyController.getAllDepartamentByInstituteList);

@@ -22,4 +22,14 @@ facultyRouter.post('/school', FacultyController.getSchool);
 
 facultyRouter.post('/institute', FacultyController.getInstitute);
 
+facultyRouter.post('/school/departament', FacultyController.getDepartamentBySchool);
+
+facultyRouter.post('/institute/departament', FacultyController.getDepartamentByInstitute);
+
+facultyRouter.post('/school/departament/chair', FacultyController.getChair);
+
+facultyRouter.post('/addFaculty', FacultyController.addFaculty);
+
+facultyRouter.post('/updateFacultyAllColumns', FacultyController.updateFacultyAllColumns);
+
 module.exports = facultyRouter;

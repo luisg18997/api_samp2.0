@@ -36,4 +36,8 @@ module.exports = (router) => {
   router.get('*', (req, res) => {
     res.status(404).send('invalided page');
   });
+
+  router.post('*', (req, res) => {
+    res.status(404).send('invalided page');
+  });
 };

@@ -100,57 +100,77 @@ const getDepartamentBySchoolLists = (schoolID, callback) => {
 };
 
 const getDepartamentByInstituteLists = (instituteID, callback) => {
-  const query = util.format('SELECT faculty_data.get_all_departaments_institute_list(param_institute_id := %d);', instituteID);
+  const query = util.format('SELECT faculty_data.get_all_departaments_institute_list(param_institute_id := %d) as result;', instituteID);
   const data = {};
   return pool.query(query, (err, res) => {
-    if (err) {
-      debug(err.stack);
+    if (!err) {
+      debug('res.rows: ',  res.rows[0].result);
+      if((res.rowCount !== 0) && (res.rows[0].result != null)){
+        debug('result obtain rowCount: ',  res.rowCount)
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
     } else {
-      const departamentByinstituteList = res.rows[0].get_all_departaments_institute_list;
-      debug('FacultyModel: ', departamentByinstituteList);
-      callback(departamentByinstituteList);
+      callback(err.stack, null);
     }
   });
 };
 
 const getChairsLists = (departamentID, callback) => {
-  const query = util.format('SELECT faculty_data.get_all_chairs_list(param_departament_id := %d);', departamentID);
+  const query = util.format('SELECT faculty_data.get_all_chairs_list(param_departament_id := %d) as result;', departamentID);
   const data = {};
   return pool.query(query, (err, res) => {
-    if (err) {
-      debug(err.stack);
+    if (!err) {
+      debug('res.rows: ',  res.rows[0].result);
+      if((res.rowCount !== 0) && (res.rows[0].result != null)){
+        debug('result obtain rowCount: ',  res.rowCount)
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
     } else {
-      const departamentByinstituteList = res.rows[0].get_all_chairs_list;
-      debug('FacultyModel: ', departamentByinstituteList);
-      callback(departamentByinstituteList);
+      callback(err.stack, null);
     }
   });
 };
 
 const getSchool = (facultyID, schoolID, callback) => {
-  const query = util.format('SELECT faculty_data.get_school(param_id := %d, param_faculty_id := %d);', schoolID, facultyID);
+  const query = util.format('SELECT faculty_data.get_school(param_id := %d, param_faculty_id := %d) as result;', schoolID, facultyID);
   const data = {};
   return pool.query(query, (err, res) => {
-    if (err) {
-      debug(err.stack);
+    if (!err) {
+      debug('res.rows: ',  res.rows[0].result);
+      if((res.rowCount !== 0) && (res.rows[0].result != null)){
+        debug('result obtain rowCount: ',  res.rowCount)
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
     } else {
-      const school = res.rows[0].get_school;
-      debug('usermodel: ', school);
-      callback(school);
+      callback(err.stack, null);
     }
   });
 };
 
 const getInstitute = (facultyID, instituteID, callback) => {
-  const query = util.format('SELECT faculty_data.get_institute(param_id := %d, param_faculty_id := %d);', instituteID, facultyID);
+  const query = util.format('SELECT faculty_data.get_institute(param_id := %d, param_faculty_id := %d) as result;', instituteID, facultyID);
   const data = {};
   return pool.query(query, (err, res) => {
-    if (err) {
-      debug(err.stack);
+    if (!err) {
+      debug('res.rows: ',  res.rows[0].result);
+      if((res.rowCount !== 0) && (res.rows[0].result != null)){
+        debug('result obtain rowCount: ',  res.rowCount)
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
     } else {
-      const institute = res.rows[0].get_institute;
-      debug('usermodel: ', institute);
-      callback(institute);
+      callback(err.stack, null);
     }
   });
 };

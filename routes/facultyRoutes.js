@@ -12,14 +12,14 @@ facultyRouter.get('/institutes', FacultyController.getAllInstituteList);
 
 facultyRouter.get('/coordinations', FacultyController.getAllCoordinationList);
 
-facultyRouter.post('/school/departaments', FacultyController.getAllDepartamentList);
+facultyRouter.post('/school/departaments', FacultyController.getAllDepartamentBySchoolList);
 
-facultyRouter.post('/institute/departaments', FacultyController.getAllDepartamentList);
+facultyRouter.post('/institute/departaments', FacultyController.getAllDepartamentByInstituteList);
 
-facultyRouter.post('/chairs', FacultyController.getAllChairList);
+facultyRouter.post('/school/departament/chairs', FacultyController.getAllChairList);
 
-facultyRouter.post('/schools/getSchool', FacultyController.getSchool);
+facultyRouter.post('/school', FacultyController.getSchool);
 
-facultyRouter.post('/institutes/getInstitute', FacultyController.getInstitute);
+facultyRouter.post('/institute', FacultyController.getInstitute);
 
 module.exports = facultyRouter;

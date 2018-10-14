@@ -1,0 +1,316 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ucv_fhe_sist",
+		"_postman_id": "3480daf7-cb3d-126e-64f8-b968a21d7f68",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "faculty",
+			"description": "",
+			"item": [
+				{
+					"name": "schools",
+					"description": "",
+					"item": [
+						{
+							"name": "faculty/schools",
+							"request": {
+								"url": "{{URLFaculty}}/schools",
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "faculty/school",
+							"request": {
+								"url": "{{URLFaculty}}/school",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"schoolID\" : 1\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "institutes",
+					"description": "",
+					"item": [
+						{
+							"name": "faculty/institutes",
+							"request": {
+								"url": "{{URLFaculty}}/institutes",
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "faculty/institute",
+							"request": {
+								"url": "{{URLFaculty}}/institute",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"instituteID\" : 5\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "coordinations",
+					"description": "",
+					"item": [
+						{
+							"name": "faculty/coordinations",
+							"request": {
+								"url": "{{URLFaculty}}/coordinations",
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "faculty/coordination",
+							"request": {
+								"url": "{{URLFaculty}}/coordination",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"coordinationID\" : 1\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "departaments",
+					"description": "",
+					"item": [
+						{
+							"name": "faculty/school/departaments",
+							"request": {
+								"url": "{{URLFaculty}}/school/departaments",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"schoolID\" : 10\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "faculty/institute/departaments",
+							"request": {
+								"url": "{{URLFaculty}}/institute/departaments",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"instituteID\" : 1\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "faculty/school/departament",
+							"request": {
+								"url": "{{URLFaculty}}/school/departament/",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"schoolID\" : 1,\n\t\"departamentID\" : 3\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "faculty/institute/departament",
+							"request": {
+								"url": "{{URLFaculty}}/institute/departament",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"instituteID\" : 1,\n\t\"departamentID\" : 61\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "chairs",
+					"description": "",
+					"item": [
+						{
+							"name": "faculty/school/departament/chairs",
+							"request": {
+								"url": "{{URLFaculty}}/school/departament/chairs",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"departamentID\" : 12\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "faculty/school/departament/chair",
+							"request": {
+								"url": "{{URLFaculty}}/school/departament/chair",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"departamentID\" : 1,\n\t\"chairID\" : 2\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "faculty/",
+					"request": {
+						"url": "{{URL}}/faculty/",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "faculty/addFaculty",
+					"request": {
+						"url": "{{URLFaculty}}/addFaculty",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"facultyCode\" : 700000000,\n\t\"facultyName\" : \"new faculty\",\n\t\"userID\" : 0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "faculty/updateFacultyAllColumns",
+					"request": {
+						"url": "{{URLFaculty}}/updateFacultyAllColumns",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"facultyID\" : 2,\n\t\"facultyCode\" : 800000000,\n\t\"facultyName\" : \"Update faculty\",\n\t\"userID\" : 1,\n\t\"facultyIsActive\" : 1,\n\t\"facultyIsDeleted\" : 0\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

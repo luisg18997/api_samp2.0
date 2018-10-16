@@ -18,8 +18,8 @@ const getStatesList = (callback) => {
 };
 
 const getMunicipalitiesList = (stateID, callback) => {
-	const query = util.format('SELECT employee_data.get_municipalities_list(param_state_id := %d);', stateID);
-	return pool.query(query, (err, res) => {
+  const query = util.format('SELECT employee_data.get_municipalities_list(param_state_id := %d);', stateID);
+  return pool.query(query, (err, res) => {
     if (err) {
       debug(err.stack);
     } else {
@@ -28,11 +28,11 @@ const getMunicipalitiesList = (stateID, callback) => {
       callback(municipalitylist);
     }
   });
-}
+};
 
 const getParishList = (municipalityID, callback) => {
-	const query = util.format('SELECT employee_data.get_parish_list(param_municipality_id := %d);', municipalityID);
-	return pool.query(query, (err, res) => {
+  const query = util.format('SELECT employee_data.get_parish_list(param_municipality_id := %d);', municipalityID);
+  return pool.query(query, (err, res) => {
     if (err) {
       debug(err.stack);
     } else {
@@ -41,10 +41,10 @@ const getParishList = (municipalityID, callback) => {
       callback(parishlist);
     }
   });
-}
+};
 
 module.exports = {
-	getStatesList,
-	getMunicipalitiesList,
-	getParishList,
-}
+  getStatesList,
+  getMunicipalitiesList,
+  getParishList,
+};

@@ -9,9 +9,9 @@ const getFacultyLists = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ',  res.rows[0].result.length);
-      if((res.rowCount !== 0) && (res.rows[0].result != null)){
-        debug('result obtain rowCount: ',  res.rowCount)
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -29,9 +29,9 @@ const getSchoolLists = (facultyID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ',  res.rows[0].result.length);
-      if((res.rowCount !== 0) && (res.rows[0].result != null)){
-        debug('result obtain rowCount: ',  res.rowCount)
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -49,9 +49,9 @@ const getInstituteLists = (facultyID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ',  res.rows[0].result.length);
-      if((res.rowCount !== 0) && (res.rows[0].result != null)){
-        debug('result obtain rowCount: ',  res.rowCount)
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -69,9 +69,9 @@ const getCoordinationLists = (facultyID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ',  res.rows[0].result.length);
-      if((res.rowCount !== 0) && (res.rows[0].result != null)){
-        debug('result obtain rowCount: ',  res.rowCount)
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -89,9 +89,9 @@ const getDepartamentBySchoolLists = (schoolID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ',  res.rows[0].result.length);
-      if((res.rowCount !== 0) && (res.rows[0].result != null)){
-        debug('result obtain rowCount: ',  res.rowCount)
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -109,9 +109,9 @@ const getDepartamentByInstituteLists = (instituteID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ',  res.rows[0].result.length);
-      if((res.rowCount !== 0) && (res.rows[0].result != null)){
-        debug('result obtain rowCount: ',  res.rowCount)
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -129,9 +129,9 @@ const getChairsLists = (departamentID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ',  res.rows[0].result.length);
-      if((res.rowCount !== 0) && (res.rows[0].result != null)){
-        debug('result obtain rowCount: ',  res.rowCount)
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -149,9 +149,9 @@ const getSchool = (facultyID, schoolID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ',  res.rows[0].result.length);
-      if((res.rowCount !== 0) && (res.rows[0].result != null)){
-        debug('result obtain rowCount: ',  res.rowCount)
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -169,9 +169,9 @@ const getCoordination = (facultyID, coordinationID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ',  res.rows[0].result.length);
-      if((res.rowCount !== 0) && (res.rows[0].result != null)){
-        debug('result obtain rowCount: ',  res.rowCount)
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -189,9 +189,9 @@ const getInstitute = (facultyID, instituteID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ',  res.rows[0].result.length);
-      if((res.rowCount !== 0) && (res.rows[0].result != null)){
-        debug('result obtain rowCount: ',  res.rowCount)
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -210,9 +210,9 @@ const getDepartamentBySchool = (schoolID, departamentID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ',  res.rows[0].result.length);
-      if((res.rowCount !== 0) && (res.rows[0].result != null)){
-        debug('result obtain rowCount: ',  res.rowCount)
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -230,9 +230,9 @@ const getDepartamentByInstitute = (instituteID, departamentID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ',  res.rows[0].result.length);
-      if((res.rowCount !== 0) && (res.rows[0].result != null)){
-        debug('result obtain rowCount: ',  res.rowCount)
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -250,9 +250,9 @@ const getChair = (departamentID, chairID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ',  res.rows[0].result.length);
-      if((res.rowCount !== 0) && (res.rows[0].result != null)){
-        debug('result obtain rowCount: ',  res.rowCount)
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -277,9 +277,10 @@ const addFaculty = (facultyCode, facultyName, userID, callback) => {
       callback(err.stack, null);
     }
   });
-}
+};
 
-const updateFacultyAllColumns = (facultyID, facultyCode, facultyName, userID, facultyIsActive, facultyIsDeleted, callback) => {
+const updateFacultyAllColumns = (facultyID, facultyCode, facultyName, userID,
+  facultyIsActive, facultyIsDeleted, callback) => {
   const query = util.format("SELECT faculty_data.faculty_update_all_columns(param_id := %d, param_code := %d, param_name := '%s', param_user_id := %d, param_is_active := '%d', param_is_deleted := '%d') as result;",
     facultyID, facultyCode, facultyName, userID, facultyIsActive, facultyIsDeleted);
   const data = {};
@@ -292,7 +293,7 @@ const updateFacultyAllColumns = (facultyID, facultyCode, facultyName, userID, fa
       callback(err.stack, null);
     }
   });
-}
+};
 module.exports = {
   getFacultyLists,
   getSchoolLists,

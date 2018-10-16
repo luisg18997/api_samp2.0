@@ -63,7 +63,7 @@ const getAllCoordinationList = (req, res) => {
   try {
     const result = {};
     FacultyModel.getCoordinationLists(facutly, (err, coordinationData) => {
-       if (err) {
+      if (err) {
         result.messageError = err;
         res.status(404).send(result);
       } else {
@@ -81,15 +81,15 @@ const getAllDepartamentBySchoolList = (req, res) => {
   try {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
-    if (req.body.schoolID === undefined){
-      debug('request bad params not received')
+    if (req.body.schoolID === undefined) {
+      debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
     } else {
-      const schoolID = req.body.schoolID;
+      const schoolID = req.body.param_school_id;
 
-      FacultyModel.getDepartamentBySchoolLists(schoolID, (err ,departamentBySchoolData) => {
-         if (err) {
+      FacultyModel.getDepartamentBySchoolLists(schoolID, (err, departamentBySchoolData) => {
+        if (err) {
           result.messageError = err;
           res.status(404).send(result);
         } else {
@@ -99,7 +99,7 @@ const getAllDepartamentBySchoolList = (req, res) => {
       });
     }
   } catch (e) {
-   debug('error: ', e);
+    debug('error: ', e);
     res.status(500).send(e);
   }
 };
@@ -108,20 +108,20 @@ const getAllDepartamentByInstituteList = (req, res) => {
   try {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
-    if (req.body.instituteID === undefined){
-      debug('request bad params not received')
+    if (req.body.instituteID === undefined) {
+      debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
     } else {
-      const instituteID = req.body.instituteID;
+      const instituteID = req.body.param_institute_id;
 
-      FacultyModel.getDepartamentByInstituteLists(instituteID, (err, departamentByInstituteData) => {
-         if (err) {
+      FacultyModel.getDepartamentByInstituteLists(instituteID, (err, deptInstData) => {
+        if (err) {
           result.messageError = err;
           res.status(404).send(result);
         } else {
-          debug('FacultyController: ', departamentByInstituteData);
-          res.send(departamentByInstituteData);
+          debug('FacultyController: ', deptInstData);
+          res.send(deptInstData);
         }
       });
     }
@@ -135,15 +135,15 @@ const getAllChairList = (req, res) => {
   try {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
-    if (req.body.departamentID === undefined){
-      debug('request bad params not received')
+    if (req.body.departamentID === undefined) {
+      debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
     } else {
-      const departamentID =  req.body.departamentID;
+      const departamentID = req.body.param_departament_id;
 
       FacultyModel.getChairsLists(departamentID, (err, chairData) => {
-        if( err) {
+        if (err) {
           result.messageError = err;
           res.status(404).send(result);
         } else {
@@ -162,18 +162,18 @@ const getSchool = (req, res) => {
   try {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
-    if (Object.keys(req.body).length !== 1){
-      debug('request bad params not received')
+    if (Object.keys(req.body).length !== 1) {
+      debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
     } else {
-      const schoolID = req.body.schoolID;
+      const schoolID = req.body.param_school_id;
 
       FacultyModel.getSchool(facutly, schoolID, (err, schoolData) => {
         if (err) {
           result.messageError = err;
           res.status(404).send(result);
-        } else{
+        } else {
           debug('FacultyController: ', schoolData);
           res.send(schoolData);
         }
@@ -189,18 +189,18 @@ const getCoordination = (req, res) => {
   try {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
-    if (Object.keys(req.body).length !== 1){
-      debug('request bad params not received')
+    if (Object.keys(req.body).length !== 1) {
+      debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
     } else {
-      const coordinationID = req.body.coordinationID;
+      const coordinationID = req.body.param_coordination_id;
 
       FacultyModel.getCoordination(facutly, coordinationID, (err, coordinationData) => {
         if (err) {
           result.messageError = err;
           res.status(404).send(result);
-        } else{
+        } else {
           debug('FacultyController: ', coordinationData);
           res.send(coordinationData);
         }
@@ -216,15 +216,15 @@ const getInstitute = (req, res) => {
   try {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
-    if (Object.keys(req.body).length !== 1){
-      debug('request bad params not received')
+    if (Object.keys(req.body).length !== 1) {
+      debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
     } else {
-      const instituteID = req.body.instituteID;
+      const instituteID = req.body.param_institute_id;
 
-      FacultyModel.getInstitute(facutly, instituteID, (err ,instituteData) => {
-        if(err){
+      FacultyModel.getInstitute(facutly, instituteID, (err, instituteData) => {
+        if (err) {
           result.messageError = err;
           res.status(404).send(result);
         } else {
@@ -244,15 +244,15 @@ const getDepartamentBySchool = (req, res) => {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (Object.keys(req.body).length !== 2) {
-      debug('request bad params not received')
+      debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
     } else {
-      const schoolID = req.body.schoolID;
-      const departamentID = req.body.departamentID;
+      const schoolID = req.body.param_school_id;
+      const departamentID = req.body.param_departament_id;
 
       FacultyModel.getDepartamentBySchool(schoolID, departamentID, (err, deptSchoolData) => {
-        if (err){
+        if (err) {
           result.messageError = err;
           res.status(404).send(result);
         } else {
@@ -272,15 +272,15 @@ const getDepartamentByInstitute = (req, res) => {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (Object.keys(req.body).length !== 2) {
-      debug('request bad params not received')
+      debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
     } else {
-      const instituteID = req.body.instituteID;
-      const departamentID = req.body.departamentID;
+      const instituteID = req.body.param_institute_id;
+      const departamentID = req.body.param_departament_id;
 
       FacultyModel.getDepartamentByInstitute(instituteID, departamentID, (err, depInstData) => {
-        if (err){
+        if (err) {
           result.messageError = err;
           res.status(404).send(result);
         } else {
@@ -299,16 +299,16 @@ const getChair = (req, res) => {
   try {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
-    if (Object.keys(req.body).length !== 2 ) {
-      debug('request bad params not received')
+    if (Object.keys(req.body).length !== 2) {
+      debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
     } else {
-      const departamentID = req.body.departamentID;
-      const chairID = req.body.chairID;
+      const departamentID = req.body.param_departament_id;
+      const chairID = req.body.param_chair_id;
 
       FacultyModel.getChair(departamentID, chairID, (err, chairData) => {
-        if (err){
+        if (err) {
           result.messageError = err;
           res.status(404).send(result);
         } else {
@@ -327,13 +327,13 @@ const addFaculty = (req, res) => {
   const result = {};
   debug('req.body.length: ', Object.keys(req.body).length);
   if (Object.keys(req.body).length !== 3) {
-    debug('request bad params not received')
+    debug('request bad params not received');
     result.parambad = 'request bad';
     res.status(400).send(result);
   } else {
-    const facultyCode = req.body.facultyCode;
-    const facultyName = req.body.facultyName;
-    const userID = req.body.userID;
+    const facultyCode = req.body.param_faculty_code;
+    const facultyName = req.body.param_faculty_name;
+    const userID = req.body.param_user_id;
 
     FacultyModel.addFaculty(facultyCode, facultyName, userID, (err, facutlyInsert) => {
       if (err) {
@@ -351,26 +351,27 @@ const updateFacultyAllColumns = (req, res) => {
   const result = {};
   debug('req.body.length: ', Object.keys(req.body).length);
   if (Object.keys(req.body).length !== 6) {
-    debug('request bad params not received')
+    debug('request bad params not received');
     result.parambad = 'request bad';
     res.status(400).send(result);
   } else {
-    const facultyID = req.body.facultyID;
-    const facultyCode = req.body.facultyCode;
-    const facultyName = req.body.facultyName;
-    const userID = req.body.userID;
-    const facultyIsActive = req.body.facultyIsActive;
-    const facultyIsDeleted = req.body.facultyIsDeleted;
+    const facultyID = req.body.param_faculty_id;
+    const facultyCode = req.body.param_faculty_code;
+    const facultyName = req.body.param_faculty_name;
+    const userID = req.body.param_user_id;
+    const facultyIsActive = req.body.param_faculty_is_active;
+    const facultyIsDeleted = req.body.param_faculty_is_deleted;
 
-    FacultyModel.updateFacultyAllColumns(facultyID, facultyCode, facultyName, userID, facultyIsActive, facultyIsDeleted, (err, facultyUpdate) => {
-      if (err) {
-        result.messageError = err;
-        res.status(404).send(result);
-      } else {
-        debug('FacultyController: ', facultyUpdate);
-        res.send(facultyUpdate);
-      }
-    })
+    FacultyModel.updateFacultyAllColumns(facultyID, facultyCode, facultyName, userID,
+      facultyIsActive, facultyIsDeleted, (err, facultyUpdate) => {
+        if (err) {
+          result.messageError = err;
+          res.status(404).send(result);
+        } else {
+          debug('FacultyController: ', facultyUpdate);
+          res.send(facultyUpdate);
+        }
+      });
   }
 };
 

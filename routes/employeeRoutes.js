@@ -11,4 +11,3 @@ employeeRouter.post('/municipalitiesList', EmployeeController.getAllMunicipaliti
 employeeRouter.post('/parishList', EmployeeController.getAllParishList);
 
 module.exports = employeeRouter;
-

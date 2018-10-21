@@ -1,6 +1,8 @@
 // Routers files
 const FacultyRouter = require('./facultyRoutes');
 const EmployeeRouter = require('./employeeRoutes');
+const UsersRouter = require('./UsersRoutes');
+const ProcessRouter = require('./ProcessRoutes')
 
 
 module.exports = (router) => {
@@ -19,6 +21,11 @@ module.exports = (router) => {
   router.use('/faculty', FacultyRouter);
 
   router.use('/employee', EmployeeRouter);
+
+  router.use('/Users',UsersRouter);
+
+  router.use('/Process', ProcessRouter);
+
 
   router.get('/admin', (req, res) => {
     res.send('admin page');

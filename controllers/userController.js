@@ -115,7 +115,7 @@ module.exports = {
   getAllRolesList,
   getAllSecurityAnswerFilterQuestionList,
   getAllSecurityAnswerList,
-  getAllSecurityQuestionsList
+  getAllSecurityQuestionsList,
   getAllUbicationsList,
   getAllUserRoleList,
 };

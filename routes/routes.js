@@ -1,8 +1,8 @@
 // Routers files
 const FacultyRouter = require('./facultyRoutes');
 const EmployeeRouter = require('./employeeRoutes');
-const UsersRouter = require('./UsersRoutes');
-const ProcessRouter = require('./ProcessRoutes')
+const UsersRouter = require('./userRoutes');
+const ProcessRouter = require('./processRoutes')
 
 
 module.exports = (router) => {
@@ -25,20 +25,6 @@ module.exports = (router) => {
   router.use('/Users',UsersRouter);
 
   router.use('/Process', ProcessRouter);
-
-
-  router.get('/admin', (req, res) => {
-    res.send('admin page');
-  });
-
-  router.get('/rrhh', (req, res) => {
-    res.send('RRHH page');
-  });
-
-
-  router.get('/presupuesto', (req, res) => {
-    res.send('presupuesto page');
-  });
 
   router.get('*', (req, res) => {
     res.status(404).send('invalided page');

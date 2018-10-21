@@ -140,18 +140,6 @@ const getExecuntingUnitList = (callback) => {
   });
 };
 
-const getExecuntingUnit = (ExecuntingUnitID, callback) => {
-  const query = util.format('SELECT employee_data.get_execunting_unit(param_ExecuntingUnitID := %d);', ExecuntingUnitID);
-  return pool.query(query, (err, res) => {
-    if (err) {
-      debug(err.stack);
-    } else {
-      const ExecuntingUnit = res.rows[0].get_execunting_unit;
-      debug('EmployeeModel: ', ExecuntingUnit);
-      callback(ExecuntingUnit);
-    }
-  });
-};
 
 const getIncomeTypeList = (callback) => {
   const query = util.format('SELECT employee_data.get_income_type() as result;');
@@ -252,25 +240,6 @@ const getEmployeeSalariesFilterSalayList  = (callback) => {
 
 const getEmployeeSalariesSalayList  = (callback) => {
   const query = util.format('SELECT employee_data.get_employee_salaries_list() as result;');
-  const data = {};
-  return pool.query(query, (err, res) => {
- if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
-      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
-        callback(false, res.rows[0].result);
-      } else {
-        data.result = 'not found';
-        callback(false, data);
-      }
-    } else {
-      callback(err.stack, null);
-    }
-  });
-};
-
-const getExecuntingUnitList  = (callback) => {
-  const query = util.format('SELECT employee_data.get_execunting_unit_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
  if (!err) {
@@ -488,7 +457,6 @@ module.exports = {
   getEmployeeIdacCodeList,
   getEmployeeSalariesFilterSalayList,
   getEmployeeSalariesSalayList,
-  getExecuntingUnitList,
   getGendersList,
   getIdacCodesFilterVacantDateNotNullList,
   getIdacCodesFilterVacantDateNullList,

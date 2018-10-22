@@ -5,7 +5,7 @@ const util = require('util');
 const pool = require('./pgmodel.js');
 
 const getRolesList  = (callback) => {
-  const query = util.format('SELECT employee_data.get_roles_list() as result;');
+  const query = util.format('SELECT user_data.get_roles_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
  if (!err) {

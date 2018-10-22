@@ -22,9 +22,9 @@ module.exports = (router) => {
 
   router.use('/employee', EmployeeRouter);
 
-  router.use('/Users',UsersRouter);
+  router.use('/users',UsersRouter);
 
-  router.use('/Process', ProcessRouter);
+  router.use('/process', ProcessRouter);
 
   router.get('*', (req, res) => {
     res.status(404).send('invalided page');

@@ -4,7 +4,7 @@ const UserRouter = express.Router();
 
 const UserController = require('../controllers/userController.js');
 
-UserRouter.post('/Roles', UserController.getAllRolesList);
+UserRouter.get('/Roles', UserController.getAllRolesList);
 
 UserRouter.post('/SecurityAnswer/SecurityAnswerFilterQuestion', UserController.getAllSecurityAnswerFilterQuestionList);
 

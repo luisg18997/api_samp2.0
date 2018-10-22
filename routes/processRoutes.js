@@ -4,10 +4,10 @@ const processRouter = express.Router();
 
 const ProcessController = require('../controllers/processController.js');
 
-processRouter.post('/ProcessFormMovementPersonal', ProcessController.getAllProcessFormMovementPersonalList);
+processRouter.get('/ProcessFormMovementPersonal', ProcessController.getAllProcessFormMovementPersonalList);
 
-processRouter.post('/ProcessFormOfice', ProcessController.getAllProcessFormOficeList);
+processRouter.get('/ProcessFormOfice', ProcessController.getAllProcessFormOficeList);
 
-processRouter.post('/StatusProcessForm', ProcessController.getAllStatusProcessFormList);
+processRouter.get('/StatusProcessForm', ProcessController.getAllStatusProcessFormList);
 
 module.exports = processRouter;

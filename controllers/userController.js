@@ -78,7 +78,7 @@ const getAllSecurityQuestionsList = (req, res) => {
 const getAllUbicationsList = (req, res) => {
   try {
     const result = {};
-    UserModel.getCoordinationLists((err, getUbicationsListData) => {
+    UserModel.getUbicationsList((err, getUbicationsListData) => {
       if (err) {
         result.messageError = err;
         res.status(404).send(result);
@@ -96,7 +96,7 @@ const getAllUbicationsList = (req, res) => {
 const getAllUserRoleList = (req, res) => {
   try {
     const result = {};
-    UserModel.getAllUserRoleList((err, getUserRoleListData) => {
+    UserModel.getUserRoleList((err, getUserRoleListData) => {
       if (err) {
         result.messageError = err;
         res.status(404).send(result);

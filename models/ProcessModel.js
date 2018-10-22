@@ -7,7 +7,7 @@ const pool = require('./pgmodel.js');
 
 
 const getProcessFormMovementPersonalList  = (callback) => {
-  const query = util.format('SELECT employee_data.get_process_form_movement_personal_list() as result;');
+  const query = util.format('SELECT process_form.get_process_form_movement_personal_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
  if (!err) {
@@ -27,7 +27,7 @@ const getProcessFormMovementPersonalList  = (callback) => {
 
 
 const getProcessFormOficeList  = (callback) => {
-  const query = util.format('SELECT employee_data.get_process_form_ofice_list() as result;');
+  const query = util.format('SELECT process_form.get_process_form_ofice_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
  if (!err) {
@@ -47,7 +47,7 @@ const getProcessFormOficeList  = (callback) => {
 
 
 const getStatusProcessFormList  = (callback) => {
-  const query = util.format('SELECT employee_data.get_status_process_form_list() as result;');
+  const query = util.format('SELECT process_form.get_status_process_form_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
  if (!err) {

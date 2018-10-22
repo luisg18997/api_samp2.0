@@ -24,7 +24,7 @@ const getRolesList  = (callback) => {
 };
 
 const getSecurityAnswerFilterQuestionList  = (callback) => {
-  const query = util.format('SELECT employee_data.get_security_answer_filter_question_list() as result;');
+  const query = util.format('SELECT user_data.get_security_answer_filter_question_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
  if (!err) {
@@ -43,7 +43,7 @@ const getSecurityAnswerFilterQuestionList  = (callback) => {
 };
 
 const getSecurityAnswerList  = (callback) => {
-  const query = util.format('SELECT employee_data.get_security_answer_list() as result;');
+  const query = util.format('SELECT user_data.get_security_answer_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
  if (!err) {
@@ -62,7 +62,7 @@ const getSecurityAnswerList  = (callback) => {
 };
 
 const getSecurityQuestionsList  = (callback) => {
-  const query = util.format('SELECT employee_data.get_security_questions_list() as result;');
+  const query = util.format('SELECT user_data.get_security_questions_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
  if (!err) {
@@ -81,7 +81,7 @@ const getSecurityQuestionsList  = (callback) => {
 };
 
 const getUbicationsList  = (callback) => {
-  const query = util.format('SELECT employee_data.get_ubications_list() as result;');
+  const query = util.format('SELECT user_data.get_ubications_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
  if (!err) {
@@ -101,7 +101,7 @@ const getUbicationsList  = (callback) => {
 
 
 const getUserRoleList  = (callback) => {
-  const query = util.format('SELECT employee_data.get_user_role_list() as result;');
+  const query = util.format('SELECT user_data.get_user_role_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
  if (!err) {

@@ -14,39 +14,47 @@ employeeRouter.post('/states/municipalities/parish', EmployeeController.getAllPa
 
  employeeRouter.post('/CategoryType', EmployeeController.getAllCategoryType);
 
- employeeRouter.get('/CategoryTypes', EmployeeController.getAllCategoryTypesList;
+ employeeRouter.get('/CategoryTypes', EmployeeController.getAllCategoryTypesList);
 
- employeeRouter.post('/ExecuntingUnit', EmployeeController.getAllExecuntingUnit;
+ employeeRouter.post('/ExecuntingUnit', EmployeeController.getAllExecuntingUnit);
 
- employeeRouter.get('/ExecuntingUnitlist', EmployeeController.getAllExecuntingUnitList;
+ employeeRouter.get('/ExecuntingUnitlist', EmployeeController.getAllExecuntingUnitList);
 
- employeeRouter.get('/IncomeType', EmployeeController.getAllIncomeTypeList;
+ employeeRouter.get('/IncomeType', EmployeeController.getAllIncomeTypeList);
 
- employeeRouter.get('/Ingress', EmployeeController.getAllIngressList;
+ employeeRouter.get('/Ingress', EmployeeController.getAllIngressList);
  
-  employeeRouter.get('/Documentations', EmployeeController.getAllDocumentationsList;
+  employeeRouter.get('/Documentations', EmployeeController.getAllDocumentationsList);
  
-  employeeRouter.get('/IdacCodes/EmployeeIdacCode', EmployeeController.getAllEmployeeIdacCodeList;
+  employeeRouter.get('/IdacCodes/EmployeeIdacCode', EmployeeController.getAllEmployeeIdacCodeList);
  
-  employeeRouter.get('/Salary/EmployeeSalariesFilterSalary', EmployeeController.getAllEmployeeSalariesFilterSalaryList;
+  employeeRouter.get('/Salary/EmployeeSalariesFilterSalary', EmployeeController.getAllEmployeeSalariesFilterSalaryList);
  
-  employeeRouter.get('/Salary/EmployeeSalariesSalary', EmployeeController.getAllEmployeeSalariesSalaryList;
+  employeeRouter.get('/Salary/EmployeeSalariesSalary', EmployeeController.getAllEmployeeSalariesSalaryList);
  
-  employeeRouter.get('/Genders', EmployeeController.getAllGendersList;
+  employeeRouter.get('/Genders', EmployeeController.getAllGendersList);
  
-  employeeRouter.get('/IdacCodes/FilterVacantDateNotNull', EmployeeController.getAllIdacCodesFilterVacantDateNotNullList;
+  employeeRouter.get('/IdacCodes/FilterVacantDateNotNull', EmployeeController.getAllIdacCodesFilterVacantDateNotNullList);
  
-  employeeRouter.get('/IdacCodes/FilterVacantDateNull', EmployeeController.getAllIdacCodesFilterVacantDateNullList;
  
-  employeeRouter.get('/IdacCodes', EmployeeController.getAllIdacCodesList;
+  employeeRouter.get('/IdacCodes/FilterVacantDateNull', EmployeeController.getAllIdacCodesFilterVacantDateNullList);
  
-  employeeRouter.post('/Salary/CategoryType', EmployeeController.getAllSalaryForCategoryTypeList;
  
-  employeeRouter.post('/Salary/CategoryType/DedicationType', EmployeeController.getAllSalaryForDedicationTypeCategoryTypeList;
+  employeeRouter.get('/IdacCodes', EmployeeController.getAllIdacCodesList);
+ 
+  employeeRouter.post('/Salary/CategoryType', EmployeeController.getAllSalaryForCategoryTypeList);
+ 
+ 
+  employeeRouter.post('/Salary/CategoryType/DedicationType', EmployeeController.getAllSalaryForDedicationTypeCategoryTypeList);
+ 
   
-  employeeRouter.post('/Salary/DedicationType', EmployeeController.getAllSalaryForDedicationTypeList;
+  employeeRouter.post('/Salary/DedicationType', EmployeeController.getAllSalaryForDedicationTypeList);
  
-  employeeRouter.get('/Salary', EmployeeController.getAllSalaryList;
+ 
+  employeeRouter.get('/Salary', EmployeeController.getAllSalaryList);
+
+  employeeRouter.post('/', EmployeeController.Insertemployees);
+ 
 
 
 module.exports = employeeRouter;

@@ -81,7 +81,7 @@ const getAllDepartamentBySchoolList = (req, res) => {
   try {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
-    if (req.body.schoolID === undefined) {
+    if (req.body.param_school_id === undefined) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
@@ -135,7 +135,7 @@ const getAllChairList = (req, res) => {
   try {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
-    if (req.body.departamentID === undefined) {
+    if (req.body.param_departament_id === undefined) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);

@@ -5,14 +5,20 @@ const util = require('util');
 const pool = require('./pgmodel.js');
 
 const getStatesList = (callback) => {
-  const query = util.format('SELECT employee_data.get_states_list();');
+  const query = util.format('SELECT employee_data.get_states_list() as result;');
+  const data = {};
   return pool.query(query, (err, res) => {
-    if (err) {
-      debug(err.stack);
+ if (!err) {
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
     } else {
-      const statelist = res.rows[0].get_states_list;
-      debug('EmployeeModel: ', statelist);
-      callback(statelist);
+      callback(err.stack, null);
     }
   });
 };

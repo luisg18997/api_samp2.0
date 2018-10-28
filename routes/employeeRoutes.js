@@ -16,6 +16,8 @@ employeeRouter.post('/states/municipalities/parish', EmployeeController.getAllPa
 
  employeeRouter.get('/CategoryTypes', EmployeeController.getAllCategoryTypesList);
 
+ employeeRouter.get('/DedicationTypes', EmployeeController.getAllDedicationTypesList);
+ 
  employeeRouter.post('/ExecuntingUnit', EmployeeController.getAllExecuntingUnit);
 
  employeeRouter.get('/ExecuntingUnitlist', EmployeeController.getAllExecuntingUnitList);

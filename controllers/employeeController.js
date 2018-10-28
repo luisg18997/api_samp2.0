@@ -152,6 +152,24 @@ const getAllCategoryTypesList = (req, res) => {
 };
 
 
+const getAllDedicationTypesList = (req, res) => {
+  try {
+    const result = {};
+    EmployeeModel.getDedicationTypesList((err, DedicationTypesListData) => {
+      if (err) {
+        result.messageError = err;
+        res.status(404).send(result);
+      } else {
+        debug('EmployeeController: ', DedicationTypesListData);
+        res.send(DedicationTypesListData);
+      }
+    });
+  } catch (e) {
+    debug('error: ', e);
+    res.status(500).send(e);
+  }
+};
+
 
 
 const getAllExecuntingUnit = (req, res) => {
@@ -193,13 +211,16 @@ const getAllExecuntingUnitList = (req, res) => {
       } else {
         debug('EmployeeController: ', ExecuntingUnitListData);
         res.send(ExecuntingUnitListData);
-      }
+          }
     });
   } catch (e) {
     debug('error: ', e);
     res.status(500).send(e);
   }
 };
+
+
+
 
 const getAllIncomeTypeList = (req, res) => {
   try {
@@ -571,6 +592,7 @@ module.exports = {
   getAllParishList,
   getAllCategoryType,
   getAllCategoryTypesList,
+  getAllDedicationTypesList,
   getAllExecuntingUnit,
   getAllExecuntingUnitList,
   getAllIncomeTypeList,

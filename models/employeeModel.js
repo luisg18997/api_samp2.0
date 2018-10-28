@@ -82,24 +82,6 @@ const getCategoryType = (categorytypeID, callback) => {
 };
 
 
-const getCategoryTypesList = (callback) => {
-  const query = util.format('SELECT employee_data.get_category_types_list() as result;');
-  const data = {};
-  return pool.query(query, (err, res) => {
- if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
-      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
-        callback(false, res.rows[0].result);
-      } else {
-        data.result = 'not found';
-        callback(false, data);
-      }
-    } else {
-      callback(err.stack, null);
-    }
-  });
-};
 
 const getdedicationtype = (dedicationtypeID, callback) => {
   const query = util.format('SELECT employee_data.get_dedication_type(param_dedicationtypeID := %d);', dedicationtypeID);
@@ -165,10 +147,32 @@ const getExecuntingUnitList = (callback) => {
   });
 };
 
+const getCategoryTypesList = (callback) => {
+  const query = util.format('SELECT employee_data.get_category_types_list() as result;');
+  const data = {};
+  return pool.query(query, (err, res) => {
+ if (!err) {
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
+
+
+
 
 
 const getIncomeTypeList = (callback) => {
-  const query = util.format('SELECT employee_data.get_income_type() as result;');
+  const query = util.format('SELECT employee_data.get_income_type_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
  if (!err) {

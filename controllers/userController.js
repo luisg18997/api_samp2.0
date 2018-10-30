@@ -111,6 +111,33 @@ const getAllUserRoleList = (req, res) => {
   }
 };
 
+const addUser = (req, res) => {
+  const result = {};
+  debug('req.body.length: ', Object.keys(req.body).length);
+  if (Object.keys(req.body).length !== 5) {
+    debug('request bad params not received');
+    result.parambad = 'request bad';
+    res.status(400).send(result);
+  } else {
+    const name = req.body.param_name;
+    const surname = req.body.param_surname;
+    const email = req.body.param_email;
+    const pass = req.body.param_password;
+    const ubicationId = req.body.param_ubication_id;
+    const UbicationUserId = req.body.param_ubication_user_id;
+    debug('req.body: ', req.body);
+    UserModel.addNewUser(name, surname, email, pass, ubicationId, UbicationUserId, (err, userInsert) => {
+      if (err) {
+        result.messageError = err;
+        res.status(400).send(result);
+      } else {
+        debug('FacultyController: ', userInsert);
+        res.send(userInsert);
+      }
+    });
+  }
+};
+
 module.exports = {
   getAllRolesList,
   getAllSecurityAnswerFilterQuestionList,
@@ -118,4 +145,5 @@ module.exports = {
   getAllSecurityQuestionsList,
   getAllUbicationsList,
   getAllUserRoleList,
+  addUser,
 };

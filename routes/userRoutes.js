@@ -16,4 +16,6 @@ UserRouter.get('/Ubications', UserController.getAllUbicationsList);
 
 UserRouter.get('/Roles/UserRole', UserController.getAllUserRoleList);
 
+UserRouter.post('/NewUser', UserController.addUser);
+
 module.exports = UserRouter;

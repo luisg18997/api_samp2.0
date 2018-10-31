@@ -138,6 +138,30 @@ const addUser = (req, res) => {
   }
 };
 
+const login = (req, res) => {
+  const result = {};
+  debug('req.body.length: ', Object.keys(req.body).length);
+  if (Object.keys(req.body).length !== 2) {
+    debug('request bad params not received');
+    result.parambad = 'request bad';
+    res.status(400).send(result);
+  } else {
+
+    const email = req.body.param_email;
+    const pass = req.body.param_password;
+    debug('req.body: ', req.body);
+    UserModel.login( email, pass, (err, userInsert) => {
+      if (err) {
+        result.messageError = err;
+        res.status(400).send(result);
+      } else {
+        debug('FacultyController: ', userInsert);
+        res.send(userInsert);
+      }
+    });
+  }
+};
+
 module.exports = {
   getAllRolesList,
   getAllSecurityAnswerFilterQuestionList,
@@ -146,4 +170,5 @@ module.exports = {
   getAllUbicationsList,
   getAllUserRoleList,
   addUser,
+  login,
 };

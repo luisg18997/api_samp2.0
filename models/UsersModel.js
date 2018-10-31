@@ -144,6 +144,28 @@ const addNewUser  = (name, surname, email, pass, ubicationId, UbicationUserId, c
   });
 };
 
+const login = (email, password, callback) => {
+  const query = util.format("SELECT user_data.login_user(param_email := '%s'); as result",
+  email);
+  const data = {};
+  return pool.query(query, (err, res) => {
+ if (!err) {
+    debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        const compare = bcrypt.compareSync(password, res.rows[0].result.password);
+        debug('compare: ', compare);
+        debug('result obtain rowCount: ', res.rowCount);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      debug('err: ', err)
+      callback(err.stack, null);
+    }
+  });
+}
 
 
 module.exports = {
@@ -153,5 +175,6 @@ getSecurityAnswerList,
 getSecurityQuestionsList,
 getUbicationsList,
 getUserRoleList,
-addNewUser
+addNewUser,
+login
 };

@@ -145,7 +145,7 @@ const addNewUser  = (name, surname, email, pass, ubicationId, UbicationUserId, c
 };
 
 const login = (email, password, callback) => {
-  const query = util.format("SELECT user_data.login_user(param_email := '%s'); as result",
+  const query = util.format("SELECT user_data.login_user(param_email := '%s') as result;",
   email);
   const data = {};
   return pool.query(query, (err, res) => {

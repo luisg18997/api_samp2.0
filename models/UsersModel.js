@@ -151,13 +151,22 @@ const login = (email, password, callback) => {
   return pool.query(query, (err, res) => {
  if (!err) {
     debug('res.rows: ', res.rows[0].result.length);
+    const passHash = res.rows[0].result[0].password;
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        const compare = bcrypt.compareSync(password, res.rows[0].result.password);
-        debug('compare: ', compare);
-        debug('result obtain rowCount: ', res.rowCount);
-        callback(false, res.rows[0].result);
+        const compare = bcrypt.compareSync(password,  passHash);
+        if(compare) {
+          debug('result obtain rowCount: ', res.rowCount);
+          data.name = res.rows[0].result[0].name;
+          data.surname = res.rows[0].result[0].surname;
+          data.email = res.rows[0].result[0].email;
+          data.ubication_id = res.rows[0].result[0].ubication_id;
+          callback(false, data);
+        } else {
+          data.result = '1';
+          callback(false, data);
+        }
       } else {
-        data.result = 'not found';
+        data.result = '0';
         callback(false, data);
       }
     } else {

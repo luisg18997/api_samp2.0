@@ -62,14 +62,20 @@ const getNacionalitiesList  = (callback) => {
 };
 
 const getParishList = (municipalityID, callback) => {
-  const query = util.format('SELECT employee_data.get_parish_list(param_municipality_id := %d);', municipalityID);
+  const query = util.format('SELECT employee_data.get_parish_list(param_municipality_id := %d) as result;', municipalityID);
+  const data = {};
   return pool.query(query, (err, res) => {
-    if (err) {
-      debug(err.stack);
+ if (!err) {
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
     } else {
-      const parishlist = res.rows[0].get_parish_list;
-      debug('EmployeeModel: ', parishlist);
-      callback(parishlist);
+      callback(err.stack, null);
     }
   });
 };

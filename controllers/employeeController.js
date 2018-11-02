@@ -50,8 +50,6 @@ const getAllMunicipalitiesList = (req, res) => {
   }
 };
 
-
-
 const getAllNacionalitiesList = (req, res) => {
   try {
     const result = {};
@@ -76,7 +74,7 @@ const getAllParishList = (req, res) => {
   try {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
-    if (req.body.municipalityID === undefined) {
+    if (req.body.param_municipality_id === undefined) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);

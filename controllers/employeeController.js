@@ -23,14 +23,11 @@ const getAllStatesList = (req, res) => {
   }
 };
 
-
-
-
 const getAllMunicipalitiesList = (req, res) => {
   try {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
-    if (req.body.stateID === undefined) {
+    if (req.body.param_state_id === undefined) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
@@ -40,7 +37,7 @@ const getAllMunicipalitiesList = (req, res) => {
       EmployeeModel.getMunicipalitiesList(stateID, (err, MunicipalitieslData) => {
         if (err) {
           result.messageError = err;
-          res.status(404).send(result);
+          res.status(403).send(result);
         } else {
           debug('EmployeeController: ', MunicipalitieslData);
           res.send(MunicipalitieslData);
@@ -527,8 +524,8 @@ const Insertemployees = (req, res) => {
       result.parambad = 'request bad';
       res.status(400).send(result);
     } else {
-        
-            const nacionality_id = req.body.param_nacionality_id;             
+
+            const nacionality_id = req.body.param_nacionality_id;
             const documentation_id = req.body.param_documentation_id;
             const identification = req.body.param_identification;
             const first_name = req.body.param_first_name;
@@ -563,7 +560,7 @@ const Insertemployees = (req, res) => {
 
 
         EmployeeModel.Insertemployees(nacionality_id, documentation_id,identification,first_name,second_name,
-        surname,second_surname,birth_date, gender_id, email,state_id, municipality_id,parish_id,ubication, 
+        surname,second_surname,birth_date, gender_id, email,state_id, municipality_id,parish_id,ubication,
         address, housing_type, housing_identifier,apartament, school_id,institute_id,cordination_id,
         departament_id,chair_id,first_mobile_phone_number, second_mobile_phone_number,local_phone_number,
         ingress_id, income_type_id,admission_date,last_updated_date,retirement_date, userID, (err, Insertemployees) => {

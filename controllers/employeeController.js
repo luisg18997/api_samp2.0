@@ -4,7 +4,6 @@ const debug = require('debug')(appName);
 const EmployeeModel = require('../models/employeeModel.js');
 
 
-
 const getAllStatesList = (req, res) => {
   try {
     const result = {};
@@ -69,7 +68,6 @@ const getAllNacionalitiesList = (req, res) => {
 };
 
 
-
 const getAllParishList = (req, res) => {
   try {
     const result = {};
@@ -96,8 +94,6 @@ const getAllParishList = (req, res) => {
     res.status(500).send(e);
   }
 };
-
-
 
 
 const getAllCategoryType = (req, res) => {
@@ -166,7 +162,6 @@ const getAllDedicationTypesList = (req, res) => {
 };
 
 
-
 const getAllExecuntingUnit = (req, res) => {
   try {
     const result = {};
@@ -195,7 +190,6 @@ const getAllExecuntingUnit = (req, res) => {
 };
 
 
-
 const getAllExecuntingUnitList = (req, res) => {
   try {
     const result = {};
@@ -206,15 +200,13 @@ const getAllExecuntingUnitList = (req, res) => {
       } else {
         debug('EmployeeController: ', ExecuntingUnitListData);
         res.send(ExecuntingUnitListData);
-          }
+      }
     });
   } catch (e) {
     debug('error: ', e);
     res.status(500).send(e);
   }
 };
-
-
 
 
 const getAllIncomeTypeList = (req, res) => {
@@ -293,15 +285,17 @@ const getAllEmployeeIdacCodeList = (req, res) => {
 const getAllEmployeeSalariesFilterSalaryList = (req, res) => {
   try {
     const result = {};
-    EmployeeModel.getEmployeeSalariesFilterSalaryList((err, EmployeeSalariesFilterSalaryListData) => {
-      if (err) {
-        result.messageError = err;
-        res.status(404).send(result);
-      } else {
-        debug('EmployeeController: ', EmployeeSalariesFilterSalaryListData);
-        res.send(EmployeeSalariesFilterSalaryListData);
-      }
-    });
+    EmployeeModel.getEmployeeSalariesFilterSalaryList(
+      (err, EmployeeSalariesFilterSalaryListData) => {
+        if (err) {
+          result.messageError = err;
+          res.status(404).send(result);
+        } else {
+          debug('EmployeeController: ', EmployeeSalariesFilterSalaryListData);
+          res.send(EmployeeSalariesFilterSalaryListData);
+        }
+      },
+    );
   } catch (e) {
     debug('error: ', e);
     res.status(500).send(e);
@@ -327,7 +321,6 @@ const getAllEmployeeSalariesSalaryList = (req, res) => {
   }
 };
 
-
 const getAllGendersList = (req, res) => {
   try {
     const result = {};
@@ -346,46 +339,45 @@ const getAllGendersList = (req, res) => {
   }
 };
 
-
-
 const getAllIdacCodesFilterVacantDateNotNullList = (req, res) => {
   try {
     const result = {};
-    EmployeeModel.getIdacCodesFilterVacantDateNotNullList((err, IdacCodesFilterVacantDateNotNullListData) => {
-      if (err) {
-        result.messageError = err;
-        res.status(404).send(result);
-      } else {
-        debug('EmployeeController: ', IdacCodesFilterVacantDateNotNullListData);
-        res.send(IdacCodesFilterVacantDateNotNullListData);
-      }
-    });
+    EmployeeModel.getIdacCodesFilterVacantDateNotNullList(
+      (err, IdacCodesFilterVacantDateNotNullListData) => {
+        if (err) {
+          result.messageError = err;
+          res.status(404).send(result);
+        } else {
+          debug('EmployeeController: ', IdacCodesFilterVacantDateNotNullListData);
+          res.send(IdacCodesFilterVacantDateNotNullListData);
+        }
+      },
+    );
   } catch (e) {
     debug('error: ', e);
     res.status(500).send(e);
   }
 };
-
 
 const getAllIdacCodesFilterVacantDateNullList = (req, res) => {
   try {
     const result = {};
-    EmployeeModel.getIdacCodesFilterVacantDateNullList((err, IdacCodesFilterVacantDateNullListData) => {
-      if (err) {
-        result.messageError = err;
-        res.status(404).send(result);
-      } else {
-        debug('EmployeeController: ', IdacCodesFilterVacantDateNullListData);
-        res.send(IdacCodesFilterVacantDateNullListData);
-      }
-    });
+    EmployeeModel.getIdacCodesFilterVacantDateNullList(
+      (err, IdacCodesFilterVacantDateNullListData) => {
+        if (err) {
+          result.messageError = err;
+          res.status(404).send(result);
+        } else {
+          debug('EmployeeController: ', IdacCodesFilterVacantDateNullListData);
+          res.send(IdacCodesFilterVacantDateNullListData);
+        }
+      },
+    );
   } catch (e) {
     debug('error: ', e);
     res.status(500).send(e);
   }
 };
-
-
 
 const getAllIdacCodesList = (req, res) => {
   try {
@@ -405,8 +397,6 @@ const getAllIdacCodesList = (req, res) => {
   }
 };
 
-
-
 const getAllSalaryForCategoryTypeList = (req, res) => {
   try {
     const result = {};
@@ -418,23 +408,22 @@ const getAllSalaryForCategoryTypeList = (req, res) => {
     } else {
       const categoryId = req.body.param_category_id;
 
-      EmployeeModel.getSalaryForCategoryTypeList(categoryId, (err, SalaryForCategoryTypeListData) => {
-        if (err) {
-          result.messageError = err;
-          res.status(404).send(result);
-        } else {
-          debug('EmployeeController: ', SalaryForCategoryTypeListData);
-          res.send(SalaryForCategoryTypeListData);
-        }
-      });
+      EmployeeModel.getSalaryForCategoryTypeList(categoryId,
+        (err, SalaryForCategoryTypeListData) => {
+          if (err) {
+            result.messageError = err;
+            res.status(404).send(result);
+          } else {
+            debug('EmployeeController: ', SalaryForCategoryTypeListData);
+            res.send(SalaryForCategoryTypeListData);
+          }
+        });
     }
   } catch (e) {
     debug('error: ', e);
     res.status(500).send(e);
   }
 };
-
-
 
 const getAllSalaryForDedicationTypeCategoryTypeList = (req, res) => {
   try {
@@ -448,22 +437,22 @@ const getAllSalaryForDedicationTypeCategoryTypeList = (req, res) => {
       const schoolID = req.body.param_school_id;
       const departamentID = req.body.param_departament_id;
 
-      FacultyModel.getSalaryForDedicationTypeCategoryTypeList(schoolID, departamentID, (err, SalaryForDedicationTypeCategoryTypeListData) => {
-        if (err) {
-          result.messageError = err;
-          res.status(404).send(result);
-        } else {
-          debug('EmployeeController: ', SalaryForDedicationTypeCategoryTypeListData);
-          res.send(SalaryForDedicationTypeCategoryTypeListData);
-        }
-      });
+      EmployeeModel.getSalaryForDedicationTypeCategoryTypeList(schoolID, departamentID,
+        (err, SalaryForDedicationTypeCategoryTypeListData) => {
+          if (err) {
+            result.messageError = err;
+            res.status(404).send(result);
+          } else {
+            debug('EmployeeController: ', SalaryForDedicationTypeCategoryTypeListData);
+            res.send(SalaryForDedicationTypeCategoryTypeListData);
+          }
+        });
     }
   } catch (e) {
     debug('error: ', e);
     res.status(500).send(e);
   }
 };
-
 
 const getAllSalaryForDedicationTypeList = (req, res) => {
   try {
@@ -476,22 +465,22 @@ const getAllSalaryForDedicationTypeList = (req, res) => {
     } else {
       const dedicationId = req.body.param_dedication_id;
 
-      EmployeeModel.getSalaryForDedicationTypeList(dedicationId, (err, SalaryForCategoryTypeListData) => {
-        if (err) {
-          result.messageError = err;
-          res.status(404).send(result);
-        } else {
-          debug('EmployeeController: ', SalaryForCategoryTypeListData);
-          res.send(SalaryForCategoryTypeListData);
-        }
-      });
+      EmployeeModel.getSalaryForDedicationTypeList(dedicationId,
+        (err, SalaryForCategoryTypeListData) => {
+          if (err) {
+            result.messageError = err;
+            res.status(404).send(result);
+          } else {
+            debug('EmployeeController: ', SalaryForCategoryTypeListData);
+            res.send(SalaryForCategoryTypeListData);
+          }
+        });
     }
   } catch (e) {
     debug('error: ', e);
     res.status(500).send(e);
   }
 };
-
 
 
 const getAllSalaryList = (req, res) => {
@@ -513,74 +502,7 @@ const getAllSalaryList = (req, res) => {
 };
 
 
-const Insertemployees = (req, res) => {
-  try {
-    const result = {};
-    debug('req.body.length: ', Object.keys(req.body).length);
-    if (Object.keys(req.body).length !== 2) {
-      debug('request bad params not received');
-      result.parambad = 'request bad';
-      res.status(400).send(result);
-    } else {
-
-            const nacionality_id = req.body.param_nacionality_id;
-            const documentation_id = req.body.param_documentation_id;
-            const identification = req.body.param_identification;
-            const first_name = req.body.param_first_name;
-            const second_name = req.body.param_second_name;
-            const surname = req.body.param_surname;
-            const second_surname = req.body.param_second_surname;
-            const birth_date = req.body.param_birth_date;
-            const gender_id = req.body.param_gender_id;
-            const email = req.body.param_email;
-            const state_id = req.body.param_state_id;
-            const municipality_id = req.body.param_municipality_id;
-            const parish_id = req.body.param_parish_id;
-            const ubication = req.body.param_ubication;
-            const address = req.body.param_address;
-            const housing_type = req.body.param_housing_type;
-            const housing_identifier = req.body.param_housing_identifier;
-            const apartament = req.body.param_apartament;
-            const school_id = req.body.param_school_id;
-            const institute_id = req.body.param_institute_id;
-            const cordination_id = req.body.param_cordination_id;
-            const  departament_id = req.body.param_departament_id;
-            const chair_id = req.body.param_chair_id;
-            const  first_mobile_phone_number = req.body.param_first_mobile_phone_number;
-            const  second_mobile_phone_number = req.body.param_second_mobile_phone_number;
-            const  local_phone_number = req.body.param_local_phone_number;
-             const  ingress_id = req.body.param_ingress_id;
-             const  income_type_id = req.body.param_income_type_id;
-            const  admission_date = req.body.param_admission_date;
-            const  last_updated_date = req.body.param_last_updated_date;
-             const  retirement_date = req.body.param_retirement_date;
-            const  userID = req.body.param_userID;
-
-
-        EmployeeModel.Insertemployees(nacionality_id, documentation_id,identification,first_name,second_name,
-        surname,second_surname,birth_date, gender_id, email,state_id, municipality_id,parish_id,ubication,
-        address, housing_type, housing_identifier,apartament, school_id,institute_id,cordination_id,
-        departament_id,chair_id,first_mobile_phone_number, second_mobile_phone_number,local_phone_number,
-        ingress_id, income_type_id,admission_date,last_updated_date,retirement_date, userID, (err, Insertemployees) => {
-        if (err) {
-          result.messageError = err;
-          res.status(404).send(result);
-        } else {
-          debug('EmployeeController: ', Insertemployees);
-          res.send(Insertemployees);
-        }
-      });
-    }
-  } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
-  }
-};
-
-
-
 module.exports = {
-
   getAllStatesList,
   getAllMunicipalitiesList,
   getAllNacionalitiesList,
@@ -604,6 +526,5 @@ module.exports = {
   getAllSalaryForDedicationTypeCategoryTypeList,
   getAllSalaryForDedicationTypeList,
   getAllSalaryList,
-  Insertemployees
 
-  };
+};

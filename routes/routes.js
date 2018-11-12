@@ -3,7 +3,7 @@ const FacultyRouter = require('./facultyRoutes');
 const formDataRouter = require('./formDataRoute');
 const EmployeeRouter = require('./employeeRoutes');
 const UsersRouter = require('./userRoutes');
-const ProcessRouter = require('./processRoutes')
+const ProcessRouter = require('./processRoutes');
 
 
 module.exports = (router) => {
@@ -25,7 +25,7 @@ module.exports = (router) => {
 
   router.use('/employee', EmployeeRouter);
 
-  router.use('/users',UsersRouter);
+  router.use('/users', UsersRouter);
 
   router.use('/process', ProcessRouter);
 

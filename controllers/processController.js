@@ -42,13 +42,13 @@ const getAllProcessFormOficeList = (req, res) => {
 const getAllStatusProcessFormList = (req, res) => {
   try {
     const result = {};
-    ProcessModel.getgetStatusProcessFormList((err, getStatusProcessFormListData) => {
+    ProcessModel.getgetStatusProcessFormList((err, statusProcessFormListData) => {
       if (err) {
         result.messageError = err;
         res.status(404).send(result);
       } else {
-        debug('ProcessController: ', StatusProcessFormListData);
-        res.send(StatusProcessFormListData);
+        debug('ProcessController: ', statusProcessFormListData);
+        res.send(statusProcessFormListData);
       }
     });
   } catch (e) {

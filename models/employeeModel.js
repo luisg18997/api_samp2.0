@@ -8,7 +8,7 @@ const getStatesList = (callback) => {
   const query = util.format('SELECT employee_data.get_states_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -42,11 +42,11 @@ const getMunicipalitiesList = (stateID, callback) => {
   });
 };
 
-const getNacionalitiesList  = (callback) => {
+const getNacionalitiesList = (callback) => {
   const query = util.format('SELECT employee_data.get_nacionalities_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -65,7 +65,7 @@ const getParishList = (municipalityID, callback) => {
   const query = util.format('SELECT employee_data.get_parish_list(param_municipality_id := %d) as result;', municipalityID);
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -94,7 +94,6 @@ const getCategoryType = (categorytypeID, callback) => {
 };
 
 
-
 const getdedicationtype = (dedicationtypeID, callback) => {
   const query = util.format('SELECT employee_data.get_dedication_type(param_dedicationtypeID := %d);', dedicationtypeID);
   return pool.query(query, (err, res) => {
@@ -112,7 +111,7 @@ const getDedicationTypesList = (callback) => {
   const query = util.format('SELECT employee_data.get_dedication_types_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -144,7 +143,7 @@ const getExecuntingUnitList = (callback) => {
   const query = util.format('SELECT employee_data.get_execunting_unit_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -163,7 +162,7 @@ const getCategoryTypesList = (callback) => {
   const query = util.format('SELECT employee_data.get_category_types_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -179,15 +178,11 @@ const getCategoryTypesList = (callback) => {
 };
 
 
-
-
-
-
 const getIncomeTypeList = (callback) => {
   const query = util.format('SELECT employee_data.get_income_type_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -206,7 +201,7 @@ const getIngressList = (callback) => {
   const query = util.format('SELECT employee_data.get_ingress_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -222,12 +217,11 @@ const getIngressList = (callback) => {
 };
 
 
-
-const getDocumentationsList  = (callback) => {
+const getDocumentationsList = (callback) => {
   const query = util.format('SELECT employee_data.get_documentations_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -242,11 +236,11 @@ const getDocumentationsList  = (callback) => {
   });
 };
 
-const getEmployeeIdacCodeList  = (callback) => {
+const getEmployeeIdacCodeList = (callback) => {
   const query = util.format('SELECT employee_data.get_employee_idac_code_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -261,11 +255,11 @@ const getEmployeeIdacCodeList  = (callback) => {
   });
 };
 
-const getEmployeeSalariesFilterSalaryList  = (callback) => {
+const getEmployeeSalariesFilterSalaryList = (callback) => {
   const query = util.format('SELECT employee_data.get_employee_salaries_filter_salay_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -280,11 +274,11 @@ const getEmployeeSalariesFilterSalaryList  = (callback) => {
   });
 };
 
-const getEmployeeSalariesSalaryList  = (callback) => {
+const getEmployeeSalariesSalaryList = (callback) => {
   const query = util.format('SELECT employee_data.get_employee_salaries_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -303,7 +297,7 @@ const getGendersList = (callback) => {
   const query = util.format('SELECT employee_data.get_genders_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -318,11 +312,11 @@ const getGendersList = (callback) => {
   });
 };
 
-const getIdacCodesFilterVacantDateNotNullList  = (callback) => {
+const getIdacCodesFilterVacantDateNotNullList = (callback) => {
   const query = util.format('SELECT employee_data.get_idac_codes_filter_vacant_date_not_null_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -337,11 +331,11 @@ const getIdacCodesFilterVacantDateNotNullList  = (callback) => {
   });
 };
 
-const getIdacCodesFilterVacantDateNullList  = (callback) => {
+const getIdacCodesFilterVacantDateNullList = (callback) => {
   const query = util.format('SELECT employee_data.get_idac_codes_filter_vacant_date_null_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -356,11 +350,11 @@ const getIdacCodesFilterVacantDateNullList  = (callback) => {
   });
 };
 
-const getIdacCodesList  = (callback) => {
+const getIdacCodesList = (callback) => {
   const query = util.format('SELECT employee_data.get_idac_codes_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -395,9 +389,9 @@ const getSalaryForCategoryTypeList = (categoryId, callback) => {
   });
 };
 
-const getSalaryForDedicationTypeCategoryTypeList = (dedicationId ,categoryId, callback) => {
+const getSalaryForDedicationTypeCategoryTypeList = (dedicationId, categoryId, callback) => {
   const query = util.format('SELECT faculty_data.get_salary_for_dedication_type_category_type_list(param_dedication_id:= %d, param_category_id:= %d) as result;',
-    dedicationId,categoryId);
+    dedicationId, categoryId);
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
@@ -435,11 +429,11 @@ const getSalaryForDedicationTypeList = (dedicationId, callback) => {
   });
 };
 
-const getSalaryList  = (callback) => {
+const getSalaryList = (callback) => {
   const query = util.format('SELECT employee_data.get_salary_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);

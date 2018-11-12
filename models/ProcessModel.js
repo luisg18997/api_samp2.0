@@ -5,12 +5,11 @@ const util = require('util');
 const pool = require('./pgmodel.js');
 
 
-
-const getProcessFormMovementPersonalList  = (callback) => {
+const getProcessFormMovementPersonalList = (callback) => {
   const query = util.format('SELECT process_form.get_process_form_movement_personal_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -26,11 +25,11 @@ const getProcessFormMovementPersonalList  = (callback) => {
 };
 
 
-const getProcessFormOficeList  = (callback) => {
+const getProcessFormOficeList = (callback) => {
   const query = util.format('SELECT process_form.get_process_form_ofice_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -46,11 +45,11 @@ const getProcessFormOficeList  = (callback) => {
 };
 
 
-const getStatusProcessFormList  = (callback) => {
+const getStatusProcessFormList = (callback) => {
   const query = util.format('SELECT process_form.get_status_process_form_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
- if (!err) {
+    if (!err) {
       debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('result obtain rowCount: ', res.rowCount);
@@ -69,6 +68,6 @@ module.exports = {
 
   getProcessFormMovementPersonalList,
   getProcessFormOficeList,
-  getStatusProcessFormList
+  getStatusProcessFormList,
 
 };

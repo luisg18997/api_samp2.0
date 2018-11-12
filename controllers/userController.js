@@ -126,15 +126,16 @@ const addUser = (req, res) => {
     const ubicationId = req.body.param_ubication_id;
     const UbicationUserId = req.body.param_ubication_user_id;
     debug('req.body: ', req.body);
-    UserModel.addNewUser(name, surname, email, pass, ubicationId, UbicationUserId, (err, userInsert) => {
-      if (err) {
-        result.messageError = err;
-        res.status(400).send(result);
-      } else {
-        debug('FacultyController: ', userInsert);
-        res.send(userInsert);
-      }
-    });
+    UserModel.addNewUser(name, surname, email, pass, ubicationId, UbicationUserId,
+      (err, userInsert) => {
+        if (err) {
+          result.messageError = err;
+          res.status(400).send(result);
+        } else {
+          debug('FacultyController: ', userInsert);
+          res.send(userInsert);
+        }
+      });
   }
 };
 
@@ -146,11 +147,10 @@ const login = (req, res) => {
     result.parambad = 'request bad';
     res.status(400).send(result);
   } else {
-
     const email = req.body.param_email;
     const pass = req.body.param_password;
     debug('req.body: ', req.body);
-    UserModel.login( email, pass, (err, userInsert) => {
+    UserModel.login(email, pass, (err, userInsert) => {
       if (err) {
         result.messageError = err;
         res.status(400).send(result);

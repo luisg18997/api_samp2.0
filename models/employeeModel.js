@@ -299,8 +299,6 @@ const getEmployeeSalariesSalaryList  = (callback) => {
   });
 };
 
-
-
 const getGendersList = (callback) => {
   const query = util.format('SELECT employee_data.get_genders_list() as result;');
   const data = {};
@@ -319,8 +317,6 @@ const getGendersList = (callback) => {
     }
   });
 };
-
-
 
 const getIdacCodesFilterVacantDateNotNullList  = (callback) => {
   const query = util.format('SELECT employee_data.get_idac_codes_filter_vacant_date_not_null_list() as result;');
@@ -379,9 +375,6 @@ const getIdacCodesList  = (callback) => {
   });
 };
 
-
-
-
 const getSalaryForCategoryTypeList = (categoryId, callback) => {
   const query = util.format('SELECT faculty_data.get_salary_for_category_type_list(param_category_id := %d) as result;',
     categoryId);
@@ -422,7 +415,6 @@ const getSalaryForDedicationTypeCategoryTypeList = (dedicationId ,categoryId, ca
   });
 };
 
-
 const getSalaryForDedicationTypeList = (dedicationId, callback) => {
   const query = util.format('SELECT faculty_data.get_salary_for_dedication_type_list(param_dedication_id := %d) as result;',
     dedicationId);
@@ -462,28 +454,6 @@ const getSalaryList  = (callback) => {
   });
 };
 
-const Insertemployees = ( nacionality_id, documentation_id,identification,first_name,second_name,surname,second_surname,birth_date, gender_id, email,state_id, municipality_id,parish_id,ubication, address, housing_type, housing_identifier,apartament, school_id,institute_id,cordination_id,
-             departament_id,chair_id,first_mobile_phone_number, second_mobile_phone_number,local_phone_number,ingress_id, income_type_id,
-            admission_date,last_updated_date,retirement_date, userID, callback) => {
-             const query = util.format("SELECT employee_data.employee_insert(param_nacionality_id := %d, param_documentation_id := %d, param_identification := '%s', param_first_name := '%s', param_second_name := '%s', param_surname := '%s', param_second_surname := '%s',"
-            +" param_birth_date := '%s', param_gender_id := %d, param_email := '%s', param_state_id := %d, param_municipality_id := %d, param_parish_id := %d, param_ubication := '%s', param_address := '%s', param_housing_type := '%s', "
-            +" param_housing_identifier := '%s',param_apartament := ''%s', param_school_id := %d, param_institute_id := %d, param_cordination_id := %d, param_departament_id := %d, param_chair_id := %d, param_first_mobile_phone_number := '%s', "
-            +" param_second_mobile_phone_number := %s ,param_local_phone_number  :=%s  ,param_ingress_id  := %d,   param_income_type_id  := %d, param_admission_date  := CLOCK_TIMESTAMP(), param_last_updated_date := '%s', param_retirement_date := '%s', param_user_id := %d) as result;",
-            nacionality_id, documentation_id,identification,first_name,second_name,surname,second_surname,birth_date, gender_id, email,state_id, municipality_id,parish_id,ubication, address, housing_type,  housing_identifier,apartament, school_id,institute_id,cordination_id,
-             departament_id,chair_id,first_mobile_phone_number, second_mobile_phone_number,local_phone_number,ingress_id, income_type_id,
-            admission_date,last_updated_date,retirement_date, userID );
-  const data = {};
-  return pool.query(query, (err, res) => {
-    if (!err) {
-      data.result = res.rows[0].result;
-      callback(false, data);
-    } else {
-      debug('err in the query: ', err);
-      callback(err.stack, null);
-    }
-  });
-};
-
 
 module.exports = {
 
@@ -511,5 +481,4 @@ module.exports = {
   getSalaryForDedicationTypeCategoryTypeList,
   getSalaryForDedicationTypeList,
   getSalaryList,
-  Insertemployees
 };

@@ -21,7 +21,7 @@ module.exports = (router) => {
 
   router.use('/faculty', FacultyRouter);
 
-  router.use('/formData', formDataRouter);
+  router.use('/form', formDataRouter);
 
   router.use('/employee', EmployeeRouter);
 

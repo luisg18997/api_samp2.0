@@ -4,6 +4,10 @@ const formDataRouter = express.Router();
 
 const formDataController = require('../controllers/formDataController.js');
 
-formDataRouter.get('/MovementTypes', formDataController.getAllMovementTypeslist);
+formDataRouter.get('/movementTypes', formDataController.getAllMovementTypeslist);
+
+formDataRouter.post('/addOfice', formDataController.addFormOfice);
+
+formDataRouter.post('/addMovementPeronsal', formDataController.addFormMovementPersonal);
 
 module.exports = formDataRouter;

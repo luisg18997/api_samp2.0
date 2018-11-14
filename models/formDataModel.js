@@ -63,6 +63,23 @@ const addNewFormMovPeronsal = (employee, formMovPeronsal, userID, callback) => {
   });
 };
 
+const getCreateCodeFormOFice = (callback) => {
+  const query = "SELECT form_data.get_form_ofice_code() as result;";
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        
+      } else {
+       
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+}
+
 module.exports = {
   getMovementTypeslist,
   addNewFormOfice,

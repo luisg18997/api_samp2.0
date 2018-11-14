@@ -25,19 +25,20 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.3.0",
-    "pg": "^7.5.0",
-    "util": "^0.11.0"
+    "moment": "^2.22.2",
+    "pg": "^7.6.1",
+    "util": "^0.11.1"
   },
   "devDependencies": {
-    "eslint": "^5.7.0",
+    "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jest": "^21.26.0",
+    "eslint-plugin-jest": "^21.27.2",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.10.0",
     "jest": "^23.6.0",
-    "nodemon": "^1.18.5",
+    "nodemon": "^1.18.6",
     "supertest": "^3.3.0"
   }
 }

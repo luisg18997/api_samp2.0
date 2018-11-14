@@ -73,7 +73,8 @@ const getCreateCodeFormOFice = (callback) => {
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug(res.rows[0].result)
       } else {
-       debug("not found");
+        let code =moment("ddmm");
+       debug(code);
       }
     } else {
       callback(err.stack, null);

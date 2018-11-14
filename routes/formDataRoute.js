@@ -6,8 +6,10 @@ const formDataController = require('../controllers/formDataController.js');
 
 formDataRouter.get('/movementTypes', formDataController.getAllMovementTypeslist);
 
-formDataRouter.post('/addOfice', formDataController.addFormOfice);
+formDataRouter.post('/ofice/addOfice', formDataController.addFormOfice);
 
-formDataRouter.post('/addMovementPeronsal', formDataController.addFormMovementPersonal);
+formDataRouter.post('/movPersonal/addMovementPeronsal', formDataController.addFormMovementPersonal);
+
+formDataRouter.get('/ofice/CodeOfice', formDataController.createCodeFormOfice);
 
 module.exports = formDataRouter;

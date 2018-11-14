@@ -9,17 +9,13 @@ const port = process.env.PORT || 5000;
 
 const routes = require('./routes/routes');
 
-// settings
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
 // midlewares
 app.use((req, res, next) => {
   debug('URL: ', req.url, '-', req.method);
   next();
 });
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 routes(app);

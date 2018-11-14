@@ -1,6 +1,7 @@
 const appName = 'FormDataModel';
 const debug = require('debug')(appName);
 const util = require('util');
+const moment = require('moment');
 
 const pool = require('./pgmodel.js');
 
@@ -68,11 +69,11 @@ const getCreateCodeFormOFice = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
+     // debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        
+        debug(res.rows[0].result)
       } else {
-       
+       debug("not found");
       }
     } else {
       callback(err.stack, null);
@@ -84,4 +85,5 @@ module.exports = {
   getMovementTypeslist,
   addNewFormOfice,
   addNewFormMovPeronsal,
+  getCreateCodeFormOFice,
 };

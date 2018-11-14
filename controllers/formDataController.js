@@ -23,6 +23,7 @@ const getAllMovementTypeslist = (req, res) => {
 
 const addFormOfice = (req, res) => {
   try {
+    const result = {};
     if (Object.keys(req.body).length !== 3) {
       debug('request bad params not received');
       result.parambad = 'request bad';
@@ -53,6 +54,7 @@ const addFormOfice = (req, res) => {
 
 const addFormMovementPersonal = (req, res) => {
   try {
+    const result = {};
     if (Object.keys(req.body).length !== 3) {
       debug('request bad params not received');
       result.parambad = 'request bad';
@@ -78,8 +80,27 @@ const addFormMovementPersonal = (req, res) => {
   }
 };
 
+const createCodeFormOfice = (req, res) => {
+  try {
+    const result = {};
+      formDataModel.getCreateCodeFormOFice((err, CodeFormOfice) => {
+          if (err) {
+            result.messageError = err;
+            res.status(404).send(result);
+          } else {
+            debug('formDataController: ', CodeFormOfice);
+            res.send(CodeFormOfice);
+          }
+        });
+  } catch (e) {
+    debug('error: ', e);
+    res.status(500).send(e);
+  }
+};
+
 module.exports = {
   getAllMovementTypeslist,
   addFormOfice,
   addFormMovementPersonal,
+  createCodeFormOfice,
 };

@@ -24,7 +24,8 @@ const getAllMovementTypeslist = (req, res) => {
 const addFormOfice = (req, res) => {
   try {
     const result = {};
-    if (Object.keys(req.body).length !== 3) {
+    debug("req.body: ", req.body);
+    if (Object.keys(req.body).length !== 4) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);

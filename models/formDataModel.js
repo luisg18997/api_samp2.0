@@ -25,7 +25,7 @@ const getMovementTypeslist = (callback) => {
 };
 
 const addNewFormOfice = (employee, formOfice, userID, callback) => {
-  const query = util.format("SELECT form_data.employee_form_ofice_insert_complete(param_employee_json := '%j', param_form_ofice_json := 'j', param_user_id := %d) as result;",
+  const query = util.format("SELECT form_data.employee_form_ofice_insert_complete(param_employee_json := '%j', param_form_ofice_json := '%j', param_user_id := %d) as result;",
     employee, formOfice, userID);
   const data = {};
   return pool.query(query, (err, res) => {

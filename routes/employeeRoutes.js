@@ -18,7 +18,9 @@ employeeRouter.get('/CategoryTypes', EmployeeController.getAllCategoryTypesList)
 
 employeeRouter.get('/DedicationTypes', EmployeeController.getAllDedicationTypesList);
 
-employeeRouter.post('/ExecuntingUnit', EmployeeController.getAllExecuntingUnit);
+employeeRouter.post('/ExecuntingUnitFilter', EmployeeController.getAllExecuntingUnitFilter);
+
+employeeRouter.post('/ExecuntingUnit', EmployeeController.getExecuntingUnit);
 
 employeeRouter.get('/ExecuntingUnitlist', EmployeeController.getAllExecuntingUnitList);
 

@@ -162,11 +162,38 @@ const getAllDedicationTypesList = (req, res) => {
 };
 
 
-const getAllExecuntingUnit = (req, res) => {
+const getAllExecuntingUnitFilter = (req, res) => {
   try {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
-    if (req.body.ExecuntingUnitID === undefined) {
+    if (req.body.param_code_filter === undefined) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const codeFilter = req.body.param_code_filter;
+
+      EmployeeModel.getExecuntingUnitForFilterList(codeFilter, (err, ExecuntingUnitData) => {
+        if (err) {
+          result.messageError = err;
+          res.status(404).send(result);
+        } else {
+          debug('EmployeeController: ', ExecuntingUnitData);
+          res.send(ExecuntingUnitData);
+        }
+      });
+    }
+  } catch (e) {
+    debug('error: ', e);
+    res.status(500).send(e);
+  }
+};
+
+const getExecuntingUnit = (req, res) => {
+  try {
+    const result = {};
+    debug('req.body.length: ', Object.keys(req.body).length);
+    if (req.body.param_ExecuntingUnitID === undefined) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
@@ -510,7 +537,7 @@ module.exports = {
   getAllCategoryType,
   getAllCategoryTypesList,
   getAllDedicationTypesList,
-  getAllExecuntingUnit,
+  getExecuntingUnit,
   getAllExecuntingUnitList,
   getAllIncomeTypeList,
   getAllIngressList,
@@ -526,5 +553,5 @@ module.exports = {
   getAllSalaryForDedicationTypeCategoryTypeList,
   getAllSalaryForDedicationTypeList,
   getAllSalaryList,
-
+  getAllExecuntingUnitFilter,
 };

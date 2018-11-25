@@ -139,6 +139,26 @@ const getExecuntingUnit = (ExecuntingUnitID, callback) => {
   });
 };
 
+const getExecuntingUnitForFilterList = (codeFilter, callback) => {
+  const query = util.format("SELECT employee_data.get_execunting_unit_filter_code(param_code := '%s') as result;",
+    codeFilter);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
 const getExecuntingUnitList = (callback) => {
   const query = util.format('SELECT employee_data.get_execunting_unit_list() as result;');
   const data = {};
@@ -475,4 +495,5 @@ module.exports = {
   getSalaryForDedicationTypeCategoryTypeList,
   getSalaryForDedicationTypeList,
   getSalaryList,
+  getExecuntingUnitForFilterList
 };

@@ -369,7 +369,14 @@ const getAllGendersList = (req, res) => {
 const getAllIdacCodesFilterVacantDateNotNullList = (req, res) => {
   try {
     const result = {};
-    EmployeeModel.getIdacCodesFilterVacantDateNotNullList(
+    debug('req.body.length: ', Object.keys(req.body).length);
+    if (req.body.param_exec_unit_ids === undefined) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const execIds = req.body.param_exec_unit_ids.toString();
+    EmployeeModel.getIdacCodesFilterVacantDateNotNullList( execIds, 
       (err, IdacCodesFilterVacantDateNotNullListData) => {
         if (err) {
           result.messageError = err;
@@ -380,6 +387,7 @@ const getAllIdacCodesFilterVacantDateNotNullList = (req, res) => {
         }
       },
     );
+  }
   } catch (e) {
     debug('error: ', e);
     res.status(500).send(e);

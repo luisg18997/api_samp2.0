@@ -38,22 +38,17 @@ employeeRouter.get('/Salary/EmployeeSalariesSalary', EmployeeController.getAllEm
 
 employeeRouter.get('/Genders', EmployeeController.getAllGendersList);
 
-employeeRouter.get('/IdacCodes/FilterVacantDateNotNull', EmployeeController.getAllIdacCodesFilterVacantDateNotNullList);
-
+employeeRouter.post('/IdacCodes/FilterVacantDateNotNullExec', EmployeeController.getAllIdacCodesFilterVacantDateNotNullList);
 
 employeeRouter.get('/IdacCodes/FilterVacantDateNull', EmployeeController.getAllIdacCodesFilterVacantDateNullList);
-
 
 employeeRouter.get('/IdacCodes', EmployeeController.getAllIdacCodesList);
 
 employeeRouter.post('/Salary/CategoryType', EmployeeController.getAllSalaryForCategoryTypeList);
 
-
 employeeRouter.post('/Salary/CategoryType/DedicationType', EmployeeController.getAllSalaryForDedicationTypeCategoryTypeList);
 
-
 employeeRouter.post('/Salary/DedicationType', EmployeeController.getAllSalaryForDedicationTypeList);
-
 
 employeeRouter.get('/Salary', EmployeeController.getAllSalaryList);
 

@@ -332,8 +332,9 @@ const getGendersList = (callback) => {
   });
 };
 
-const getIdacCodesFilterVacantDateNotNullList = (callback) => {
-  const query = util.format('SELECT employee_data.get_idac_codes_filter_vacant_date_not_null_list() as result;');
+const getIdacCodesFilterVacantDateNotNullList = (execIds, callback) => {
+  const query = util.format('SELECT employee_data.get_idac_codes_filter_vacant_date_not_null_exec_unit_list(param_execunting_unit_id := ARRAY[%s]) as result;',
+    execIds);
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {

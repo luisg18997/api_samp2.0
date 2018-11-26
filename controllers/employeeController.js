@@ -376,18 +376,17 @@ const getAllIdacCodesFilterVacantDateNotNullList = (req, res) => {
       res.status(400).send(result);
     } else {
       const execIds = req.body.param_exec_unit_ids.toString();
-    EmployeeModel.getIdacCodesFilterVacantDateNotNullList( execIds, 
-      (err, IdacCodesFilterVacantDateNotNullListData) => {
-        if (err) {
-          result.messageError = err;
-          res.status(404).send(result);
-        } else {
-          debug('EmployeeController: ', IdacCodesFilterVacantDateNotNullListData);
-          res.send(IdacCodesFilterVacantDateNotNullListData);
-        }
-      },
-    );
-  }
+      EmployeeModel.getIdacCodesFilterVacantDateNotNullList(execIds,
+        (err, IdacCodesFilterVacantDateNotNullListData) => {
+          if (err) {
+            result.messageError = err;
+            res.status(404).send(result);
+          } else {
+            debug('EmployeeController: ', IdacCodesFilterVacantDateNotNullListData);
+            res.send(IdacCodesFilterVacantDateNotNullListData);
+          }
+        });
+    }
   } catch (e) {
     debug('error: ', e);
     res.status(500).send(e);

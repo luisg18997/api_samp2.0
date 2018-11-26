@@ -496,5 +496,5 @@ module.exports = {
   getSalaryForDedicationTypeCategoryTypeList,
   getSalaryForDedicationTypeList,
   getSalaryList,
-  getExecuntingUnitForFilterList
+  getExecuntingUnitForFilterList,
 };

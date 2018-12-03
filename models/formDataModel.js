@@ -64,13 +64,14 @@ const addNewFormMovPeronsal = (employee, formMovPeronsal, userID, callback) => {
   });
 };
 
-const getCreateCodeFormOFice = (callback) => {
-  const query = 'SELECT form_data.get_form_ofice_code() as result;';
+const getCreateCodeFormOFice = (schoolID, instituteID, coordinationID, callback) => {
+  const query = util.format('SELECT form_data.get_form_ofice_code(param_school_id := %d, param_institute_id = %d, param_coordination_id := %d) as result;',
+    schoolID, instituteID, coordinationID);
   return pool.query(query, (err, res) => {
     if (!err) {
       // debug('res.rows: ', res.rows[0].result.length);
-      const data = moment().format('DM');
-      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+      const data = moment().format('DM'); // catupra la fecha actual
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) { //valida si hay un codigo anterior
         debug(res.rows[0].result[0].code_form);
         const codeFormDB = res.rows[0].result[0].code_form;
         const confirmCode = codeFormDB.search(data);
@@ -104,7 +105,9 @@ const getCreateCodeFormOFice = (callback) => {
           callback(false, CodeOfice);
         }
       } else {
-        debug(data);
+        const CodeOfice = `${data}-01`;
+        debug(CodeOfice);
+        callback(false, CodeOfice);
       }
     } else {
       callback(err.stack, null);
@@ -112,9 +115,32 @@ const getCreateCodeFormOFice = (callback) => {
   });
 };
 
+const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, callback) => {
+  const query = util.format('SELECT form_data.get_form_mov_personal_code(param_school_id := %d, param_institute_id = %d, param_coordination_id := %d) as result;',
+    schoolID, instituteID, coordinationID);
+  return pool.query(query, (err, res) => {
+    if (!err) {
+        data = `${code}-`;
+        debug('data:, ', data );
+        if((res.rowCount !== 0) && (res.rows[0].result != null)){
+            const codeMovPerDB = res.rows[0].result[0].code_form;
+            debug('codeMovPerDB: ', codeMovPerDB);
+            const confirmcode = codeMovPerDB.split('-');
+        } else {
+          const codeMovPer = `${data}-0001`;
+          debug('codeMovPer: ', codeMovPer);
+          callback(false, codeMovPer);
+        }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+}
+
 module.exports = {
   getMovementTypeslist,
   addNewFormOfice,
   addNewFormMovPeronsal,
   getCreateCodeFormOFice,
+  getCreateCodeFormMovPer,
 };

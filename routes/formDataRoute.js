@@ -10,6 +10,8 @@ formDataRouter.post('/ofice/addOfice', formDataController.addFormOfice);
 
 formDataRouter.post('/movPersonal/addMovementPeronsal', formDataController.addFormMovementPersonal);
 
-formDataRouter.get('/ofice/CodeOfice', formDataController.createCodeFormOfice);
+formDataRouter.post('/ofice/CodeOfice', formDataController.createCodeFormOfice);
+
+formDataRouter.post('/movPersonal/CodeMovPer', formDataController.createCodeFormMovPer);
 
 module.exports = formDataRouter;

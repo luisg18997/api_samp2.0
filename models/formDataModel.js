@@ -65,13 +65,14 @@ const addNewFormMovPeronsal = (employee, formMovPeronsal, userID, callback) => {
 };
 
 const getCreateCodeFormOFice = (schoolID, instituteID, coordinationID, callback) => {
-  const query = util.format('SELECT form_data.get_form_ofice_code(param_school_id := %d, param_institute_id = %d, param_coordination_id := %d) as result;',
+  const query = util.format('SELECT form_data.get_form_ofice_code(param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
     schoolID, instituteID, coordinationID);
   return pool.query(query, (err, res) => {
     if (!err) {
       // debug('res.rows: ', res.rows[0].result.length);
       const data = moment().format('DM'); // catupra la fecha actual
-      if ((res.rowCount !== 0) && (res.rows[0].result != null)) { //valida si hay un codigo anterior
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        // valida si hay un codigo anterior
         debug(res.rows[0].result[0].code_form);
         const codeFormDB = res.rows[0].result[0].code_form;
         const confirmCode = codeFormDB.search(data);
@@ -116,26 +117,46 @@ const getCreateCodeFormOFice = (schoolID, instituteID, coordinationID, callback)
 };
 
 const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, callback) => {
-  const query = util.format('SELECT form_data.get_form_mov_personal_code(param_school_id := %d, param_institute_id = %d, param_coordination_id := %d) as result;',
+  const query = util.format('SELECT form_data.get_form_mov_personal_code(param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
     schoolID, instituteID, coordinationID);
   return pool.query(query, (err, res) => {
     if (!err) {
-        data = `${code}-`;
-        debug('data:, ', data );
-        if((res.rowCount !== 0) && (res.rows[0].result != null)){
-            const codeMovPerDB = res.rows[0].result[0].code_form;
-            debug('codeMovPerDB: ', codeMovPerDB);
-            const confirmcode = codeMovPerDB.split('-');
-        } else {
-          const codeMovPer = `${data}-0001`;
-          debug('codeMovPer: ', codeMovPer);
+      const data = `${code}-`;
+      debug('data:, ', data);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+      //  const codeMovPerDB = res.rows[0].result[0].code_form;
+        const codeMovPerDB = '0710-0091';
+        debug('codeMovPerDB: ', codeMovPerDB);
+        const confirmcode = codeMovPerDB.split('-');
+        const number = {
+          case1: confirmcode[1].slice(0, 1),
+          case2: confirmcode[1].slice(1, 2),
+          case3: confirmcode[1].slice(2, 3),
+        };
+        debug('number: ', number);
+        let newNumber;
+        if ((parseInt(confirmcode[1], 0) > 999)) {
+          debug('es mayor que 999');
+          newNumber = parseInt(confirmcode[1], 0);
+          newNumber += 1;
+          debug('newNumber:', newNumber);
+          const codeMovPer = `${data}${newNumber}`;
           callback(false, codeMovPer);
+        } else if (number.case2 !== 0) {
+          debug('es mayor que 99 y menor que 999');
+        } else if (number.case3 !== 0) {
+          debug('es mayor que 9 y menor que 99');
         }
+      } else {
+        const codeMovPer = `${data}0001`;
+        debug('codeMovPer: ', codeMovPer);
+        callback(false, codeMovPer);
+      }
     } else {
       callback(err.stack, null);
     }
   });
-}
+};
 
 module.exports = {
   getMovementTypeslist,

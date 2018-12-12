@@ -68,6 +68,7 @@ const getAllNacionalitiesList = (req, res) => {
 };
 
 
+
 const getAllParishList = (req, res) => {
   try {
     const result = {};

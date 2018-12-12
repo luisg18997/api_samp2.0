@@ -10,6 +10,8 @@ employeeRouter.post('/states/municipalities', EmployeeController.getAllMunicipal
 
 employeeRouter.get('/Nacionalities', EmployeeController.getAllNacionalitiesList);
 
+employeeRouter.get('/Documentations', EmployeeController.getAllDocumentationsList);
+
 employeeRouter.post('/states/municipality/parish', EmployeeController.getAllParishList);
 
 employeeRouter.post('/CategoryType', EmployeeController.getAllCategoryType);
@@ -24,7 +26,7 @@ employeeRouter.post('/ExecuntingUnit', EmployeeController.getExecuntingUnit);
 
 employeeRouter.get('/ExecuntingUnitlist', EmployeeController.getAllExecuntingUnitList);
 
-employeeRouter.get('/IncomeType', EmployeeController.getAllIncomeTypeList);
+employeeRouter.get('/IncomeTypes', EmployeeController.getAllIncomeTypeList);
 
 employeeRouter.get('/Ingress', EmployeeController.getAllIngressList);
 

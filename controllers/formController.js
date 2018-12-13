@@ -40,7 +40,7 @@ const addFormOfice = (req, res) => {
         (err, NewFormOfice) => {
           if (err) {
             result.messageError = err;
-            res.status(404).send(result);
+            res.status(400).send(result);
           } else {
             debug('formDataController: ', NewFormOfice);
             res.send(NewFormOfice);

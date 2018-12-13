@@ -1,12 +1,12 @@
-const appName = 'formDataController';
+const appName = 'formController';
 const debug = require('debug')(appName);
 
-const formDataModel = require('../models/formDataModel.js');
+const formModel = require('../models/formModel.js');
 
 const getAllMovementTypeslist = (req, res) => {
   try {
     const result = {};
-    formDataModel.getMovementTypeslist((err, formData) => {
+    formModel.getMovementTypeslist((err, formData) => {
       if (err) {
         result.messageError = err;
         res.status(404).send(result);
@@ -36,7 +36,7 @@ const addFormOfice = (req, res) => {
       if (req.body.param_employee_id !== 0) {
         employee.employee_id = req.body.param_employee_id;
       }
-      formDataModel.addNewFormOfice(employee, formOfice, userID,
+      formModel.addNewFormOfice(employee, formOfice, userID,
         (err, NewFormOfice) => {
           if (err) {
             result.messageError = err;
@@ -64,7 +64,7 @@ const addFormMovementPersonal = (req, res) => {
       const employee = req.body.param_employee;
       const formMovPeronsal = req.body.param_form_movement_personal;
       const userID = req.body.param_user_id;
-      formDataModel.addNewFormMovPeronsal(employee, formMovPeronsal, userID,
+      formModel.addNewFormMovPeronsal(employee, formMovPeronsal, userID,
         (err, NewFormMovPersonal) => {
           if (err) {
             result.messageError = err;
@@ -92,7 +92,7 @@ const createCodeFormOfice = (req, res) => {
       const schoolID = req.body.param_school_id;
       const instituteID = req.body.param_institute_id;
       const coordinationID = req.body.param_coordination_id;
-      formDataModel.getCreateCodeFormOFice(schoolID, instituteID,
+      formModel.getCreateCodeFormOFice(schoolID, instituteID,
         coordinationID, (err, CodeFormOfice) => {
           if (err) {
             result.messageError = err;
@@ -121,7 +121,7 @@ const createCodeFormMovPer = (req, res) => {
       const instituteID = req.body.param_institute_id;
       const coordinationID = req.body.param_coordination_id;
       const code = req.body.param_code;
-      formDataModel.getCreateCodeFormMovPer(schoolID, instituteID,
+      formModel.getCreateCodeFormMovPer(schoolID, instituteID,
         coordinationID, code, (err, CodeFormOfice) => {
           if (err) {
             result.messageError = err;

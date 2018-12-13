@@ -1,4 +1,4 @@
-const appName = 'FormDataModel';
+const appName = 'FormModel';
 const debug = require('debug')(appName);
 const util = require('util');
 const moment = require('moment');
@@ -71,7 +71,7 @@ const getCreateCodeFormOFice = (schoolID, instituteID, coordinationID, callback)
     if (!err) {
       // debug('res.rows: ', res.rows[0].result.length);
       const data = moment().format('DM'); // catupra la fecha actual
-      let CodeOfice;
+      const code = {};
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         // valida si hay un codigo anterior
         debug(res.rows[0].result[0].code_form);
@@ -92,22 +92,22 @@ const getCreateCodeFormOFice = (schoolID, instituteID, coordinationID, callback)
             newNumber = parseInt(number[1], 0);
             newNumber += 1;
             debug(newNumber);
-            CodeOfice = `${data}-0${newNumber}`;
+            code.ofice = `${data}-0${newNumber}`;
           } else {
             newNumber += 1;
             debug(newNumber);
-            CodeOfice = `${data}-${newNumber}`;
+            code.ofice = `${data}-${newNumber}`;
           }
         } else {
           debug('entro aqui son diferentes');
-          CodeOfice = `${data}-01`;
-          debug(CodeOfice);
+          code.ofice = `${data}-01`;
+          debug(code.ofice);
         }
       } else {
-        CodeOfice = `${data}-01`;
-        debug(CodeOfice);
+        code.ofice = `${data}-01`;
+        debug(code.ofice);
       }
-      callback(false, CodeOfice);
+      callback(false, code);
     } else {
       callback(err.stack, null);
     }

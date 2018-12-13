@@ -1,6 +1,6 @@
 // Routers files
 const FacultyRouter = require('./facultyRoutes');
-const formDataRouter = require('./formDataRoute');
+const formRouter = require('./formRoute');
 const EmployeeRouter = require('./employeeRoutes');
 const UsersRouter = require('./userRoutes');
 const ProcessRouter = require('./processRoutes');
@@ -21,7 +21,7 @@ module.exports = (router) => {
 
   router.use('/faculty', FacultyRouter);
 
-  router.use('/form', formDataRouter);
+  router.use('/form', formRouter);
 
   router.use('/employee', EmployeeRouter);
 

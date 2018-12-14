@@ -74,8 +74,8 @@ const getCreateCodeFormOFice = (schoolID, instituteID, coordinationID, callback)
       const code = {};
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         // valida si hay un codigo anterior
-        debug(res.rows[0].result[0].code_form);
-        const codeFormDB = res.rows[0].result[0].code_form;
+        debug(res.rows[0].result.code_form);
+        const codeFormDB = res.rows[0].result.code_form;
         const confirmCode = codeFormDB.search(data);
         debug(data);
         debug(confirmCode);
@@ -123,8 +123,8 @@ const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, ca
       debug('data:, ', data);
       let codeMovPer; 
     if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-      //  const codeMovPerDB = res.rows[0].result[0].code_form;
-        const codeMovPerDB = '0710-0008';
+        const codeMovPerDB = res.rows[0].result.code_form;
+       // const codeMovPerDB = '0710-0008';
         debug('codeMovPerDB: ', codeMovPerDB);
         const confirmcode = codeMovPerDB.split('-');
         const number = {

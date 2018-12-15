@@ -121,45 +121,45 @@ const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, ca
     if (!err) {
       const data = `${code}-`;
       debug('data:, ', data);
-      let codeMovPer; 
-    if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+      let codeMovPer;
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         const codeMovPerDB = res.rows[0].result.code_form;
-       // const codeMovPerDB = '0710-0008';
+        // const codeMovPerDB = '0710-0008';
         debug('codeMovPerDB: ', codeMovPerDB);
         const confirmcode = codeMovPerDB.split('-');
         const number = {
           case1: confirmcode[1].slice(0, 1),
-          code1: confirmcode[1].slice(0,4),
+          code1: confirmcode[1].slice(0, 4),
           case2: confirmcode[1].slice(1, 2),
           code2: confirmcode[1].substr(1, 4),
           case3: confirmcode[1].slice(2, 3),
-          code3: confirmcode[1].substr(2,4),
+          code3: confirmcode[1].substr(2, 4),
           case4: confirmcode[1].slice(3, 4),
-          code4: confirmcode[1].substr(3,4),
+          code4: confirmcode[1].substr(3, 4),
         };
         debug('number: ', number);
-        let newNumber;     
-        if ((number.case1 !== 0) && number.code1 >=999) {
+        let newNumber;
+        if ((number.case1 !== 0) && number.code1 >= 999) {
           debug('es mayor que 999');
           newNumber = parseInt(number.code1, 0);
           newNumber += 1;
           debug('newNumber:', newNumber);
           codeMovPer = `${data}${newNumber}`;
-        } else if ((number.case2 !== 0) && (number.code2>=99 && number.code2<999)) {
+        } else if ((number.case2 !== 0) && (number.code2 >= 99 && number.code2 < 999)) {
           debug('es mayor que 99 y menor que 999');
           newNumber = parseInt(number.code2, 0);
           newNumber += 1;
           debug('newNumber:', newNumber);
           codeMovPer = `${data}0${newNumber}`;
-        } else if ((number.case3 !== 0) && (number.code3>=9 && number.code3<99)) {
+        } else if ((number.case3 !== 0) && (number.code3 >= 9 && number.code3 < 99)) {
           debug('es mayor que 9 y menor que 99');
           newNumber = parseInt(number.code3, 0);
           newNumber += 1;
           debug('newNumber:', newNumber);
           codeMovPer = `${data}00${newNumber}`;
-        }else {
+        } else {
           debug('es mayor que 1 y menor que 9');
-           newNumber = parseInt(number.code4, 0);
+          newNumber = parseInt(number.code4, 0);
           newNumber += 1;
           debug('newNumber:', newNumber);
           codeMovPer = `${data}000${newNumber}`;

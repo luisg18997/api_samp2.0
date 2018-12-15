@@ -114,7 +114,7 @@ const getCreateCodeFormOFice = (schoolID, instituteID, coordinationID, callback)
   });
 };
 
-const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, callback) => {
+const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, ) => {
   const query = util.format('SELECT form_data.get_form_mov_personal_code(param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
     schoolID, instituteID, coordinationID);
   return pool.query(query, (err, res) => {
@@ -176,10 +176,31 @@ const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, ca
   });
 };
 
+const getFormMovPersonal = (identification, callback) => {
+  const query = util.format("SELECT form_data.get_form_movement_personal(param_identification :='%s') as result;", 
+    identication);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
 module.exports = {
   getMovementTypeslist,
   addNewFormOfice,
   addNewFormMovPeronsal,
   getCreateCodeFormOFice,
   getCreateCodeFormMovPer,
+  getFormMovPersonal,
 };

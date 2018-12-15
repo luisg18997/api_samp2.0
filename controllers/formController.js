@@ -138,10 +138,36 @@ const createCodeFormMovPer = (req, res) => {
   }
 };
 
+const getFormMovPersonal = (req, res) => {
+  try {
+    const result = {};
+    if (Object.keys(req.body).length !== 1) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const identification = req.body.param_identification;
+      formModel.getFormMovPersonal(identification, (err, formMovPersonal) => {
+        if (err) {
+            result.messageError = err;
+            res.status(404).send(result);
+          } else {
+            debug('formDataController: ', formMovPersonal);
+            res.send(formMovPersonal);
+          }
+      });
+    }
+  } catch (e) {
+    debug('error: ', e);
+    res.status(500).send(e);
+  }
+};
+
 module.exports = {
   getAllMovementTypeslist,
   addFormOfice,
   addFormMovementPersonal,
   createCodeFormOfice,
   createCodeFormMovPer,
+  getFormMovPersonal,
 };

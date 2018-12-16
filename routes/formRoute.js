@@ -16,4 +16,8 @@ formRouter.post('/movPersonal/CodeMovPer', formController.createCodeFormMovPer);
 
 formRouter.post('/movPersonal', formController.getFormMovPersonal);
 
+formRouter.post('/list', formController.getFormsList);
+
+formRouter.post('/ofice/List', formController.getFormOficesList);
+
 module.exports = formRouter;

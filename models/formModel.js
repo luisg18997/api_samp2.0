@@ -114,7 +114,7 @@ const getCreateCodeFormOFice = (schoolID, instituteID, coordinationID, callback)
   });
 };
 
-const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, ) => {
+const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, callback) => {
   const query = util.format('SELECT form_data.get_form_mov_personal_code(param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
     schoolID, instituteID, coordinationID);
   return pool.query(query, (err, res) => {
@@ -177,8 +177,8 @@ const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, ) 
 };
 
 const getFormMovPersonal = (identification, callback) => {
-  const query = util.format("SELECT form_data.get_form_movement_personal(param_identification :='%s') as result;", 
-    identication);
+  const query = util.format("SELECT form_data.get_form_movement_personal(param_identification :='%s') as result;",
+    identification);
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
@@ -196,6 +196,59 @@ const getFormMovPersonal = (identification, callback) => {
   });
 };
 
+const getAllFormsOfice = (schoolID, instituteID, coordinationID, callback) => {
+  const query = util.format('SELECT form_data.get_form_oficcial_list(param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
+    schoolID, instituteID, coordinationID);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
+        const formOfice = res.rows[0].result;
+        for (let i = 0; i < formOfice.length; i += 1) {
+          formOfice[i].registration_date = moment(formOfice[i].registration_date).format('D-M-Y');
+        }
+        callback(false, formOfice);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
+const getAllForms = (ubicationID, ubicationFormID, callback) => {
+  const query = util.format('SELECT form_data.get_forms_list(param_ubication_id := %d, param_ubication_form_id := %d) as result;',
+    ubicationID, ubicationFormID);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
+        const forms = res.rows[0].result;
+        for (let i = 0; i < forms.length; i += 1) {
+          forms[i].registration_date = moment(forms[i].registration_date).format('D-M-Y');
+          if (forms[i].form_ofice_id !== null) {
+            forms[i].form_type = 'OFICIO';
+          } else {
+            forms[i].form_type = 'MOVIMIENTO PERSONAL';
+          }
+        }
+        callback(false, forms);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
 module.exports = {
   getMovementTypeslist,
   addNewFormOfice,
@@ -203,4 +256,6 @@ module.exports = {
   getCreateCodeFormOFice,
   getCreateCodeFormMovPer,
   getFormMovPersonal,
+  getAllFormsOfice,
+  getAllForms,
 };

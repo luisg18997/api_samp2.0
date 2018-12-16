@@ -149,12 +149,65 @@ const getFormMovPersonal = (req, res) => {
       const identification = req.body.param_identification;
       formModel.getFormMovPersonal(identification, (err, formMovPersonal) => {
         if (err) {
-            result.messageError = err;
-            res.status(404).send(result);
-          } else {
-            debug('formDataController: ', formMovPersonal);
-            res.send(formMovPersonal);
-          }
+          result.messageError = err;
+          res.status(404).send(result);
+        } else {
+          debug('formDataController: ', formMovPersonal);
+          res.send(formMovPersonal);
+        }
+      });
+    }
+  } catch (e) {
+    debug('error: ', e);
+    res.status(500).send(e);
+  }
+};
+
+const getFormsList = (req, res) => {
+  try {
+    const result = {};
+    if (Object.keys(req.body).length !== 2) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const ubicationID = req.body.param_ubication_id;
+      const ubicationFormID = req.body.param_ubication_form_id;
+      formModel.getAllForms(ubicationID, ubicationFormID, (err, forms) => {
+        if (err) {
+          result.messageError = err;
+          res.status(404).send(result);
+        } else {
+          debug('formDataController: ', forms);
+          res.send(forms);
+        }
+      });
+    }
+  } catch (e) {
+    debug('error: ', e);
+    res.status(500).send(e);
+  }
+};
+
+const getFormOficesList = (req, res) => {
+  try {
+    const result = {};
+    if (Object.keys(req.body).length !== 3) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const schoolID = req.body.param_school_id;
+      const instituteID = req.body.param_institute_id;
+      const coordinationID = req.body.param_coordination_id;
+      formModel.getAllFormsOfice(schoolID, instituteID, coordinationID, (err, formOfice) => {
+        if (err) {
+          result.messageError = err;
+          res.status(404).send(result);
+        } else {
+          debug('formDataController: ', formOfice);
+          res.send(formOfice);
+        }
       });
     }
   } catch (e) {
@@ -170,4 +223,6 @@ module.exports = {
   createCodeFormOfice,
   createCodeFormMovPer,
   getFormMovPersonal,
+  getFormsList,
+  getFormOficesList,
 };

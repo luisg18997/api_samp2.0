@@ -120,8 +120,8 @@ const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, ca
   return pool.query(query, (err, res) => {
     if (!err) {
       const data = `${code}-`;
+      const Code = {};
       debug('data:, ', data);
-      let codeMovPer;
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         const codeMovPerDB = res.rows[0].result.code_form;
         // const codeMovPerDB = '0710-0008';
@@ -144,32 +144,32 @@ const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, ca
           newNumber = parseInt(number.code1, 0);
           newNumber += 1;
           debug('newNumber:', newNumber);
-          codeMovPer = `${data}${newNumber}`;
+          Code.movPer = `${data}${newNumber}`;
         } else if ((number.case2 !== 0) && (number.code2 >= 99 && number.code2 < 999)) {
           debug('es mayor que 99 y menor que 999');
           newNumber = parseInt(number.code2, 0);
           newNumber += 1;
           debug('newNumber:', newNumber);
-          codeMovPer = `${data}0${newNumber}`;
+          Code.movPer = `${data}0${newNumber}`;
         } else if ((number.case3 !== 0) && (number.code3 >= 9 && number.code3 < 99)) {
           debug('es mayor que 9 y menor que 99');
           newNumber = parseInt(number.code3, 0);
           newNumber += 1;
           debug('newNumber:', newNumber);
-          codeMovPer = `${data}00${newNumber}`;
+          Code.movPer = `${data}00${newNumber}`;
         } else {
           debug('es mayor que 1 y menor que 9');
           newNumber = parseInt(number.code4, 0);
           newNumber += 1;
           debug('newNumber:', newNumber);
-          codeMovPer = `${data}000${newNumber}`;
+          Code.movPer = `${data}000${newNumber}`;
         }
       } else {
         debug('no hay nada en la db');
-        codeMovPer = `${data}0001`;
-        debug('codeMovPer: ', codeMovPer);
+        Code.movPer = `${data}0001`;
+        debug('codeMovPer: ', Code);
       }
-      callback(false, codeMovPer);
+      callback(false, Code);
     } else {
       callback(err.stack, null);
     }

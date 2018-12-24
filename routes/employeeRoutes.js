@@ -48,7 +48,7 @@ employeeRouter.get('/IdacCodes', EmployeeController.getAllIdacCodesList);
 
 employeeRouter.post('/Salary/CategoryType', EmployeeController.getAllSalaryForCategoryTypeList);
 
-employeeRouter.post('/Salary/CategoryType/DedicationType', EmployeeController.getAllSalaryForDedicationTypeCategoryTypeList);
+employeeRouter.post('/Salary/CategoryType/DedicationType', EmployeeController.getSalaryDedicationTypeCategoryType);
 
 employeeRouter.post('/Salary/DedicationType', EmployeeController.getAllSalaryForDedicationTypeList);
 

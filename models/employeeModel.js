@@ -391,7 +391,7 @@ const getIdacCodesList = (callback) => {
 };
 
 const getSalaryForCategoryTypeList = (categoryId, callback) => {
-  const query = util.format('SELECT faculty_data.get_salary_for_category_type_list(param_category_id := %d) as result;',
+  const query = util.format('SELECT employe_data.get_salary_for_category_type_list(param_category_id := %d) as result;',
     categoryId);
   const data = {};
   return pool.query(query, (err, res) => {
@@ -410,8 +410,8 @@ const getSalaryForCategoryTypeList = (categoryId, callback) => {
   });
 };
 
-const getSalaryForDedicationTypeCategoryTypeList = (dedicationId, categoryId, callback) => {
-  const query = util.format('SELECT faculty_data.get_salary_for_dedication_type_category_type_list(param_dedication_id:= %d, param_category_id:= %d) as result;',
+const getSalaryDedicationCategoryType = (dedicationId, categoryId, callback) => {
+  const query = util.format('SELECT employee_data.get_salary_for_dedication_type_category_type_list(param_dedication_id:= %d, param_category_id:= %d) as result;',
     dedicationId, categoryId);
   const data = {};
   return pool.query(query, (err, res) => {
@@ -431,7 +431,7 @@ const getSalaryForDedicationTypeCategoryTypeList = (dedicationId, categoryId, ca
 };
 
 const getSalaryForDedicationTypeList = (dedicationId, callback) => {
-  const query = util.format('SELECT faculty_data.get_salary_for_dedication_type_list(param_dedication_id := %d) as result;',
+  const query = util.format('SELECT employee_data.get_salary_for_dedication_type_list(param_dedication_id := %d) as result;',
     dedicationId);
   const data = {};
   return pool.query(query, (err, res) => {
@@ -493,7 +493,7 @@ module.exports = {
   getIdacCodesFilterVacantDateNullList,
   getIdacCodesList,
   getSalaryForCategoryTypeList,
-  getSalaryForDedicationTypeCategoryTypeList,
+  getSalaryDedicationCategoryType,
   getSalaryForDedicationTypeList,
   getSalaryList,
   getExecuntingUnitForFilterList,

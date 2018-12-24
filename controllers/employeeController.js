@@ -459,7 +459,7 @@ const getAllSalaryForCategoryTypeList = (req, res) => {
   }
 };
 
-const getAllSalaryForDedicationTypeCategoryTypeList = (req, res) => {
+const getSalaryDedicationTypeCategoryType = (req, res) => {
   try {
     const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
@@ -468,10 +468,10 @@ const getAllSalaryForDedicationTypeCategoryTypeList = (req, res) => {
       result.parambad = 'request bad';
       res.status(400).send(result);
     } else {
-      const schoolID = req.body.param_school_id;
-      const departamentID = req.body.param_departament_id;
+      const dedicationID = req.body.param_dedication_id;
+      const categoryID = req.body.param_category_id;
 
-      EmployeeModel.getSalaryForDedicationTypeCategoryTypeList(schoolID, departamentID,
+      EmployeeModel.getSalaryDedicationCategoryType(dedicationID, categoryID,
         (err, SalaryForDedicationTypeCategoryTypeListData) => {
           if (err) {
             result.messageError = err;
@@ -557,7 +557,7 @@ module.exports = {
   getAllIdacCodesFilterVacantDateNullList,
   getAllIdacCodesList,
   getAllSalaryForCategoryTypeList,
-  getAllSalaryForDedicationTypeCategoryTypeList,
+  getSalaryDedicationTypeCategoryType,
   getAllSalaryForDedicationTypeList,
   getAllSalaryList,
   getAllExecuntingUnitFilter,

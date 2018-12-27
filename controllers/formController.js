@@ -56,7 +56,7 @@ const addFormOfice = (req, res) => {
 const addFormMovementPersonal = (req, res) => {
   try {
     const result = {};
-    if (Object.keys(req.body).length !== 3) {
+    if (Object.keys(req.body).length !== 4) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
@@ -64,6 +64,9 @@ const addFormMovementPersonal = (req, res) => {
       const employee = req.body.param_employee;
       const formMovPeronsal = req.body.param_form_movement_personal;
       const userID = req.body.param_user_id;
+      if (req.body.param_employee_salary_id !== 0) {
+        employee.employee_salary_id = req.body.param_employee_salary_id;
+      }
       formModel.addNewFormMovPeronsal(employee, formMovPeronsal, userID,
         (err, NewFormMovPersonal) => {
           if (err) {

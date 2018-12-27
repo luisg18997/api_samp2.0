@@ -45,7 +45,7 @@ const addNewFormOfice = (employee, formOfice, userID, callback) => {
 };
 
 const addNewFormMovPeronsal = (employee, formMovPeronsal, userID, callback) => {
-  const query = util.format("SELECT form_data.employee_form_movement_personal_insert_complete(param_employee_json := '%j', param_form_mov_per_json := 'j', param_user_id := %d) as result;",
+  const query = util.format("SELECT form_data.employee_form_movement_personal_insert_complete(param_employee_json := '%j', param_form_mov_per_json := '%j', param_user_id := %d) as result;",
     employee, formMovPeronsal, userID);
   const data = {};
   return pool.query(query, (err, res) => {

@@ -197,7 +197,7 @@ const getFormMovPersonal = (identification, callback) => {
 };
 
 const getAllFormsOfice = (schoolID, instituteID, coordinationID, callback) => {
-  const query = util.format('SELECT form_data.get_form_oficcial_list(param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
+  const query = util.format('SELECT form_data.get_form_official_list(param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
     schoolID, instituteID, coordinationID);
   const data = {};
   return pool.query(query, (err, res) => {

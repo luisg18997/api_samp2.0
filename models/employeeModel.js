@@ -469,6 +469,26 @@ const getSalaryList = (callback) => {
   });
 };
 
+const getAllEmployeesList = (schoolID, instituteID, coordinationID, callback) => {
+  const query = util.format('SELECT employee_data.get_employees_list(param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
+    schoolID, instituteID, coordinationID);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      debug('res.rows: ', res.rows[0].result.length);
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('result obtain rowCount: ', res.rowCount);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
 
 module.exports = {
 
@@ -497,4 +517,5 @@ module.exports = {
   getSalaryForDedicationTypeList,
   getSalaryList,
   getExecuntingUnitForFilterList,
+  getAllEmployeesList,
 };

@@ -535,6 +535,33 @@ const getAllSalaryList = (req, res) => {
   }
 };
 
+const getEmployeesList = (req, res) => {
+  try {
+    const result = {};
+    if (Object.keys(req.body).length !== 3) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const schoolID = req.body.param_school_id;
+      const instituteID = req.body.param_institute_id;
+      const coordinationID = req.body.param_coordination_id;
+      EmployeeModel.getAllEmployeesList(schoolID, instituteID, coordinationID, (err, employees) => {
+        if (err) {
+          result.messageError = err;
+          res.status(404).send(result);
+        } else {
+          debug('EmployeeController: ', employees);
+          res.send(employees);
+        }
+      });
+    }
+  } catch (e) {
+    debug('error: ', e);
+    res.status(500).send(e);
+  }
+};
+
 
 module.exports = {
   getAllStatesList,
@@ -561,4 +588,5 @@ module.exports = {
   getAllSalaryForDedicationTypeList,
   getAllSalaryList,
   getAllExecuntingUnitFilter,
+  getEmployeesList,
 };

@@ -10,9 +10,8 @@ const getProcessFormMovementPersonalList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -30,9 +29,8 @@ const getProcessFormOficeList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -50,9 +48,8 @@ const getStatusProcessFormList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';

@@ -9,9 +9,8 @@ const getStatesList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -28,9 +27,8 @@ const getMunicipalitiesList = (stateID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -47,9 +45,8 @@ const getNacionalitiesList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -66,9 +63,8 @@ const getParishList = (municipalityID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -82,13 +78,18 @@ const getParishList = (municipalityID, callback) => {
 
 const getCategoryType = (categorytypeID, callback) => {
   const query = util.format('SELECT employee_data.get_category_type(param_categorytypeID := %d);', categorytypeID);
+  const data = {};
   return pool.query(query, (err, res) => {
-    if (err) {
-      debug(err.stack);
+    if (!err) {
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
     } else {
-      const categorytype = res.rows[0].get_category_type;
-      debug('EmployeeModel: ', categorytype);
-      callback(categorytype);
+      callback(err.stack, null);
     }
   });
 };
@@ -96,13 +97,18 @@ const getCategoryType = (categorytypeID, callback) => {
 
 const getdedicationtype = (dedicationtypeID, callback) => {
   const query = util.format('SELECT employee_data.get_dedication_type(param_dedicationtypeID := %d);', dedicationtypeID);
+  const data = {};
   return pool.query(query, (err, res) => {
-    if (err) {
-      debug(err.stack);
+    if (!err) {
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
     } else {
-      const dedicationtype = res.rows[0].get_dedication_type;
-      debug('EmployeeModel: ', dedicationtype);
-      callback(dedicationtype);
+      callback(err.stack, null);
     }
   });
 };
@@ -112,9 +118,8 @@ const getDedicationTypesList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -128,13 +133,18 @@ const getDedicationTypesList = (callback) => {
 
 const getExecuntingUnit = (ExecuntingUnitID, callback) => {
   const query = util.format('SELECT employee_data.get_execunting_unit(param_ExecuntingUnitID := %d);', ExecuntingUnitID);
+  const data = {};
   return pool.query(query, (err, res) => {
-    if (err) {
-      debug(err.stack);
+    if (!err) {
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
     } else {
-      const ExecuntingUnit = res.rows[0].get_execunting_unit;
-      debug('EmployeeModel: ', ExecuntingUnit);
-      callback(ExecuntingUnit);
+      callback(err.stack, null);
     }
   });
 };
@@ -145,9 +155,8 @@ const getExecuntingUnitForFilterList = (codeFilter, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -164,9 +173,8 @@ const getExecuntingUnitList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -183,9 +191,8 @@ const getCategoryTypesList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -197,15 +204,13 @@ const getCategoryTypesList = (callback) => {
   });
 };
 
-
 const getIncomeTypeList = (callback) => {
   const query = util.format('SELECT employee_data.get_income_type_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -222,9 +227,8 @@ const getIngressList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -236,15 +240,13 @@ const getIngressList = (callback) => {
   });
 };
 
-
 const getDocumentationsList = (callback) => {
   const query = util.format('SELECT employee_data.get_documentations_list() as result;');
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -261,9 +263,8 @@ const getEmployeeIdacCodeList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -280,9 +281,8 @@ const getEmployeeSalariesFilterSalaryList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -299,9 +299,8 @@ const getEmployeeSalariesSalaryList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -318,9 +317,8 @@ const getGendersList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -338,9 +336,8 @@ const getIdacCodesFilterVacantDateNotNullList = (execIds, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -357,9 +354,8 @@ const getIdacCodesFilterVacantDateNullList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -376,9 +372,8 @@ const getIdacCodesList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -396,9 +391,8 @@ const getSalaryForCategoryTypeList = (categoryId, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -416,9 +410,8 @@ const getSalaryDedicationCategoryType = (dedicationId, categoryId, callback) => 
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -436,9 +429,8 @@ const getSalaryForDedicationTypeList = (dedicationId, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -455,9 +447,8 @@ const getSalaryList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -475,9 +466,8 @@ const getAllEmployeesList = (schoolID, instituteID, coordinationID, callback) =>
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';

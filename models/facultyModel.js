@@ -9,9 +9,8 @@ const getFacultyLists = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -29,9 +28,8 @@ const getSchoolLists = (facultyID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -49,9 +47,8 @@ const getInstituteLists = (facultyID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -69,9 +66,8 @@ const getCoordinationLists = (facultyID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -89,9 +85,8 @@ const getDepartamentBySchoolLists = (schoolID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -109,9 +104,8 @@ const getDepartamentByInstituteLists = (instituteID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -129,9 +123,8 @@ const getChairsLists = (departamentID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -149,9 +142,8 @@ const getSchool = (facultyID, schoolID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -169,9 +161,8 @@ const getCoordination = (facultyID, coordinationID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -189,9 +180,8 @@ const getInstitute = (facultyID, instituteID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -210,9 +200,8 @@ const getDepartamentBySchool = (schoolID, departamentID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -230,9 +219,8 @@ const getDepartamentByInstitute = (instituteID, departamentID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -250,9 +238,8 @@ const getChair = (departamentID, chairID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';

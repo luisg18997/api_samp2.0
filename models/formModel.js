@@ -10,9 +10,8 @@ const getMovementTypeslist = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -25,14 +24,13 @@ const getMovementTypeslist = (callback) => {
 };
 
 const addNewFormOfice = (employee, formOfice, userID, callback) => {
-  const query = util.format("SELECT form_data.employee_form_ofice_insert_complete(param_employee_json := '%j', param_form_ofice_json := '%j', param_user_id := %d) as result;",
+  const query = util.format("SELECT form_data.employee_official_form_insert_complete(param_employee_json := '%j', param_official_form_json := '%j', param_user_id := %d) as result;",
     employee, formOfice, userID);
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -45,14 +43,13 @@ const addNewFormOfice = (employee, formOfice, userID, callback) => {
 };
 
 const addNewFormMovPeronsal = (employee, formMovPeronsal, userID, callback) => {
-  const query = util.format("SELECT form_data.employee_form_movement_personal_insert_complete(param_employee_json := '%j', param_form_mov_per_json := '%j', param_user_id := %d) as result;",
+  const query = util.format("SELECT form_data.employee_movement_personal_form_insert_complete(param_employee_json := '%j', param_form_mov_per_json := '%j', param_user_id := %d) as result;",
     employee, formMovPeronsal, userID);
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -65,14 +62,14 @@ const addNewFormMovPeronsal = (employee, formMovPeronsal, userID, callback) => {
 };
 
 const getCreateCodeFormOFice = (schoolID, instituteID, coordinationID, callback) => {
-  const query = util.format('SELECT form_data.get_form_ofice_code(param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
+  const query = util.format('SELECT form_data.get_form_official_list(param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
     schoolID, instituteID, coordinationID);
   return pool.query(query, (err, res) => {
     if (!err) {
-      // debug('res.rows: ', res.rows[0].result.length);
       const data = moment().format('DM'); // catupra la fecha actual
       const code = {};
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
         // valida si hay un codigo anterior
         debug(res.rows[0].result.code_form);
         const codeFormDB = res.rows[0].result.code_form;
@@ -123,6 +120,7 @@ const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, ca
       const Code = {};
       debug('data:, ', data);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
         const codeMovPerDB = res.rows[0].result.code_form;
         // const codeMovPerDB = '0710-0008';
         debug('codeMovPerDB: ', codeMovPerDB);
@@ -177,14 +175,13 @@ const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, ca
 };
 
 const getFormMovPersonal = (identification, callback) => {
-  const query = util.format("SELECT form_data.get_form_movement_personal(param_identification :='%s') as result;",
+  const query = util.format("SELECT form_data.get_movement_personal_form(param_identification :='%s') as result;",
     identification);
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-    //  debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -202,9 +199,8 @@ const getAllFormsOfice = (schoolID, instituteID, coordinationID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         const formOfice = res.rows[0].result;
         for (let i = 0; i < formOfice.length; i += 1) {
           formOfice[i].registration_date = moment(formOfice[i].registration_date).format('D-M-Y');
@@ -226,9 +222,8 @@ const getAllForms = (ubicationID, ubicationFormID, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         const forms = res.rows[0].result;
         for (let i = 0; i < forms.length; i += 1) {
           forms[i].registration_date = moment(forms[i].registration_date).format('D-M-Y');

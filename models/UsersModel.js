@@ -12,9 +12,8 @@ const getRolesList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -31,9 +30,8 @@ const getSecurityAnswerFilterQuestionList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -50,9 +48,8 @@ const getSecurityAnswerList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -69,9 +66,8 @@ const getSecurityQuestionsList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -88,9 +84,8 @@ const getUbicationsList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -108,9 +103,8 @@ const getUserRoleList = (callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-    //  debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
@@ -130,16 +124,14 @@ const addNewUser = (name, surname, email, pass, ubicationId, UbicationUserId, ca
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('result obtain rowCount: ', res.rowCount);
+        debug('res.rows: ', res.rows[0].result.length);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';
         callback(false, data);
       }
     } else {
-      debug('err: ', err);
       callback(err.stack, null);
     }
   });
@@ -151,9 +143,9 @@ const login = (email, password, callback) => {
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
-      debug('res.rows: ', res.rows[0].result.length);
       const passHash = res.rows[0].result[0].password;
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
         const compare = bcrypt.compareSync(password, passHash);
         if (compare) {
           debug('result obtain rowCount: ', res.rowCount);

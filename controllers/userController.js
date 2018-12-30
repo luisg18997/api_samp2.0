@@ -114,7 +114,7 @@ const getAllUserRoleList = (req, res) => {
 const addUser = (req, res) => {
   const result = {};
   debug('req.body.length: ', Object.keys(req.body).length);
-  if (Object.keys(req.body).length !== 5) {
+  if (Object.keys(req.body).length !== 6) {
     debug('request bad params not received');
     result.parambad = 'request bad';
     res.status(400).send(result);

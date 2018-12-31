@@ -114,7 +114,7 @@ const getAllUserRoleList = (req, res) => {
 const addUser = (req, res) => {
   const result = {};
   debug('req.body.length: ', Object.keys(req.body).length);
-  if (Object.keys(req.body).length !== 6) {
+  if (Object.keys(req.body).length !== 8) {
     debug('request bad params not received');
     result.parambad = 'request bad';
     res.status(400).send(result);
@@ -124,10 +124,12 @@ const addUser = (req, res) => {
     const email = req.body.param_email;
     const pass = req.body.param_password;
     const ubicationId = req.body.param_ubication_id;
-    const UbicationUserId = req.body.param_ubication_user_id;
+    const schoolID = req.body.param_school_id;
+    const instituteID = req.body.param_institute_id;
+    const coordinationID = req.body.param_coordination_id;
     debug('req.body: ', req.body);
-    UserModel.addNewUser(name, surname, email, pass, ubicationId, UbicationUserId,
-      (err, userInsert) => {
+    UserModel.addNewUser(name, surname, email, pass, ubicationId, schoolID,
+      instituteID, coordinationID, (err, userInsert) => {
         if (err) {
           result.messageError = err;
           res.status(400).send(result);

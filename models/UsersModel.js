@@ -116,11 +116,12 @@ const getUserRoleList = (callback) => {
   });
 };
 
-const addNewUser = (name, surname, email, pass, ubicationId, UbicationUserId, callback) => {
+const addNewUser = (name, surname, email, pass, ubicationId, schoolID, instituteID,
+  coordinationID, callback) => {
   const passwordCrypt = bcrypt.hashSync(pass, saltRounds);
   debug('passwordCrypt: ', passwordCrypt);
-  const query = util.format("SELECT user_data.user_insert(param_name := '%s', param_surname := '%s', param_email := '%s', param_password := '%s', param_ubication_id := %d, param_ubication_user_id := %d) as result;",
-    name, surname, email, passwordCrypt, ubicationId, UbicationUserId);
+  const query = util.format("SELECT user_data.user_insert(param_name := '%s', param_surname := '%s', param_email := '%s', param_password := '%s', param_ubication_id := %d, param_school_id := %d, param_institute_id :=%d, param_coordination_id := %d) as result;",
+    name, surname, email, passwordCrypt, ubicationId, schoolID, instituteID, coordinationID);
   const data = {};
   return pool.query(query, (err, res) => {
     if (!err) {
@@ -184,6 +185,7 @@ const login = (email, password, callback) => {
           }
           data.question = res.rows[0].result.question;
           data.answer = res.rows[0].result.answer;
+          data.ubicationUser = res.rows[0].result.ubication_user;
           callback(false, data);
         } else {
           data.result = '1';

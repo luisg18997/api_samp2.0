@@ -20,4 +20,6 @@ formRouter.post('/list', formController.getFormsList);
 
 formRouter.post('/ofice/List', formController.getFormOficesList);
 
+formRouter.post('/official', formController.getFormOfficial);
+
 module.exports = formRouter;

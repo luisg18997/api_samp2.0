@@ -219,6 +219,32 @@ const getFormOficesList = (req, res) => {
   }
 };
 
+const getFormOfficial = (req, res) => {
+  try {
+    const result = {};
+    if (Object.keys(req.body).length !== 2) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const identification = req.body.param_identification;
+      const ubication = req.body.param_ubication_id;
+      formModel.getFormOfficial(identification, ubication, (err, formOfficial) => {
+        if (err) {
+          result.messageError = err;
+          res.status(404).send(result);
+        } else {
+          debug('formOfficial: ', formOfficial);
+          res.send(formOfficial);
+        }
+      });
+    }
+  } catch (e) {
+    debug('error: ', e);
+    res.status(500).send(e);
+  }
+};
+
 module.exports = {
   getAllMovementTypeslist,
   addFormOfice,
@@ -228,4 +254,5 @@ module.exports = {
   getFormMovPersonal,
   getFormsList,
   getFormOficesList,
+  getFormOfficial,
 };

@@ -244,6 +244,25 @@ const getAllForms = (ubicationID, ubicationFormID, callback) => {
   });
 };
 
+const getFormOfficial = (identification, ubication, callback) => {
+  const query = util.format("SELECT  form_data.get_form_official(param_identification := '%s', param_ubication_id := %d) as result;",
+    identification, ubication);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
 module.exports = {
   getMovementTypeslist,
   addNewFormOfice,
@@ -253,4 +272,5 @@ module.exports = {
   getFormMovPersonal,
   getAllFormsOfice,
   getAllForms,
+  getFormOfficial,
 };

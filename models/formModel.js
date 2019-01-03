@@ -66,7 +66,7 @@ const getCreateCodeFormOFice = (schoolID, instituteID, coordinationID, callback)
     schoolID, instituteID, coordinationID);
   return pool.query(query, (err, res) => {
     if (!err) {
-      const data = moment().format('DM'); // catupra la fecha actual
+      const data = moment().format('DDMM'); // catupra la fecha actual
       const code = {};
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('res.rows: ', res.rows[0].result.length);
@@ -252,6 +252,9 @@ const getFormOfficial = (identification, ubication, callback) => {
     if (!err) {
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('res.rows: ', res.rows[0].result.length);
+        res.rows[0].result.registration_date = moment(res.rows[0].result.registration_date).format('D-M-Y');
+        res.rows[0].result.start_date = moment(res.rows[0].result.start_date).format('DD-MM-Y');
+        res.rows[0].result.finish_date = moment(res.rows[0].result.finish_date).format('DD-MM-Y');
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';

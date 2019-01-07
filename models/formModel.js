@@ -203,7 +203,7 @@ const getAllFormsOfice = (schoolID, instituteID, coordinationID, callback) => {
         debug('res.rows: ', res.rows[0].result.length);
         const formOfice = res.rows[0].result;
         for (let i = 0; i < formOfice.length; i += 1) {
-          formOfice[i].registration_date = moment(formOfice[i].registration_date).format('D-M-Y');
+          formOfice[i].registration_date = moment(formOfice[i].registration_date).format('DD-MM-Y');
         }
         callback(false, formOfice);
       } else {
@@ -226,7 +226,7 @@ const getAllForms = (ubicationID, ubicationFormID, callback) => {
         debug('res.rows: ', res.rows[0].result.length);
         const forms = res.rows[0].result;
         for (let i = 0; i < forms.length; i += 1) {
-          forms[i].registration_date = moment(forms[i].registration_date).format('D-M-Y');
+          forms[i].registration_date = moment(forms[i].registration_date).format('DD-MM-Y');
           if (forms[i].form_ofice_id !== null) {
             forms[i].form_type = 'OFICIO';
           } else {

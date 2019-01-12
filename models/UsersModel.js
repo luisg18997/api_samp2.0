@@ -1,7 +1,10 @@
+require('dotenv').config();
+
 const appName = 'UserModel';
 const debug = require('debug')(appName);
 const util = require('util');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const saltRounds = 10;
 
@@ -186,13 +189,26 @@ const login = (email, password, callback) => {
           data.question = res.rows[0].result.question;
           data.answer = res.rows[0].result.answer;
           data.ubicationUser = res.rows[0].result.ubication_user;
-          callback(false, data);
+          debug('secrect: ', process.env.JWT_KEY);
+          const token = jwt.sign(
+            {
+              data,
+            },
+            process.env.JWT_KEY,
+            {
+              expiresIn: '1h',
+            },
+          );
+          const result = {
+            token,
+          };
+          callback(false, result);
         } else {
-          data.result = '1';
+          data.result = 'Clave Invalida intente Nuevamente';
           callback(false, data);
         }
       } else {
-        data.result = '0';
+        data.result = 'Este email no esta registrado en el sistema';
         callback(false, data);
       }
     } else {

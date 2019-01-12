@@ -152,13 +152,13 @@ const login = (req, res) => {
     const email = req.body.param_email;
     const pass = req.body.param_password;
     debug('req.body: ', req.body);
-    UserModel.login(email, pass, (err, userInsert) => {
+    UserModel.login(email, pass, (err, aunthenticate) => {
       if (err) {
         result.messageError = err;
         res.status(400).send(result);
       } else {
-        debug('FacultyController: ', userInsert);
-        res.send(userInsert);
+        debug('FacultyController: ', aunthenticate);
+        res.send(aunthenticate);
       }
     });
   }

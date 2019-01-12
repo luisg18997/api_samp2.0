@@ -223,11 +223,11 @@ const getAllForms = (ubicationID, ubicationFormID, callback) => {
   return pool.query(query, (err, res) => {
     if (!err) {
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        debug('res.rows: ', res.rows[0].result.length);
-        const forms = res.rows[0].result;
+        const forms = JSON.parse(res.rows[0].result);
+        debug('res.rows: ', forms.length);
         for (let i = 0; i < forms.length; i += 1) {
           forms[i].registration_date = moment(forms[i].registration_date).format('DD-MM-Y');
-          if (forms[i].form_ofice_id !== null) {
+          if (forms[i].form_ofice_id !== null && forms[i].mov_personal_form_id === undefined) {
             forms[i].form_type = 'OFICIO';
           } else {
             forms[i].form_type = 'MOVIMIENTO PERSONAL';

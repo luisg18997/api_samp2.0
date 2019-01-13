@@ -223,7 +223,7 @@ const getAllForms = (ubicationID, ubicationFormID, callback) => {
   return pool.query(query, (err, res) => {
     if (!err) {
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
-        const forms = JSON.parse(res.rows[0].result);
+        const forms = res.rows[0].result;
         debug('res.rows: ', forms.length);
         for (let i = 0; i < forms.length; i += 1) {
           forms[i].registration_date = moment(forms[i].registration_date).format('DD-MM-Y');

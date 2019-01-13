@@ -61,10 +61,51 @@ const getStatusProcessFormList = (callback) => {
   });
 };
 
+const updateAllColumnsProcessMovPersonalForm = (processID, userID, movPersonalFormID, ubicationID,
+  statusProcessFormID, isActive, isDeleted, callback) => {
+  const query = util.format("SELECT process_form.process_movement_personal_form_update_all_columns(param_id:= %d, param_user_id := %d, param_movement_personal_form_id := %d, param_ubication_id := %d,param_status_process_form_id := %d, param_is_active := '%d', param_is_deleted := '%d') as result;",
+    processID, userID, movPersonalFormID, ubicationID, statusProcessFormID, isActive, isDeleted);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
+const updateAllColumnsProcessOfficialForm = (processID, userID, officialFormID, ubicationID,
+  statusProcessFormID, isActive, isDeleted, callback) => {
+  const query = util.format("SELECT process_form.process_official_form_update_all_columns(param_id:= %d, param_user_id := %d, param_official_form_id := %d, param_ubication_id := %d,param_status_process_form_id := %d, param_is_active := '%d', param_is_deleted := '%d') as result;",
+    processID, userID, officialFormID, ubicationID, statusProcessFormID, isActive, isDeleted);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
 module.exports = {
 
   getProcessFormMovementPersonalList,
   getProcessFormOficeList,
   getStatusProcessFormList,
-
+  updateAllColumnsProcessMovPersonalForm,
+  updateAllColumnsProcessOfficialForm,
 };

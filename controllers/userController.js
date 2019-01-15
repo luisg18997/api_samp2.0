@@ -141,6 +141,38 @@ const addUser = (req, res) => {
   }
 };
 
+const addUserByAdmin = (req, res) => {
+  const result = {};
+  debug('req.body.length: ', Object.keys(req.body).length);
+  if (Object.keys(req.body).length !== 10) {
+    debug('request bad params not received');
+    result.parambad = 'request bad';
+    res.status(400).send(result);
+  } else {
+    const name = req.body.param_name;
+    const surname = req.body.param_surname;
+    const email = req.body.param_email;
+    const pass = req.body.param_password;
+    const ubicationId = req.body.param_ubication_id;
+    const roleUserID = req.body.param_role_user_id;
+    const userID = req.body.param_user_id;
+    const schoolID = req.body.param_school_id;
+    const instituteID = req.body.param_institute_id;
+    const coordinationID = req.body.param_coordination_id;
+    debug('req.body: ', req.body);
+    UserModel.addNewUser(name, surname, email, pass, ubicationId, roleUserID, userID, schoolID,
+      instituteID, coordinationID, (err, userInsert) => {
+        if (err) {
+          result.messageError = err;
+          res.status(400).send(result);
+        } else {
+          debug('FacultyController: ', userInsert);
+          res.send(userInsert);
+        }
+      });
+  }
+};
+
 const login = (req, res) => {
   const result = {};
   debug('req.body.length: ', Object.keys(req.body).length);
@@ -172,5 +204,6 @@ module.exports = {
   getAllUbicationsList,
   getAllUserRoleList,
   addUser,
+  addUserByAdmin,
   login,
 };

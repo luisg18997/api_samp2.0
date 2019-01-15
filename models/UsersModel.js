@@ -141,6 +141,29 @@ const addNewUser = (name, surname, email, pass, ubicationId, schoolID, institute
   });
 };
 
+const addNewUserByAdmin = (name, surname, email, pass, ubicationId, roleUserID, userID, schoolID,
+  instituteID, coordinationID, callback) => {
+  const passwordCrypt = bcrypt.hashSync(pass, saltRounds);
+  debug('passwordCrypt: ', passwordCrypt);
+  const query = util.format("SELECT user_data.user_insert_for_a_admin(param_name := '%s', param_surname := '%s', param_email := '%s', param_password := '%s', param_ubication_id := %d, param_role_user_id := %d, param_user_id := %d, param_school_id := %d, param_institute_id :=%d, param_coordination_id := %d) as result;",
+    name, surname, email, passwordCrypt, ubicationId, roleUserID, userID, schoolID, instituteID,
+    coordinationID);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
 const login = (email, password, callback) => {
   const query = util.format("SELECT user_data.login_user(param_email := '%s') as result;",
     email);
@@ -228,4 +251,5 @@ module.exports = {
   getUserRoleList,
   addNewUser,
   login,
+  addNewUserByAdmin,
 };

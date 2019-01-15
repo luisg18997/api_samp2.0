@@ -18,6 +18,8 @@ UserRouter.get('/Roles/UserRole', UserController.getAllUserRoleList);
 
 UserRouter.post('/NewUser', UserController.addUser);
 
+UserRouter.post('/NewUserByAdmin', UserController.addUserByAdmin);
+
 UserRouter.post('/Login', UserController.login);
 
 module.exports = UserRouter;

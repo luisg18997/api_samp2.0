@@ -61,7 +61,7 @@ const updateAllColumnsProcessOfficialForm = (req, res) => {
   try {
     const result = {};
     debug('req.body: ', req.body);
-    if (Object.keys(req.body).length !== 7) {
+    if (Object.keys(req.body).length !== 8) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
@@ -71,11 +71,13 @@ const updateAllColumnsProcessOfficialForm = (req, res) => {
       const userID = req.body.param_user_id;
       const officialFormID = req.body.param_official_form_id;
       const ubicationID = req.body.param_ubication_id;
+      const observation = req.body.param_observation;
       const statusProcessFormID = req.body.param_status_process_form_id;
       const isActive = req.body.param_is_active;
       const isDeleted = req.body.param_is_deleted;
       ProcessModel.updateAllColumnsProcessOfficialForm(processID, userID, officialFormID,
-        ubicationID, statusProcessFormID, isActive, isDeleted, (err, updateProcessOfficialForm) => {
+        ubicationID, observation, statusProcessFormID, isActive,
+        isDeleted, (err, updateProcessOfficialForm) => {
           if (err) {
             result.messageError = err;
             res.status(404).send(result);
@@ -104,11 +106,12 @@ const updateAllColumnsProcessMovPersonalForm = (req, res) => {
       const userID = req.body.param_user_id;
       const movPersonalFormID = req.body.param_mov_personal_form_id;
       const ubicationID = req.body.param_ubication_id;
+      const observation = req.body.param_observation;
       const statusProcessFormID = req.body.param_status_process_form_id;
       const isActive = req.body.param_is_active;
       const isDeleted = req.body.param_is_deleted;
       ProcessModel.updateAllColumnsProcessMovPersonalForm(processID, userID, movPersonalFormID,
-        ubicationID, statusProcessFormID, isActive, isDeleted,
+        ubicationID, observation, statusProcessFormID, isActive, isDeleted,
         (err, updateProcessMovPersonalForm) => {
           if (err) {
             result.messageError = err;

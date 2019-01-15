@@ -20,11 +20,11 @@ employeeRouter.get('/CategoryTypes', EmployeeController.getAllCategoryTypesList)
 
 employeeRouter.get('/DedicationTypes', EmployeeController.getAllDedicationTypesList);
 
-employeeRouter.post('/ExecuntingUnitFilter', EmployeeController.getAllExecuntingUnitFilter);
+employeeRouter.post('/ExecuntingUnits/Filter', EmployeeController.getAllExecuntingUnitFilter);
 
 employeeRouter.post('/ExecuntingUnit', EmployeeController.getExecuntingUnit);
 
-employeeRouter.get('/ExecuntingUnitlist', EmployeeController.getAllExecuntingUnitList);
+employeeRouter.get('/ExecuntingUnits', EmployeeController.getAllExecuntingUnitList);
 
 employeeRouter.get('/IncomeTypes', EmployeeController.getAllIncomeTypeList);
 

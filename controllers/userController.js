@@ -196,6 +196,24 @@ const login = (req, res) => {
   }
 };
 
+const getALLUserValidateList = (req, res) => {
+  try {
+    const result = {};
+    UserModel.getALLUserValidateList((err, UserValidateList) => {
+      if (err) {
+        result.messageError = err;
+        res.status(404).send(result);
+      } else {
+        debug('UserValidateList: ', UserValidateList);
+        res.send(UserValidateList);
+      }
+    });
+  } catch (e) {
+    debug('error: ', e);
+    res.status(500).send(e);
+  }
+};
+
 module.exports = {
   getAllRolesList,
   getAllSecurityAnswerFilterQuestionList,
@@ -206,4 +224,5 @@ module.exports = {
   addUser,
   addUserByAdmin,
   login,
+  getALLUserValidateList,
 };

@@ -97,7 +97,7 @@ const updateAllColumnsProcessMovPersonalForm = (req, res) => {
   try {
     const result = {};
     debug('req.body: ', req.body);
-    if (Object.keys(req.body).length !== 7) {
+    if (Object.keys(req.body).length !== 8) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);

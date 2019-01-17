@@ -144,13 +144,14 @@ const createCodeFormMovPer = (req, res) => {
 const getFormMovPersonal = (req, res) => {
   try {
     const result = {};
-    if (Object.keys(req.body).length !== 1) {
+    if (Object.keys(req.body).length !== 2) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
     } else {
       const identification = req.body.param_identification;
-      formModel.getFormMovPersonal(identification, (err, formMovPersonal) => {
+      const ubicationID = req.body.param_ubication_id;
+      formModel.getFormMovPersonal(identification, ubicationID, (err, formMovPersonal) => {
         if (err) {
           result.messageError = err;
           res.status(404).send(result);

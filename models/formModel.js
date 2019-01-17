@@ -185,7 +185,9 @@ const getFormMovPersonal = (identification, ubication, callback) => {
         res.rows[0].result.registration_date = moment(res.rows[0].result.registration_date).format('D-M-Y');
         res.rows[0].result.start_date = moment(res.rows[0].result.start_date).format('DD-MM-Y');
         res.rows[0].result.finish_date = moment(res.rows[0].result.finish_date).format('DD-MM-Y');
-        res.rows[0].result.admission_date = moment(res.rows[0].result.admission_date).format('DD-MM-Y');
+        if (res.rows[0].result.admission_date !== '') {
+          res.rows[0].result.admission_date = moment(res.rows[0].result.admission_date).format('DD-MM-Y');
+        }
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';

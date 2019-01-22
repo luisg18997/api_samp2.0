@@ -5,8 +5,8 @@
   "main": "app.js",
   "private": true,
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "start": "DEBUG=* node app.js",
+    "dev": "DEBUG=* nodemon app.js",
     "test": "jest",
     "eslintest": "eslint --ignore-path .gitignore ."
   },

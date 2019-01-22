@@ -1,0 +1,16 @@
+FROM node:10.15.0
+WORKDIR /app
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install
+COPY . .
+ENV UCV_FHE_SIST_PORT=5000
+ENV JWT_KEY=ucv_fhe_jwt
+ENV UCV_FHE_SIST_POSTGRES=postres
+ENV UCV_FHE_SIST_POSTGRES_HOST=localhost
+ENV UCV_FHE_SIST_POSTGRES_PORT=5440
+ENV UCV_FHE_SIST_POSTGRES_NAME=db_ucv_fhe_sist
+ENV UCV_FHE_SIST_POSTGRES_USER=postgres
+ENV UCV_FHE_SIST_POSTGRES_PASSWORD=postgresql
+CMD ["npm", "run","dev"]
+EXPOSE 5000

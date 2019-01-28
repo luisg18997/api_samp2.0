@@ -214,6 +214,74 @@ const getALLUserValidateList = (req, res) => {
   }
 };
 
+const updateUserValidate = (req, res) => {
+  const result = {};
+  debug('req.body.length: ', Object.keys(req.body).length);
+  if (Object.keys(req.body).length !== 6) {
+    debug('request bad params not received');
+    result.parambad = 'request bad';
+    res.status(400).send(result);
+  } else {
+    const userID = req.body.para_id;
+    const userRoleID = req.body.param_user_role_id;
+    const roleID = req.body.param_role_id;
+    const isActive = req.body.param_is_active;
+    const isDeleted = req.body.param_is_deleted;
+    const userId = req.body.param_user_id;
+    debug('req.body: ', req.body);
+    UserModel.updateUserValidate(userID, userRoleID, roleID, isActive, isDeleted,
+      userId, (err, updateValidate) => {
+        if (err) {
+          result.messageError = err;
+          res.status(400).send(result);
+        } else {
+          debug('updateUserValidate: ', updateValidate);
+          res.send(updateValidate);
+        }
+      });
+  }
+};
+
+const getUser = (req, res) => {
+  const result = {};
+  debug('req.body.length: ', Object.keys(req.body).length);
+  if (Object.keys(req.body).length !== 1) {
+    debug('request bad params not received');
+    result.parambad = 'request bad';
+    res.status(400).send(result);
+  } else {
+    const userID = req.body.param_user_id;
+    debug('req.body: ', req.body);
+    UserModel.getUser(userID, (err, user) => {
+      if (err) {
+        result.messageError = err;
+        res.status(400).send(result);
+      } else {
+        debug('getUser: ', user);
+        res.send(user);
+      }
+    });
+  }
+};
+
+const getALLUserList = (req, res) => {
+  try {
+    const result = {};
+    UserModel.getALLUserList((err, UserList) => {
+      if (err) {
+        result.messageError = err;
+        res.status(404).send(result);
+      } else {
+        debug('UserList: ', UserList);
+        res.send(UserList);
+      }
+    });
+  } catch (e) {
+    debug('error: ', e);
+    res.status(500).send(e);
+  }
+};
+
 module.exports = {
   getAllRolesList,
   getAllSecurityAnswerFilterQuestionList,
@@ -225,4 +293,7 @@ module.exports = {
   addUserByAdmin,
   login,
   getALLUserValidateList,
+  updateUserValidate,
+  getUser,
+  getALLUserList,
 };

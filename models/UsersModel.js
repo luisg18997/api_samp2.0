@@ -259,6 +259,62 @@ const getALLUserValidateList = (callback) => {
   });
 };
 
+const updateUserValidate = (userID, userRoleID, roleID, isActive, isDeleted, userId, callback) => {
+  const query = util.format("SELECT user_data.user_update_by_validate(param_id := %d, param_role_user_id := %d, param_role_id :=%d, param_is_active := '%d', param_is_deleted := '%d', param_user_id) as result",
+    userID, userRoleID, roleID, isActive, isDeleted, userId);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
+const getUser = (userID, callback) => {
+  const query = util.format('SELECT user_data.get_user(param_id := %d) as result',
+    userID);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
+
+const getALLUserList = (callback) => {
+  const query = util.format('SELECT user_data.get_user_list() as result');
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
 
 module.exports = {
   getRolesList,
@@ -271,4 +327,7 @@ module.exports = {
   login,
   addNewUserByAdmin,
   getALLUserValidateList,
+  updateUserValidate,
+  getUser,
+  getALLUserList,
 };

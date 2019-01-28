@@ -24,4 +24,10 @@ UserRouter.post('/NewUserByAdmin', UserController.addUserByAdmin);
 
 UserRouter.post('/Login', UserController.login);
 
+UserRouter.post('/Validate/update', UserController.updateUserValidate);
+
+UserRouter.post('/', UserController.getUser);
+
+UserRouter.post('/List', UserController.getALLUserList);
+
 module.exports = UserRouter;

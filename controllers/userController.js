@@ -217,12 +217,13 @@ const getALLUserValidateList = (req, res) => {
 const updateUserValidate = (req, res) => {
   const result = {};
   debug('req.body.length: ', Object.keys(req.body).length);
+  debug('req.body: ', req.body);
   if (Object.keys(req.body).length !== 6) {
     debug('request bad params not received');
     result.parambad = 'request bad';
     res.status(400).send(result);
   } else {
-    const userID = req.body.para_id;
+    const userID = req.body.param_id;
     const userRoleID = req.body.param_user_role_id;
     const roleID = req.body.param_role_id;
     const isActive = req.body.param_is_active;

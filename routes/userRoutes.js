@@ -28,6 +28,6 @@ UserRouter.post('/Validate/update', UserController.updateUserValidate);
 
 UserRouter.post('/', UserController.getUser);
 
-UserRouter.post('/List', UserController.getALLUserList);
+UserRouter.get('/List', UserController.getALLUserList);
 
 module.exports = UserRouter;

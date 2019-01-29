@@ -260,7 +260,7 @@ const getALLUserValidateList = (callback) => {
 };
 
 const updateUserValidate = (userID, userRoleID, roleID, isActive, isDeleted, userId, callback) => {
-  const query = util.format("SELECT user_data.user_update_by_validate(param_id := %d, param_role_user_id := %d, param_role_id :=%d, param_is_active := '%d', param_is_deleted := '%d', param_user_id) as result",
+  const query = util.format("SELECT user_data.user_update_by_validate(param_id := %d, param_role_user_id := %d, param_role_id :=%d, param_is_active := '%d', param_is_deleted := '%d', param_user_id := %d) as result",
     userID, userRoleID, roleID, isActive, isDeleted, userId);
   const data = {};
   return pool.query(query, (err, res) => {

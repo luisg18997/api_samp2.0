@@ -272,6 +272,27 @@ const getFormOfficial = (identification, ubication, callback) => {
   });
 };
 
+const updateOfficialApproval = (officialID, officialProcessID, ubicationID, statusProcessFormID,
+  observation, isActive, isDeleted, userID, callback) => {
+  const query = util.format("SELECT form_data.official_form_update_approval(param_id := %d, param_official_form_process_id :=%d, param_ubication_id := %d, param_status_process_form_id := %d, param_observation := '%s', param_is_active := '%d', param_is_deleted := '%d', param_user_id := %d), as result",
+    officialID, officialProcessID, ubicationID, statusProcessFormID,
+    observation, isActive, isDeleted, userID);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
 module.exports = {
   getMovementTypeslist,
   addNewFormOfice,
@@ -282,4 +303,5 @@ module.exports = {
   getAllFormsOfice,
   getAllForms,
   getFormOfficial,
+  updateOfficialApproval,
 };

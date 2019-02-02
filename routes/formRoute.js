@@ -22,4 +22,6 @@ formRouter.post('/ofice/List', formController.getFormOficesList);
 
 formRouter.post('/official', formController.getFormOfficial);
 
+formRouter.post('/official/updateApproval', formController.updateOfficialApproval);
+
 module.exports = formRouter;

@@ -246,6 +246,39 @@ const getFormOfficial = (req, res) => {
   }
 };
 
+const updateOfficialApproval = (req, res) => {
+  try {
+    const result = {};
+    if (Object.keys(req.body).length !== 2) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const officialID = req.body.param_id;
+      const officialProcessID = req.body.param_official_form_process_id;
+      const ubicationID = req.body.param_ubication_id;
+      const statusProcessFormID = req.body.param_status_process_form_id;
+      const observation = req.body.param_observation;
+      const isActive = req.body.param_is_active;
+      const isDeleted = req.body.param_is_deleted;
+      const userID = req.body.param_user_id;
+      formModel.updateOfficialApproval(officialID, officialProcessID, ubicationID,
+        statusProcessFormID, observation, isActive, isDeleted, userID, (err, formOfficial) => {
+          if (err) {
+            result.messageError = err;
+            res.status(404).send(result);
+          } else {
+            debug('updateOfficialApproval: ', formOfficial);
+            res.send(formOfficial);
+          }
+        });
+    }
+  } catch (e) {
+    debug('error: ', e);
+    res.status(500).send(e);
+  }
+};
+
 module.exports = {
   getAllMovementTypeslist,
   addFormOfice,
@@ -256,4 +289,5 @@ module.exports = {
   getFormsList,
   getFormOficesList,
   getFormOfficial,
+  updateOfficialApproval,
 };

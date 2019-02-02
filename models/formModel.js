@@ -274,7 +274,7 @@ const getFormOfficial = (identification, ubication, callback) => {
 
 const updateOfficialApproval = (officialID, officialProcessID, ubicationID, statusProcessFormID,
   observation, isActive, isDeleted, userID, callback) => {
-  const query = util.format("SELECT form_data.official_form_update_approval(param_id := %d, param_official_form_process_id :=%d, param_ubication_id := %d, param_status_process_form_id := %d, param_observation := '%s', param_is_active := '%d', param_is_deleted := '%d', param_user_id := %d), as result",
+  const query = util.format("SELECT form_data.official_form_update_approval(param_id := %d, param_official_form_process_id :=%d, param_ubication_id := %d, param_status_process_form_id := %d, param_observation := '%s', param_is_active := '%d', param_is_deleted := '%d', param_user_id := %d) as result;",
     officialID, officialProcessID, ubicationID, statusProcessFormID,
     observation, isActive, isDeleted, userID);
   const data = {};

@@ -249,7 +249,7 @@ const getFormOfficial = (req, res) => {
 const updateOfficialApproval = (req, res) => {
   try {
     const result = {};
-    if (Object.keys(req.body).length !== 2) {
+    if (Object.keys(req.body).length !== 8) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);

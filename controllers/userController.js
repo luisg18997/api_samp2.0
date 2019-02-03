@@ -175,6 +175,7 @@ const addUserByAdmin = (req, res) => {
 
 const login = (req, res) => {
   const result = {};
+  debug('req.body: ', req.body);
   debug('req.body.length: ', Object.keys(req.body).length);
   if (Object.keys(req.body).length !== 2) {
     debug('request bad params not received');

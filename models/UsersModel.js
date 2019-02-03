@@ -224,14 +224,15 @@ const login = (email, password, callback) => {
           );
           const result = {
             token,
+            data,
           };
           callback(false, result);
         } else {
-          data.result = 'Clave Invalida intente Nuevamente';
+          data.claveInv = 'Clave Invalida intente Nuevamente';
           callback(false, data);
         }
       } else {
-        data.result = 'Este email no esta registrado en el sistema';
+        data.emailNotExist = 'Este email no esta registrado en el sistema';
         callback(false, data);
       }
     } else {

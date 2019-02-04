@@ -177,6 +177,7 @@ const login = (email, password, callback) => {
         const compare = bcrypt.compareSync(password, passHash);
         if (compare) {
           debug('result obtain rowCount: ', res.rowCount);
+          data.id = res.rows[0].result.id;
           data.name = res.rows[0].result.name;
           data.email = res.rows[0].result.email;
           data.ubicationId = res.rows[0].result.ubication_id;
@@ -317,6 +318,44 @@ const getALLUserList = (callback) => {
   });
 };
 
+const updateUserAnswer = (answerID, userID, questionID, answer, callback) => {
+  const query = util.format("SELECT user_data.security_answer_update_answer(param_id := %d, param_answer_user_id := %d, param_question_id := %d, param_answer := '%s', param_user_id := %d) as result",
+    answerID, userID, questionID, answer, userID);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
+const updateUserPassword = (userID, password, callback) => {
+  const query = util.format("SELECT user_data.user_update_password(param_id := %d, param_password := '%s') as result;",
+    userID, password);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
 module.exports = {
   getRolesList,
   getSecurityAnswerFilterQuestionList,
@@ -331,4 +370,6 @@ module.exports = {
   updateUserValidate,
   getUser,
   getALLUserList,
+  updateUserPassword,
+  updateUserAnswer,
 };

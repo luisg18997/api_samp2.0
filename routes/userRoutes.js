@@ -30,4 +30,8 @@ UserRouter.post('/', UserController.getUser);
 
 UserRouter.get('/List', UserController.getALLUserList);
 
+UserRouter.post('/SecurityAnswer/update', UserController.updateUserAnswer);
+
+UserRouter.post('/Password/update', UserController.updateUserPassword);
+
 module.exports = UserRouter;

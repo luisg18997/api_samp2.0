@@ -284,6 +284,54 @@ const getALLUserList = (req, res) => {
   }
 };
 
+const updateUserAnswer = (req, res) => {
+  const result = {};
+  debug('req.body.length: ', Object.keys(req.body).length);
+  if (Object.keys(req.body).length !== 4) {
+    debug('request bad params not received');
+    result.parambad = 'request bad';
+    res.status(400).send(result);
+  } else {
+    const answerID = req.body.param_id;
+    const userID = req.body.param_user_id;
+    const questionID = req.body.param_question_id;
+    const answer = req.body.param_answer;
+    debug('req.body: ', req.body);
+    UserModel.updateUserAnswer(answerID, userID, questionID, answer, (err, updateAnswer) => {
+      if (err) {
+        result.messageError = err;
+        res.status(400).send(result);
+      } else {
+        debug('updateUserAnswer: ', updateAnswer);
+        res.send(updateAnswer);
+      }
+    });
+  }
+};
+
+const updateUserPassword = (req, res) => {
+  const result = {};
+  debug('req.body.length: ', Object.keys(req.body).length);
+  if (Object.keys(req.body).length !== 2) {
+    debug('request bad params not received');
+    result.parambad = 'request bad';
+    res.status(400).send(result);
+  } else {
+    const userID = req.body.param_id;
+    const password = req.body.param_password;
+    debug('req.body: ', req.body);
+    UserModel.updateUserPassword(userID, password, (err, updatePassword) => {
+      if (err) {
+        result.messageError = err;
+        res.status(400).send(result);
+      } else {
+        debug('updateUserPassword: ', updatePassword);
+        res.send(updatePassword);
+      }
+    });
+  }
+};
+
 module.exports = {
   getAllRolesList,
   getAllSecurityAnswerFilterQuestionList,
@@ -298,4 +346,6 @@ module.exports = {
   updateUserValidate,
   getUser,
   getALLUserList,
+  updateUserAnswer,
+  updateUserPassword,
 };

@@ -356,6 +356,25 @@ const updateUserPassword = (userID, password, callback) => {
   });
 };
 
+const getUserForChangePassword = (email, callback) => {
+  const query = util.format("SELECT user_data.get_user_for_change_password(param_email := '%s') as result",
+    email);
+  const data = {};
+  return pool.query(query, (err, res) => {
+    if (!err) {
+      if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+        debug('res.rows: ', res.rows[0].result.length);
+        callback(false, res.rows[0].result);
+      } else {
+        data.result = 'not found';
+        callback(false, data);
+      }
+    } else {
+      callback(err.stack, null);
+    }
+  });
+};
+
 module.exports = {
   getRolesList,
   getSecurityAnswerFilterQuestionList,
@@ -372,4 +391,5 @@ module.exports = {
   getALLUserList,
   updateUserPassword,
   updateUserAnswer,
+  getUserForChangePassword,
 };

@@ -28,6 +28,8 @@ UserRouter.post('/Validate/update', UserController.updateUserValidate);
 
 UserRouter.post('/', UserController.getUser);
 
+UserRouter.post('/getChangePassword', UserController.getUserForChangePassword);
+
 UserRouter.get('/List', UserController.getALLUserList);
 
 UserRouter.post('/SecurityAnswer/update', UserController.updateUserAnswer);

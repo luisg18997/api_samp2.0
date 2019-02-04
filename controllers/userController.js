@@ -332,6 +332,28 @@ const updateUserPassword = (req, res) => {
   }
 };
 
+const getUserForChangePassword = (req, res) => {
+  const result = {};
+  debug('req.body.length: ', Object.keys(req.body).length);
+  if (Object.keys(req.body).length !== 1) {
+    debug('request bad params not received');
+    result.parambad = 'request bad';
+    res.status(400).send(result);
+  } else {
+    const email = req.body.param_email;
+    debug('req.body: ', req.body);
+    UserModel.getUserForChangePassword(email, (err, user) => {
+      if (err) {
+        result.messageError = err;
+        res.status(400).send(result);
+      } else {
+        debug('getUserForChangePassword: ', user);
+        res.send(user);
+      }
+    });
+  }
+};
+
 module.exports = {
   getAllRolesList,
   getAllSecurityAnswerFilterQuestionList,
@@ -348,4 +370,5 @@ module.exports = {
   getALLUserList,
   updateUserAnswer,
   updateUserPassword,
+  getUserForChangePassword,
 };

@@ -8,10 +8,6 @@ UserRouter.get('/Roles', UserController.getAllRolesList);
 
 UserRouter.get('/Validates', UserController.getALLUserValidateList);
 
-UserRouter.get('/SecurityAnswer/SecurityAnswerFilterQuestion', UserController.getAllSecurityAnswerFilterQuestionList);
-
-UserRouter.get('/SecurityAnswer', UserController.getAllSecurityAnswerList);
-
 UserRouter.get('/SecurityQuestions', UserController.getAllSecurityQuestionsList);
 
 UserRouter.get('/Ubications', UserController.getAllUbicationsList);

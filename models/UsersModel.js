@@ -153,6 +153,7 @@ const addNewUserByAdmin = (name, surname, email, pass, ubicationId, roleUserID, 
     if (!err) {
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('res.rows: ', res.rows[0].result.length);
+        debug('res.rows[0].result:', res.rows[0].result);
         callback(false, res.rows[0].result);
       } else {
         data.result = 'not found';

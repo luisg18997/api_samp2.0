@@ -5,6 +5,7 @@ const debug = require('debug')(appName);
 const util = require('util');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const moment = require('moment');
 
 const saltRounds = 10;
 
@@ -207,11 +208,12 @@ const login = (email, password, callback) => {
             data.question = res.rows[0].result.question;
             data.answer = res.rows[0].result.answer;
             data.ubicationUser = res.rows[0].result.ubication_user;
+            data.iat = moment().unix();
+            data.exp = moment().add(1, 'hours').unix();
             debug('secrect: ', process.env.JWT_KEY);
             const token = jwt.sign(
               { data },
               process.env.JWT_KEY,
-              { expiresIn: '1h' },
             );
             const result = {
               token,
@@ -334,8 +336,9 @@ const getALLUserList = (callback) => {
 
 const updateUserAnswer = (answerID, userID, questionID, answer, callback) => {
   try {
+    const answerCrypt = bcrypt.hashSync(answer, saltRounds);
     const query = util.format("SELECT user_data.security_answer_update_answer(param_id := %d, param_answer_user_id := %d, param_question_id := %d, param_answer := '%s', param_user_id := %d) as result",
-      answerID, userID, questionID, answer, userID);
+      answerID, userID, questionID, answerCrypt, userID);
     const data = {};
     return pool.query(query, (err, res) => {
       if (!err) {
@@ -358,8 +361,9 @@ const updateUserAnswer = (answerID, userID, questionID, answer, callback) => {
 
 const updateUserPassword = (userID, password, callback) => {
   try {
+    const passwordCrypt = bcrypt.hashSync(password, saltRounds);
     const query = util.format("SELECT user_data.user_update_password(param_id := %d, param_password := '%s') as result;",
-      userID, password);
+      userID, passwordCrypt);
     const data = {};
     return pool.query(query, (err, res) => {
       if (!err) {

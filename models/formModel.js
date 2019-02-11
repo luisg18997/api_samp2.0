@@ -66,7 +66,7 @@ const getCreateCodeFormOFice = (schoolID, instituteID, coordinationID, callback)
     schoolID, instituteID, coordinationID);
   return pool.query(query, (err, res) => {
     if (!err) {
-      const data = moment().format('DDMM'); // catupra la fecha actual
+      const data = moment().format('DDMMYY'); // catupra la fecha actual
       const code = {};
       if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
         debug('res.rows: ', res.rows[0].result.length);

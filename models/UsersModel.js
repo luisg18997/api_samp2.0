@@ -408,6 +408,37 @@ const getUserForChangePassword = (email, callback) => {
   }
 };
 
+const getUserSecurityAnswerCompare = (userID, answer, callback) => {
+  try {
+    const query = util.format('SELECT user_data.get_security_answer_filter_user_search(param_user_id := %d) as result;',
+      userID);
+    const data = {};
+    return pool.query(query, (err, res) => {
+      if (!err) {
+        if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+          debug('res.rows: ', res.rows[0].result.length);
+          const answerHash = res.rows[0].result.answer;
+          const compare = bcrypt.compareSync(answer, answerHash);
+          if (compare) {
+            data.answer = true;
+          } else {
+            data.answer = false;
+          } 
+          callback(false,data);
+        } else {
+          data.result = 'not found';
+          callback(false, data);
+        }
+      } else {
+        callback(err.stack, null);
+      }
+    });
+  }catch(e){
+    debug('error catch in the funcion getUserSecurityAnswerCompare of UserModel: ', e);
+    return callback(e, null);
+  }
+}
+
 module.exports = {
   getRolesList,
   getSecurityQuestionsList,
@@ -423,4 +454,5 @@ module.exports = {
   updateUserPassword,
   updateUserAnswer,
   getUserForChangePassword,
+  getUserSecurityAnswerCompare,
 };

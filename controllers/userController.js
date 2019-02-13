@@ -358,6 +358,34 @@ const getUserForChangePassword = (req, res) => {
   }
 };
 
+const getUserSecurityAnswerCompare = (req, res) => {
+  try {
+    const result = {};
+    debug('req.body.length: ', Object.keys(req.body).length);
+    if (Object.keys(req.body).length !== 2) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const userID = req.body.param_id;
+      const answer = req.body.param_answer;
+      debug('req.body: ', req.body);
+      UserModel.getUserSecurityAnswerCompare(userID, answer, (err, user) => {
+        if (err) {
+          result.messageError = err;
+          res.status(400).send(result);
+        } else {
+          debug('getUserSecurityAnswerCompare: ', user);
+          res.send(user);
+        }
+      });
+    }
+  } catch (e) {
+    debug('error catch in the funcion getUserSecurityAnswerCompare of UserController: ', e);
+    res.status(500).send(e);
+  }
+};
+
 module.exports = {
   getAllRolesList,
   getAllSecurityQuestionsList,
@@ -373,4 +401,5 @@ module.exports = {
   updateUserAnswer,
   updateUserPassword,
   getUserForChangePassword,
+  getUserSecurityAnswerCompare,
 };

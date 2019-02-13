@@ -386,7 +386,7 @@ const updateUserPassword = (userID, password, callback) => {
 
 const getUserForChangePassword = (email, callback) => {
   try {
-    const query = util.format("SELECT user_data.get_user_for_change_password(param_email := '%s') as result",
+    const query = util.format("SELECT user_data.get_user_for_change_password(param_email := '%s') as result;",
       email);
     const data = {};
     return pool.query(query, (err, res) => {

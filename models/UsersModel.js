@@ -423,8 +423,8 @@ const getUserSecurityAnswerCompare = (userID, answer, callback) => {
             data.answer = true;
           } else {
             data.answer = false;
-          } 
-          callback(false,data);
+          }
+          callback(false, data);
         } else {
           data.result = 'not found';
           callback(false, data);
@@ -433,11 +433,11 @@ const getUserSecurityAnswerCompare = (userID, answer, callback) => {
         callback(err.stack, null);
       }
     });
-  }catch(e){
+  } catch (e) {
     debug('error catch in the funcion getUserSecurityAnswerCompare of UserModel: ', e);
     return callback(e, null);
   }
-}
+};
 
 module.exports = {
   getRolesList,

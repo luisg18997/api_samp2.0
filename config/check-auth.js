@@ -20,19 +20,33 @@ const checkAuth = (req, res, next) => {
 };
 
 const checkIsTokenExpired = (req, res) => {
+  const result = {};
   try {
     const checkToken = req.body.token;
     const data = jwt.verify(checkToken, process.env.JWT_KEY);
-    const result = {};
-    if (data.exp <= moment().unix()) {
-      result.exp = true;
-      res.status('401').send(result);
+    debug('data: ', data);
+    debug('moment().unix(): ', moment().unix());
+    debug('data.exp: ', data.exp);
+    debug('data.iat: ', data.iat);
+    if (data !== undefined) {
+      if (data.exp <= moment().unix()) {
+        result.exp = true;
+        debug('session expirada');
+        res.send(result);
+      } else {
+        result.exp = false;
+        debug('session NO expirada');
+        res.send(result);
+      }
     } else {
-      result.exp = false;
+      debug('data.exp es undefined');
+      result.exp = true;
       res.send(result);
     }
   } catch (e) {
+    result.exp = true;
     debug('error catch in the function checkIsTokenExpired: ', e);
+    res.send(result);
   }
 };
 

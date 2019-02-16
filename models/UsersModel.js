@@ -200,20 +200,14 @@ const login = (email, password, callback) => {
             } else {
               data.coordinationID = res.rows[0].result.coordination_id;
             }
-            if (res.rows[0].result.question_id === null) {
-              data.questionID = 0;
-            } else {
-              data.questionID = res.rows[0].result.question_id;
-            }
             data.question = res.rows[0].result.question;
             data.answer = res.rows[0].result.answer;
             data.ubicationUser = res.rows[0].result.ubication_user;
-            data.iat = moment().unix();
-            data.exp = moment().add(1, 'hours').unix();
             debug('secrect: ', process.env.JWT_KEY);
             const token = jwt.sign(
               { data },
               process.env.JWT_KEY,
+              { expiresIn: '1h' },
             );
             const result = {
               token,

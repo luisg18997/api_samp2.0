@@ -1,30 +1,29 @@
 const appName = 'EmployeeController';
 const debug = require('debug')(appName);
-
 const EmployeeModel = require('../models/employeeModel.js');
 
-
 const getAllStatesList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    EmployeeModel.getStatesList((err, StatesData) => {
+    EmployeeModel.getStatesList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('EmployeeController: ', StatesData);
-        res.send(StatesData);
+        debug('getAllStatesList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllStatesList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllMunicipalitiesList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (req.body.param_state_id === undefined) {
       debug('request bad params not received');
@@ -33,44 +32,45 @@ const getAllMunicipalitiesList = (req, res) => {
     } else {
       const stateID = req.body.param_state_id;
 
-      EmployeeModel.getMunicipalitiesList(stateID, (err, MunicipalitieslData) => {
+      EmployeeModel.getMunicipalitiesList(stateID, (err, data) => {
         if (err) {
           result.messageError = err;
-          res.status(403).send(result);
+          res.send(result);
         } else {
-          debug('EmployeeController: ', MunicipalitieslData);
-          res.send(MunicipalitieslData);
+          debug('getAllMunicipalitiesList: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllMunicipalitiesList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllNacionalitiesList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    EmployeeModel.getNacionalitiesList((err, NacionalitiesData) => {
+    EmployeeModel.getNacionalitiesList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('EmployeeController: ', NacionalitiesData);
-        res.send(NacionalitiesData);
+        debug('getAllNacionalitiesList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllNacionalitiesList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
-
 const getAllParishList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (req.body.param_municipality_id === undefined) {
       debug('request bad params not received');
@@ -79,26 +79,26 @@ const getAllParishList = (req, res) => {
     } else {
       const municipalityID = req.body.param_municipality_id;
 
-      EmployeeModel.getParishList(municipalityID, (err, ParishData) => {
+      EmployeeModel.getParishList(municipalityID, (err, data) => {
         if (err) {
           result.messageError = err;
-          res.status(404).send(result);
+          res.send(result);
         } else {
-          debug('EmployeeController: ', ParishData);
-          res.send(ParishData);
+          debug('getAllParishList: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllParishList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
-
 const getAllCategoryType = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (req.body.categorytypeID === undefined) {
       debug('request bad params not received');
@@ -107,64 +107,64 @@ const getAllCategoryType = (req, res) => {
     } else {
       const categorytypeID = req.body.param_categorytypeID;
 
-      EmployeeModel.getCategoryType(categorytypeID, (err, CategoryTypeData) => {
+      EmployeeModel.getCategoryType(categorytypeID, (err, data) => {
         if (err) {
           result.messageError = err;
-          res.status(404).send(result);
+          res.send(result);
         } else {
-          debug('EmployeeController: ', CategoryTypeData);
-          res.send(CategoryTypeData);
+          debug('getAllCategoryType: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllCategoryType of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
-
 
 const getAllCategoryTypesList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    EmployeeModel.getCategoryTypesList((err, CategoryTypesListData) => {
+    EmployeeModel.getCategoryTypesList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('EmployeeController: ', CategoryTypesListData);
-        res.send(CategoryTypesListData);
+        debug('getAllCategoryTypesList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllCategoryTypesList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
-
 
 const getAllDedicationTypesList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    EmployeeModel.getDedicationTypesList((err, DedicationTypesListData) => {
+    EmployeeModel.getDedicationTypesList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('EmployeeController: ', DedicationTypesListData);
-        res.send(DedicationTypesListData);
+        debug('getAllDedicationTypesList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllDedicationTypesList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
-
 const getAllExecuntingUnitFilter = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (req.body.param_code_filter === undefined) {
       debug('request bad params not received');
@@ -173,25 +173,26 @@ const getAllExecuntingUnitFilter = (req, res) => {
     } else {
       const codeFilter = req.body.param_code_filter;
 
-      EmployeeModel.getExecuntingUnitForFilterList(codeFilter, (err, ExecuntingUnitData) => {
+      EmployeeModel.getExecuntingUnitForFilterList(codeFilter, (err, data) => {
         if (err) {
           result.messageError = err;
-          res.status(404).send(result);
+          res.send(result);
         } else {
-          debug('EmployeeController: ', ExecuntingUnitData);
-          res.send(ExecuntingUnitData);
+          debug('getAllExecuntingUnitFilter: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllExecuntingUnitFilter of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getExecuntingUnit = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (req.body.param_ExecuntingUnitID === undefined) {
       debug('request bad params not received');
@@ -200,175 +201,181 @@ const getExecuntingUnit = (req, res) => {
     } else {
       const ExecuntingUnitID = req.body.param_ExecuntingUnitID;
 
-      EmployeeModel.getExecuntingUnit(ExecuntingUnitID, (err, ExecuntingUnitData) => {
+      EmployeeModel.getExecuntingUnit(ExecuntingUnitID, (err, data) => {
         if (err) {
           result.messageError = err;
-          res.status(404).send(result);
+          res.send(result);
         } else {
-          debug('EmployeeController: ', ExecuntingUnitData);
-          res.send(ExecuntingUnitData);
+          debug('getExecuntingUnit: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getExecuntingUnit of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
-
 
 const getAllExecuntingUnitList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    EmployeeModel.getExecuntingUnitList((err, ExecuntingUnitListData) => {
+    EmployeeModel.getExecuntingUnitList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('EmployeeController: ', ExecuntingUnitListData);
-        res.send(ExecuntingUnitListData);
+        debug('getAllExecuntingUnitList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllExecuntingUnitList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
-
 const getAllIncomeTypeList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    EmployeeModel.getIncomeTypeList((err, IncomeTypeListData) => {
+    EmployeeModel.getIncomeTypeList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('EmployeeController: ', IncomeTypeListData);
-        res.send(IncomeTypeListData);
+        debug('getAllIncomeTypeList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllIncomeTypeList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllIngressList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    EmployeeModel.getIngressList((err, IngressListData) => {
+    EmployeeModel.getIngressList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('EmployeeController: ', IngressListData);
-        res.send(IngressListData);
+        debug('getAllIngressList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllIngressList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllDocumentationsList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    EmployeeModel.getDocumentationsList((err, DocumentationsListData) => {
+    EmployeeModel.getDocumentationsList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('EmployeeController: ', DocumentationsListData);
-        res.send(DocumentationsListData);
+        debug('getAllDocumentationsList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllDocumentationsList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 
 const getAllEmployeeIdacCodeList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    EmployeeModel.getEmployeeIdacCodeList((err, EmployeeIdacCodeListData) => {
+    EmployeeModel.getEmployeeIdacCodeList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('EmployeeController: ', EmployeeIdacCodeListData);
-        res.send(EmployeeIdacCodeListData);
+        debug('getAllEmployeeIdacCodeList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllEmployeeIdacCodeList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllEmployeeSalariesFilterSalaryList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     EmployeeModel.getEmployeeSalariesFilterSalaryList(
-      (err, EmployeeSalariesFilterSalaryListData) => {
+      (err, data) => {
         if (err) {
           result.messageError = err;
-          res.status(404).send(result);
+          res.send(result);
         } else {
-          debug('EmployeeController: ', EmployeeSalariesFilterSalaryListData);
-          res.send(EmployeeSalariesFilterSalaryListData);
+          debug('getAllEmployeeSalariesFilterSalaryList: ', data);
+          res.send(data);
         }
       },
     );
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllEmployeeSalariesFilterSalaryList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
-
 const getAllEmployeeSalariesSalaryList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    EmployeeModel.getEmployeeSalariesSalaryList((err, EmployeeSalariesSalaryListData) => {
+    EmployeeModel.getEmployeeSalariesSalaryList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('EmployeeController: ', EmployeeSalariesSalaryListData);
-        res.send(EmployeeSalariesSalaryListData);
+        debug('getAllEmployeeSalariesSalaryList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllEmployeeSalariesSalaryList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllGendersList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     EmployeeModel.getGendersList((err, GendersListData) => {
       if (err) {
         result.messageError = err;
         res.status(404).send(result);
       } else {
-        debug('EmployeeController: ', GendersListData);
+        debug('getAllGendersList: ', GendersListData);
         res.send(GendersListData);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllGendersList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllIdacCodesFilterVacantDateNotNullList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (req.body.param_exec_unit_ids === undefined) {
       debug('request bad params not received');
@@ -377,63 +384,66 @@ const getAllIdacCodesFilterVacantDateNotNullList = (req, res) => {
     } else {
       const execIds = req.body.param_exec_unit_ids.toString();
       EmployeeModel.getIdacCodesFilterVacantDateNotNullList(execIds,
-        (err, IdacCodesFilterVacantDateNotNullListData) => {
+        (err, data) => {
           if (err) {
             result.messageError = err;
-            res.status(404).send(result);
+            res.send(result);
           } else {
-            debug('EmployeeController: ', IdacCodesFilterVacantDateNotNullListData);
-            res.send(IdacCodesFilterVacantDateNotNullListData);
+            debug('getAllIdacCodesFilterVacantDateNotNullList: ', data);
+            res.send(data);
           }
         });
     }
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllIdacCodesFilterVacantDateNotNullList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllIdacCodesFilterVacantDateNullList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     EmployeeModel.getIdacCodesFilterVacantDateNullList(
-      (err, IdacCodesFilterVacantDateNullListData) => {
+      (err, data) => {
         if (err) {
           result.messageError = err;
-          res.status(404).send(result);
+          res.send(result);
         } else {
-          debug('EmployeeController: ', IdacCodesFilterVacantDateNullListData);
-          res.send(IdacCodesFilterVacantDateNullListData);
+          debug('getAllIdacCodesFilterVacantDateNullList: ', data);
+          res.send(data);
         }
       },
     );
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllIdacCodesFilterVacantDateNullList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllIdacCodesList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    EmployeeModel.getIdacCodesList((err, IdacCodesListData) => {
+    EmployeeModel.getIdacCodesList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('EmployeeController: ', IdacCodesListData);
-        res.send(IdacCodesListData);
+        debug('getAllIdacCodesList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllIdacCodesList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllSalaryForCategoryTypeList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (req.body.categoryId === undefined) {
       debug('request bad params not received');
@@ -443,25 +453,26 @@ const getAllSalaryForCategoryTypeList = (req, res) => {
       const categoryId = req.body.param_category_id;
 
       EmployeeModel.getSalaryForCategoryTypeList(categoryId,
-        (err, SalaryForCategoryTypeListData) => {
+        (err, data) => {
           if (err) {
             result.messageError = err;
-            res.status(404).send(result);
+            res.send(result);
           } else {
-            debug('EmployeeController: ', SalaryForCategoryTypeListData);
-            res.send(SalaryForCategoryTypeListData);
+            debug('getAllSalaryForCategoryTypeList: ', data);
+            res.send(data);
           }
         });
     }
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllSalaryForCategoryTypeList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getSalaryDedicationTypeCategoryType = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (Object.keys(req.body).length !== 2) {
       debug('request bad params not received');
@@ -472,25 +483,26 @@ const getSalaryDedicationTypeCategoryType = (req, res) => {
       const categoryID = req.body.param_category_id;
 
       EmployeeModel.getSalaryDedicationCategoryType(dedicationID, categoryID,
-        (err, SalaryForDedicationTypeCategoryTypeListData) => {
+        (err, data) => {
           if (err) {
             result.messageError = err;
-            res.status(404).send(result);
+            res.send(result);
           } else {
-            debug('EmployeeController: ', SalaryForDedicationTypeCategoryTypeListData);
-            res.send(SalaryForDedicationTypeCategoryTypeListData);
+            debug('getSalaryDedicationTypeCategoryType: ', data);
+            res.send(data);
           }
         });
     }
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getSalaryDedicationTypeCategoryType of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllSalaryForDedicationTypeList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (req.body.dedicationId === undefined) {
       debug('request bad params not received');
@@ -500,44 +512,45 @@ const getAllSalaryForDedicationTypeList = (req, res) => {
       const dedicationId = req.body.param_dedication_id;
 
       EmployeeModel.getSalaryForDedicationTypeList(dedicationId,
-        (err, SalaryForCategoryTypeListData) => {
+        (err, data) => {
           if (err) {
             result.messageError = err;
             res.status(404).send(result);
           } else {
-            debug('EmployeeController: ', SalaryForCategoryTypeListData);
-            res.send(SalaryForCategoryTypeListData);
+            debug('getAllSalaryForDedicationTypeList: ', data);
+            res.send(data);
           }
         });
     }
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllSalaryForDedicationTypeList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
-
 const getAllSalaryList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    EmployeeModel.getSalaryList((err, SalaryListData) => {
+    EmployeeModel.getSalaryList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('EmployeeController: ', SalaryListData);
-        res.send(SalaryListData);
+        debug('getAllSalaryList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllSalaryList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getEmployeesList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     if (Object.keys(req.body).length !== 3) {
       debug('request bad params not received');
       result.parambad = 'request bad';
@@ -546,22 +559,22 @@ const getEmployeesList = (req, res) => {
       const schoolID = req.body.param_school_id;
       const instituteID = req.body.param_institute_id;
       const coordinationID = req.body.param_coordination_id;
-      EmployeeModel.getAllEmployeesList(schoolID, instituteID, coordinationID, (err, employees) => {
+      EmployeeModel.getAllEmployeesList(schoolID, instituteID, coordinationID, (err, data) => {
         if (err) {
           result.messageError = err;
-          res.status(404).send(result);
+          res.send(result);
         } else {
-          debug('EmployeeController: ', employees);
-          res.send(employees);
+          debug('getEmployeesList: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getEmployeesList of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
-
 
 module.exports = {
   getAllStatesList,

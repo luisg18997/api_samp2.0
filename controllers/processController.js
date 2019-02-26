@@ -4,62 +4,65 @@ const debug = require('debug')(appName);
 const ProcessModel = require('../models/ProcessModel.js');
 
 const getAllProcessFormMovementPersonalList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    ProcessModel.getProcessFormMovementPersonalList((err, ProcessFormMovementPersonalListData) => {
+    ProcessModel.getProcessFormMovementPersonalList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('ProcessFormMovementPersonalListData: ', ProcessFormMovementPersonalListData);
-        res.send(ProcessFormMovementPersonalListData);
+        debug('getAllProcessFormMovementPersonalList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllProcessFormMovementPersonalList of ProcessController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllProcessFormOficeList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    ProcessModel.getProcessFormOficeList((err, ProcessFormOficeListData) => {
+    ProcessModel.getProcessFormOficeList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('ProcessFormOficeListData: ', ProcessFormOficeListData);
-        res.send(ProcessFormOficeListData);
+        debug('getAllProcessFormOficeList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllProcessFormOficeList of ProcessController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllStatusProcessFormList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    ProcessModel.getgetStatusProcessFormList((err, statusProcessFormListData) => {
+    ProcessModel.getgetStatusProcessFormList((err, data) => {
       if (err) {
         result.messageError = err;
-        res.status(404).send(result);
+        res.send(result);
       } else {
-        debug('statusProcessFormListData: ', statusProcessFormListData);
-        res.send(statusProcessFormListData);
+        debug('getAllStatusProcessFormList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion getAllStatusProcessFormList of ProcessController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const updateAllColumnsProcessOfficialForm = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body: ', req.body);
     if (Object.keys(req.body).length !== 8) {
       debug('request bad params not received');
@@ -77,25 +80,26 @@ const updateAllColumnsProcessOfficialForm = (req, res) => {
       const isDeleted = req.body.param_is_deleted;
       ProcessModel.updateAllColumnsProcessOfficialForm(processID, userID, officialFormID,
         ubicationID, observation, statusProcessFormID, isActive,
-        isDeleted, (err, updateProcessOfficialForm) => {
+        isDeleted, (err, data) => {
           if (err) {
             result.messageError = err;
-            res.status(404).send(result);
+            res.send(result);
           } else {
-            debug('updateProcessOfficialForm: ', updateProcessOfficialForm);
-            res.send(updateProcessOfficialForm);
+            debug('updateAllColumnsProcessOfficialForm: ', data);
+            res.send(data);
           }
         });
     }
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion updateAllColumnsProcessOfficialForm of ProcessController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const updateAllColumnsProcessMovPersonalForm = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body: ', req.body);
     if (Object.keys(req.body).length !== 8) {
       debug('request bad params not received');
@@ -112,19 +116,20 @@ const updateAllColumnsProcessMovPersonalForm = (req, res) => {
       const isDeleted = req.body.param_is_deleted;
       ProcessModel.updateAllColumnsProcessMovPersonalForm(processID, userID, movPersonalFormID,
         ubicationID, observation, statusProcessFormID, isActive, isDeleted,
-        (err, updateProcessMovPersonalForm) => {
+        (err, data) => {
           if (err) {
             result.messageError = err;
-            res.status(404).send(result);
+            res.send(result);
           } else {
-            debug('updateProcessMovPersonalForm: ', updateProcessMovPersonalForm);
-            res.send(updateProcessMovPersonalForm);
+            debug('updateAllColumnsProcessMovPersonalForm: ', data);
+            res.send(data);
           }
         });
     }
   } catch (e) {
-    debug('error: ', e);
-    res.status(500).send(e);
+    debug('error catch in the funcion updateAllColumnsProcessMovPersonalForm of ProcessController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 

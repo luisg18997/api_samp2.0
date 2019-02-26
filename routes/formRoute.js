@@ -6,6 +6,10 @@ const formController = require('../controllers/formController.js');
 
 formRouter.get('/movementTypes', formController.getAllMovementTypeslist);
 
+formRouter.get('/accountantTypes', formController.getAllAccountantTypeslist);
+
+formRouter.get('/programTypes', formController.getAllProgramTypeslist);
+
 formRouter.post('/ofice/addOfice', formController.addFormOfice);
 
 formRouter.post('/movPersonal/addMovementPeronsal', formController.addFormMovementPersonal);
@@ -13,6 +17,8 @@ formRouter.post('/movPersonal/addMovementPeronsal', formController.addFormMoveme
 formRouter.post('/ofice/CodeOfice', formController.createCodeFormOfice);
 
 formRouter.post('/movPersonal/CodeMovPer', formController.createCodeFormMovPer);
+
+formRouter.post('/movPersonal/updateApproval', formController.updateMovPersonalApproval);
 
 formRouter.post('/movPersonal', formController.getFormMovPersonal);
 

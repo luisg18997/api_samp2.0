@@ -5,7 +5,6 @@ const debug = require('debug')(appName);
 const util = require('util');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const moment = require('moment');
 
 const saltRounds = 10;
 
@@ -304,10 +303,10 @@ const getUser = (userID, callback) => {
   }
 };
 
-
-const getALLUserList = (callback) => {
+const getALLUserList = (userID, callback) => {
   try {
-    const query = util.format('SELECT user_data.get_user_list() as result');
+    const query = util.format('SELECT user_data.get_user_list(param_id := %d) as result',
+      userID);
     const data = {};
     return pool.query(query, (err, res) => {
       if (!err) {
@@ -433,6 +432,54 @@ const getUserSecurityAnswerCompare = (userID, answer, callback) => {
   }
 };
 
+const updateUserIsDeleted = (userID, adminID, callback) => {
+  try {
+    const query = util.format('SELECT user_data.user_update_is_deleted(param_id := %d, param_user_id := %d) as result;',
+      userID, adminID);
+    const data = {};
+    return pool.query(query, (err, res) => {
+      if (!err) {
+        if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+          debug('res.rows: ', res.rows[0].result.length);
+          callback(false, res.rows[0].result);
+        } else {
+          data.result = 'not found';
+          callback(false, data);
+        }
+      } else {
+        callback(err.stack, null);
+      }
+    });
+  } catch (e) {
+    debug('error catch in the funcion updateUserIsDeleted of UserModel: ', e);
+    return callback(e, null);
+  }
+};
+
+const updateUserIsRecovery = (userID, adminID, callback) => {
+  try {
+    const query = util.format('SELECT user_data.user_update_is_recovery(param_id := %d, param_user_id := %d) as result;',
+      userID, adminID);
+    const data = {};
+    return pool.query(query, (err, res) => {
+      if (!err) {
+        if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+          debug('res.rows: ', res.rows[0].result.length);
+          callback(false, res.rows[0].result);
+        } else {
+          data.result = 'not found';
+          callback(false, data);
+        }
+      } else {
+        callback(err.stack, null);
+      }
+    });
+  } catch (e) {
+    debug('error catch in the funcion updateUserIsRecovery of UserModel: ', e);
+    return callback(e, null);
+  }
+};
+
 module.exports = {
   getRolesList,
   getSecurityQuestionsList,
@@ -449,4 +496,6 @@ module.exports = {
   updateUserAnswer,
   getUserForChangePassword,
   getUserSecurityAnswerCompare,
+  updateUserIsDeleted,
+  updateUserIsRecovery,
 };

@@ -258,15 +258,24 @@ const getUser = (req, res) => {
 const getALLUserList = (req, res) => {
   try {
     const result = {};
-    UserModel.getALLUserList((err, UserList) => {
-      if (err) {
-        result.messageError = err;
-        res.status(404).send(result);
-      } else {
-        debug('getALLUserList: ', UserList);
-        res.send(UserList);
-      }
-    });
+    debug('req.body.length: ', Object.keys(req.body).length);
+    if (Object.keys(req.body).length !== 1) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const userID = req.body.param_user_id;
+      debug('req.body: ', req.body);
+      UserModel.getALLUserList(userID, (err, UserList) => {
+        if (err) {
+          result.messageError = err;
+          res.status(404).send(result);
+        } else {
+          debug('getALLUserList: ', UserList);
+          res.send(UserList);
+        }
+      });
+    }
   } catch (e) {
     debug('error catch in the funcion getALLUserList of UserController: ', e);
     res.status(500).send(e);
@@ -386,6 +395,62 @@ const getUserSecurityAnswerCompare = (req, res) => {
   }
 };
 
+const updateUserIsRecovery = (req, res) => {
+  try {
+    const result = {};
+    debug('req.body.length: ', Object.keys(req.body).length);
+    if (Object.keys(req.body).length !== 2) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const userID = req.body.param_id;
+      const adminID = req.body.param_user_id;
+      debug('req.body: ', req.body);
+      UserModel.updateUserIsRecovery(userID, adminID, (err, updatePassword) => {
+        if (err) {
+          result.messageError = err;
+          res.status(400).send(result);
+        } else {
+          debug('updateUserIsRecovery: ', updatePassword);
+          res.send(updateUserIsRecovery);
+        }
+      });
+    }
+  } catch (e) {
+    debug('error catch in the funcion updateUserIsRecovery of UserController: ', e);
+    res.status(500).send(e);
+  }
+};
+
+const updateUserIsDeleted = (req, res) => {
+  try {
+    const result = {};
+    debug('req.body.length: ', Object.keys(req.body).length);
+    if (Object.keys(req.body).length !== 2) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const userID = req.body.param_id;
+      const adminID = req.body.param_user_id;
+      debug('req.body: ', req.body);
+      UserModel.updateUserIsDeleted(userID, adminID, (err, updatePassword) => {
+        if (err) {
+          result.messageError = err;
+          res.status(400).send(result);
+        } else {
+          debug('updateUserIsDeleted: ', updatePassword);
+          res.send(updateUserIsDeleted);
+        }
+      });
+    }
+  } catch (e) {
+    debug('error catch in the funcion updateUserIsDeleted of UserController: ', e);
+    res.status(500).send(e);
+  }
+};
+
 module.exports = {
   getAllRolesList,
   getAllSecurityQuestionsList,
@@ -402,4 +467,6 @@ module.exports = {
   updateUserPassword,
   getUserForChangePassword,
   getUserSecurityAnswerCompare,
+  updateUserIsDeleted,
+  updateUserIsRecovery,
 };

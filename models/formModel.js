@@ -6,7 +6,7 @@ const moment = require('moment');
 const pool = require('./pgmodel.js');
 
 const getMovementTypeslist = (callback) => {
-  try{
+  try {
     const query = util.format('SELECT form_data.get_movement_types_list() as result;');
     const data = {};
     return pool.query(query, (err, res) => {
@@ -22,7 +22,7 @@ const getMovementTypeslist = (callback) => {
         callback(err.stack, null);
       }
     });
-  }catch(e){
+  } catch (e) {
     debug('error catch in the funcion getMovementTypeslist of FormModel: ', e);
     return callback(e, null);
   }
@@ -45,7 +45,7 @@ const getAccountantTypeslist = (callback) => {
         callback(err.stack, null);
       }
     });
-  } catch(e){
+  } catch (e) {
     debug('error catch in the funcion getAccountantTypeslist of FormModel: ', e);
     return callback(e, null);
   }
@@ -68,16 +68,16 @@ const getProgramTypeslist = (callback) => {
         callback(err.stack, null);
       }
     });
-  } catch(e){
+  } catch (e) {
     debug('error catch in the funcion getProgramTypeslist of FormModel: ', e);
     return callback(e, null);
   }
 };
 
-const addNewFormOfice = (employee, formOfice, userID, callback) => {
+const addNewFormOfice = (employee, OfficialForm, userID, callback) => {
   try {
     const query = util.format("SELECT form_data.employee_official_form_insert_complete(param_employee_json := '%j', param_official_form_json := '%j', param_user_id := %d) as result;",
-      employee, formOfice, userID);
+      employee, OfficialForm, userID);
     const data = {};
     return pool.query(query, (err, res) => {
       if (!err) {
@@ -92,7 +92,7 @@ const addNewFormOfice = (employee, formOfice, userID, callback) => {
         callback(err.stack, null);
       }
     });
-  } catch(e){
+  } catch (e) {
     debug('error catch in the funcion addNewFormOfice of FormModel: ', e);
     return callback(e, null);
   }
@@ -116,7 +116,7 @@ const addNewFormMovPeronsal = (employee, formMovPeronsal, userID, callback) => {
         callback(err.stack, null);
       }
     });
-  } catch(e){
+  } catch (e) {
     debug('error catch in the funcion addNewFormMovPeronsal of FormModel: ', e);
     return callback(e, null);
   }
@@ -171,7 +171,7 @@ const getCreateCodeFormOFice = (schoolID, instituteID, coordinationID, callback)
         callback(err.stack, null);
       }
     });
-  } catch(e){
+  } catch (e) {
     debug('error catch in the funcion getCreateCodeFormOFice of FormModel: ', e);
     return callback(e, null);
   }
@@ -239,7 +239,7 @@ const getCreateCodeFormMovPer = (schoolID, instituteID, coordinationID, code, ca
         callback(err.stack, null);
       }
     });
-  } catch(e){
+  } catch (e) {
     debug('error catch in the funcion getCreateCodeFormMovPer of FormModel: ', e);
     return callback(e, null);
   }
@@ -269,7 +269,7 @@ const getFormMovPersonal = (identification, ubication, callback) => {
         callback(err.stack, null);
       }
     });
-  } catch(e){
+  } catch (e) {
     debug('error catch in the funcion getFormMovPersonal of FormModel: ', e);
     return callback(e, null);
   }
@@ -284,11 +284,11 @@ const getAllFormsOfice = (schoolID, instituteID, coordinationID, callback) => {
       if (!err) {
         if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
           debug('res.rows: ', res.rows[0].result.length);
-          const formOfice = res.rows[0].result;
-          for (let i = 0; i < formOfice.length; i += 1) {
-            formOfice[i].registration_date = moment(formOfice[i].registration_date).format('DD-MM-Y');
+          const OfficialForm = res.rows[0].result;
+          for (let i = 0; i < OfficialForm.length; i += 1) {
+            OfficialForm[i].registration_date = moment(OfficialForm[i].registration_date).format('DD-MM-Y');
           }
-          callback(false, formOfice);
+          callback(false, OfficialForm);
         } else {
           data.result = 'not found';
           callback(false, data);
@@ -297,7 +297,7 @@ const getAllFormsOfice = (schoolID, instituteID, coordinationID, callback) => {
         callback(err.stack, null);
       }
     });
-  } catch(e){
+  } catch (e) {
     debug('error catch in the funcion getAllFormsOfice of FormModel: ', e);
     return callback(e, null);
   }
@@ -330,7 +330,7 @@ const getAllForms = (ubicationID, ubicationFormID, callback) => {
         callback(err.stack, null);
       }
     });
-  } catch(e){
+  } catch (e) {
     debug('error catch in the funcion getAllForms of FormModel: ', e);
     return callback(e, null);
   }
@@ -357,7 +357,7 @@ const getFormOfficial = (identification, ubication, callback) => {
         callback(err.stack, null);
       }
     });
-  } catch(e){
+  } catch (e) {
     debug('error catch in the funcion getFormOfficial of FormModel: ', e);
     return callback(e, null);
   }
@@ -383,7 +383,7 @@ const updateOfficialApproval = (officialID, officialProcessID, ubicationID, stat
         callback(err.stack, null);
       }
     });
-  } catch(e){
+  } catch (e) {
     debug('error catch in the funcion updateOfficialApproval of FormModel: ', e);
     return callback(e, null);
   }
@@ -411,8 +411,66 @@ const updateMovPersonalApproval = (movPersonalID, movPersonalProcessID, employee
         callback(err.stack, null);
       }
     });
-  } catch(e) {
+  } catch (e) {
     debug('error catch in the funcion updateMovPersonalApproval of FormModel: ', e);
+    return callback(e, null);
+  }
+};
+
+const getAllOfficialFormApproval = (ubicationID, schoolID,
+  instituteID, coordinationID, callback) => {
+  try {
+    const query = util.format('SELECT form_data.get_form_official_list_approval(param_ubication_id := %d, param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
+      ubicationID, schoolID, instituteID, coordinationID);
+    const data = {};
+    return pool.query(query, (err, res) => {
+      if (!err) {
+        if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+          debug('res.rows: ', res.rows[0].result.length);
+          const OfficialForm = res.rows[0].result;
+          for (let i = 0; i < OfficialForm.length; i += 1) {
+            OfficialForm[i].approval_date = moment(OfficialForm[i].approval_date).format('DD-MM-Y');
+          }
+          callback(false, OfficialForm);
+        } else {
+          data.result = 'not found';
+          callback(false, data);
+        }
+      } else {
+        callback(err.stack, null);
+      }
+    });
+  } catch (e) {
+    debug('error catch in the funcion getAllOfficialFromApproval of FormModel: ', e);
+    return callback(e, null);
+  }
+};
+
+const getAllOfficialFormRejected = (ubicationID, schoolID,
+  instituteID, coordinationID, callback) => {
+  try {
+    const query = util.format('SELECT form_data.get_form_official_list_approval(param_ubication_id := %d, param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
+      ubicationID, schoolID, instituteID, coordinationID);
+    const data = {};
+    return pool.query(query, (err, res) => {
+      if (!err) {
+        if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+          debug('res.rows: ', res.rows[0].result.length);
+          const OfficialForm = res.rows[0].result;
+          for (let i = 0; i < OfficialForm.length; i += 1) {
+            OfficialForm[i].date_made = moment(OfficialForm[i].date_made).format('DD-MM-Y');
+          }
+          callback(false, OfficialForm);
+        } else {
+          data.result = 'not found';
+          callback(false, data);
+        }
+      } else {
+        callback(err.stack, null);
+      }
+    });
+  } catch (e) {
+    debug('error catch in the funcion getAllOfficialFromApproval of FormModel: ', e);
     return callback(e, null);
   }
 };
@@ -431,4 +489,6 @@ module.exports = {
   getAccountantTypeslist,
   getProgramTypeslist,
   updateMovPersonalApproval,
+  getAllOfficialFormApproval,
+  getAllOfficialFormRejected,
 };

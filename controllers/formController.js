@@ -70,12 +70,12 @@ const addFormOfice = (req, res) => {
       res.status(400).send(result);
     } else {
       const employee = req.body.param_employee;
-      const data = req.body.param_form_ofice;
+      const officialForm = req.body.param_form_ofice;
       const userID = req.body.param_user_id;
       if (req.body.param_employee_id !== 0) {
         employee.employee_id = req.body.param_employee_id;
       }
-      formModel.addNewFormOfice(employee, data, userID,
+      formModel.addNewFormOfice(employee, officialForm, userID,
         (err, data) => {
           if (err) {
             result.messageError = err;
@@ -366,6 +366,66 @@ const updateMovPersonalApproval = (req, res) => {
   }
 };
 
+const getOfficialFormApprovalList = (req, res) => {
+  const result = {};
+  try {
+    if (Object.keys(req.body).length !== 4) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const ubicationID = req.body.param_ubication_id;
+      const schoolID = req.body.param_school_id;
+      const instituteID = req.body.param_institute_id;
+      const coordinationID = req.body.param_coordination_id;
+      formModel.getAllOfficialFormApproval(ubicationID, schoolID, instituteID, coordinationID,
+        (err, data) => {
+          if (err) {
+            result.messageError = err;
+            res.send(result);
+          } else {
+            debug('getOfficialFormApprovalList: ', data);
+            res.send(data);
+          }
+        });
+    }
+  } catch (e) {
+    debug('error catch in the funcion getOfficialFormApprovalList of FormController: ', e);
+    result.messageError = e;
+    res.send(result);
+  }
+};
+
+const getOfficialFormRejectedList = (req, res) => {
+  const result = {};
+  try {
+    if (Object.keys(req.body).length !== 4) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const ubicationID = req.body.param_ubication_id;
+      const schoolID = req.body.param_school_id;
+      const instituteID = req.body.param_institute_id;
+      const coordinationID = req.body.param_coordination_id;
+      formModel.getAllOfficialFormRejected(ubicationID, schoolID, instituteID, coordinationID,
+        (err, data) => {
+          if (err) {
+            result.messageError = err;
+            res.send(result);
+          } else {
+            debug('getOfficialFormRejectedList: ', data);
+            res.send(data);
+          }
+        });
+    }
+  } catch (e) {
+    debug('error catch in the funcion getOfficialFormRejectedList of FormController: ', e);
+    result.messageError = e;
+    res.send(result);
+  }
+};
+
 module.exports = {
   getAllMovementTypeslist,
   addFormOfice,
@@ -380,4 +440,6 @@ module.exports = {
   getAllAccountantTypeslist,
   getAllProgramTypeslist,
   updateMovPersonalApproval,
+  getOfficialFormApprovalList,
+  getOfficialFormRejectedList,
 };

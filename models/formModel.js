@@ -303,10 +303,10 @@ const getAllFormsOfice = (schoolID, instituteID, coordinationID, callback) => {
   }
 };
 
-const getAllForms = (ubicationID, ubicationFormID, callback) => {
+const getAllForms = (ubicationID, schoolID, instituteID, coordinationID, callback) => {
   try {
-    const query = util.format('SELECT form_data.get_forms_list(param_ubication_id := %d, param_ubication_form_id := %d) as result;',
-      ubicationID, ubicationFormID);
+    const query = util.format('SELECT form_data.get_forms_list(param_ubication_id := %d, param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
+      ubicationID, schoolID, instituteID, coordinationID);
     const data = {};
     return pool.query(query, (err, res) => {
       if (!err) {
@@ -449,7 +449,7 @@ const getAllOfficialFormApproval = (ubicationID, schoolID,
 const getAllOfficialFormRejected = (ubicationID, schoolID,
   instituteID, coordinationID, callback) => {
   try {
-    const query = util.format('SELECT form_data.get_form_official_list_approval(param_ubication_id := %d, param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
+    const query = util.format('SELECT form_data.get_form_official_list_rejected(param_ubication_id := %d, param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
       ubicationID, schoolID, instituteID, coordinationID);
     const data = {};
     return pool.query(query, (err, res) => {

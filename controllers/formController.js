@@ -214,14 +214,16 @@ const getFormMovPersonal = (req, res) => {
 const getFormsList = (req, res) => {
   const result = {};
   try {
-    if (Object.keys(req.body).length !== 2) {
+    if (Object.keys(req.body).length !== 4) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
     } else {
       const ubicationID = req.body.param_ubication_id;
-      const ubicationFormID = req.body.param_ubication_form_id;
-      formModel.getAllForms(ubicationID, ubicationFormID, (err, data) => {
+      const schoolID = req.body.param_school_id;
+      const instituteID = req.body.param_institute_id;
+      const coordinationID = req.body.param_coordination_id;
+      formModel.getAllForms(ubicationID, schoolID, instituteID, coordinationID, (err, data) => {
         if (err) {
           result.messageError = err;
           res.send(result);

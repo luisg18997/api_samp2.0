@@ -34,6 +34,10 @@ formRouter.post('/official/approval/list', formController.getOfficialFormApprova
 
 formRouter.post('/official/rejected/list', formController.getOfficialFormRejectedList);
 
+formRouter.post('/movPersonal/approval/list', formController.getMovPersonalFormApprovalList);
+
+formRouter.post('/movPersonal/rejected/list', formController.getMovPersonalFormRejectedList);
+
 formRouter.post('/official/updateApproval', formController.updateOfficialApproval);
 
 module.exports = formRouter;

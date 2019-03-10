@@ -453,6 +453,66 @@ const getFormsStatusList = (req, res) => {
   }
 };
 
+const getMovPersonalFormApprovalList = (req, res) => {
+  const result = {};
+  try {
+    if (Object.keys(req.body).length !== 4) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const ubicationID = req.body.param_ubication_id;
+      const schoolID = req.body.param_school_id;
+      const instituteID = req.body.param_institute_id;
+      const coordinationID = req.body.param_coordination_id;
+      formModel.getAllMovPersonalFormApproval(ubicationID, schoolID, instituteID, coordinationID,
+        (err, data) => {
+          if (err) {
+            result.messageError = err;
+            res.send(result);
+          } else {
+            debug('getMovPersonalFormApprovalList: ', data);
+            res.send(data);
+          }
+        });
+    }
+  } catch (e) {
+    debug('error catch in the funcion getMovPersonalFormApprovalList of FormController: ', e);
+    result.messageError = e;
+    res.send(result);
+  }
+};
+
+const getMovPersonalFormRejectedList = (req, res) => {
+  const result = {};
+  try {
+    if (Object.keys(req.body).length !== 4) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const ubicationID = req.body.param_ubication_id;
+      const schoolID = req.body.param_school_id;
+      const instituteID = req.body.param_institute_id;
+      const coordinationID = req.body.param_coordination_id;
+      formModel.getAllMovPersonalFormRejected(ubicationID, schoolID, instituteID, coordinationID,
+        (err, data) => {
+          if (err) {
+            result.messageError = err;
+            res.send(result);
+          } else {
+            debug('getMovPersonalFormRejectedList: ', data);
+            res.send(data);
+          }
+        });
+    }
+  } catch (e) {
+    debug('error catch in the funcion getMovPersonalFormRejectedList of FormController: ', e);
+    result.messageError = e;
+    res.send(result);
+  }
+};
+
 module.exports = {
   getAllMovementTypeslist,
   addFormOfice,
@@ -470,4 +530,6 @@ module.exports = {
   getOfficialFormApprovalList,
   getOfficialFormRejectedList,
   getFormsStatusList,
+  getMovPersonalFormRejectedList,
+  getMovPersonalFormApprovalList,
 };

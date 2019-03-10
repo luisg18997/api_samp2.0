@@ -470,7 +470,7 @@ const getAllOfficialFormRejected = (ubicationID, schoolID,
       }
     });
   } catch (e) {
-    debug('error catch in the funcion getAllOfficialFromApproval of FormModel: ', e);
+    debug('error catch in the funcion getAllOfficialFormRejected of FormModel: ', e);
     return callback(e, null);
   }
 };
@@ -508,6 +508,64 @@ const getAllFormsStatus = (schoolID, instituteID, coordinationID, callback) => {
   }
 };
 
+const getAllMovPersonalFormApproval = (ubicationID, schoolID,
+  instituteID, coordinationID, callback) => {
+  try {
+    const query = util.format('SELECT form_data.get_mov_personal_form_list_approval(param_ubication_id := %d, param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
+      ubicationID, schoolID, instituteID, coordinationID);
+    const data = {};
+    return pool.query(query, (err, res) => {
+      if (!err) {
+        if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+          debug('res.rows: ', res.rows[0].result.length);
+          const movPersonalForm = res.rows[0].result;
+          for (let i = 0; i < movPersonalForm.length; i += 1) {
+            movPersonalForm[i].approval_date = moment(movPersonalForm[i].approval_date).format('DD-MM-Y');
+          }
+          callback(false, movPersonalForm);
+        } else {
+          data.result = 'not found';
+          callback(false, data);
+        }
+      } else {
+        callback(err.stack, null);
+      }
+    });
+  } catch (e) {
+    debug('error catch in the funcion getAllMovPersonalFormApproval of FormModel: ', e);
+    return callback(e, null);
+  }
+};
+
+const getAllMovPersonalFormRejected = (ubicationID, schoolID,
+  instituteID, coordinationID, callback) => {
+  try {
+    const query = util.format('SELECT form_data.get_mov_personal_form_list_rejected(param_ubication_id := %d, param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
+      ubicationID, schoolID, instituteID, coordinationID);
+    const data = {};
+    return pool.query(query, (err, res) => {
+      if (!err) {
+        if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+          debug('res.rows: ', res.rows[0].result.length);
+          const movPersonalForm = res.rows[0].result;
+          for (let i = 0; i < movPersonalForm.length; i += 1) {
+            movPersonalForm[i].date_made = moment(movPersonalForm[i].date_made).format('DD-MM-Y');
+          }
+          callback(false, movPersonalForm);
+        } else {
+          data.result = 'not found';
+          callback(false, data);
+        }
+      } else {
+        callback(err.stack, null);
+      }
+    });
+  } catch (e) {
+    debug('error catch in the funcion getAllMovPersonalFormRejected of FormModel: ', e);
+    return callback(e, null);
+  }
+};
+
 module.exports = {
   getMovementTypeslist,
   addNewFormOfice,
@@ -525,4 +583,6 @@ module.exports = {
   getAllOfficialFormApproval,
   getAllOfficialFormRejected,
   getAllFormsStatus,
+  getAllMovPersonalFormApproval,
+  getAllMovPersonalFormRejected,
 };

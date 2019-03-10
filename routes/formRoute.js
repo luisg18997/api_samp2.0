@@ -24,6 +24,8 @@ formRouter.post('/movPersonal', formController.getFormMovPersonal);
 
 formRouter.post('/list', formController.getFormsList);
 
+formRouter.post('/status/list', formController.getFormsStatusList);
+
 formRouter.post('/ofice/List', formController.getFormOficesList);
 
 formRouter.post('/official', formController.getFormOfficial);

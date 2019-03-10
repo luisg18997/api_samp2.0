@@ -303,10 +303,10 @@ const getAllFormsOfice = (schoolID, instituteID, coordinationID, callback) => {
   }
 };
 
-const getAllForms = (ubicationID, schoolID, instituteID, coordinationID, callback) => {
+const getAllForms = (ubicationID, callback) => {
   try {
-    const query = util.format('SELECT form_data.get_forms_list(param_ubication_id := %d, param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
-      ubicationID, schoolID, instituteID, coordinationID);
+    const query = util.format('SELECT form_data.get_forms_list(param_ubication_id := %d) as result;',
+      ubicationID);
     const data = {};
     return pool.query(query, (err, res) => {
       if (!err) {
@@ -475,6 +475,39 @@ const getAllOfficialFormRejected = (ubicationID, schoolID,
   }
 };
 
+const getAllFormsStatus = (schoolID, instituteID, coordinationID, callback) => {
+  try {
+    const query = util.format('SELECT form_data.get_forms_status_list(param_school_id := %d, param_institute_id := %d, param_coordination_id := %d) as result;',
+      schoolID, instituteID, coordinationID);
+    const data = {};
+    return pool.query(query, (err, res) => {
+      if (!err) {
+        if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+          const forms = res.rows[0].result;
+          debug('res.rows: ', forms.length);
+          for (let i = 0; i < forms.length; i += 1) {
+            forms[i].registration_date = moment(forms[i].registration_date).format('DD-MM-Y');
+            if (forms[i].form_ofice_id !== null && forms[i].mov_personal_form_id === undefined) {
+              forms[i].form_type = 'OFICIO';
+            } else {
+              forms[i].form_type = 'MOVIMIENTO PERSONAL';
+            }
+          }
+          callback(false, forms);
+        } else {
+          data.result = 'not found';
+          callback(false, data);
+        }
+      } else {
+        callback(err.stack, null);
+      }
+    });
+  } catch (e) {
+    debug('error catch in the funcion getAllFormsStatus of FormModel: ', e);
+    return callback(e, null);
+  }
+};
+
 module.exports = {
   getMovementTypeslist,
   addNewFormOfice,
@@ -491,4 +524,5 @@ module.exports = {
   updateMovPersonalApproval,
   getAllOfficialFormApproval,
   getAllOfficialFormRejected,
+  getAllFormsStatus,
 };

@@ -486,7 +486,7 @@ const getAllFormsStatus = (schoolID, instituteID, coordinationID, callback) => {
           const forms = res.rows[0].result;
           debug('res.rows: ', forms.length);
           for (let i = 0; i < forms.length; i += 1) {
-            forms[i].registration_date = moment(forms[i].registration_date).format('DD-MM-Y');
+            forms[i].date_made = moment(forms[i].date_made).format('DD-MM-Y');
             if (forms[i].form_ofice_id !== null && forms[i].mov_personal_form_id === undefined) {
               forms[i].form_type = 'OFICIO';
             } else {

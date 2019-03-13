@@ -329,7 +329,7 @@ const updateOfficialApproval = (req, res) => {
 const updateMovPersonalApproval = (req, res) => {
   const result = {};
   try {
-    if (Object.keys(req.body).length !== 12) {
+    if (Object.keys(req.body).length !== 13) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
@@ -343,12 +343,13 @@ const updateMovPersonalApproval = (req, res) => {
       const accountatTypeID = req.body.param_accountant_type_id;
       const programID = req.body.param_progam_type_id;
       const observation = req.body.param_observation;
+      const admissionDate = req.body.param_admission_date;
       const isActive = req.body.param_is_active;
       const isDeleted = req.body.param_is_deleted;
       const userID = req.body.param_user_id;
       formModel.updateMovPersonalApproval(movPersonalID, movPersonalProcessID, employeeID,
         movementTypeID, ubicationID, statusProcessFormID, accountatTypeID, programID,
-        observation, isActive, isDeleted, userID, (err, data) => {
+        observation, admissionDate, isActive, isDeleted, userID, (err, data) => {
           if (err) {
             result.messageError = err;
             res.send(result);

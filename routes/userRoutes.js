@@ -30,7 +30,7 @@ UserRouter.post('/Recovery/update', UserController.updateUserIsRecovery);
 
 UserRouter.post('/getChangePassword', UserController.getUserForChangePassword);
 
-UserRouter.get('/List', UserController.getALLUserList);
+UserRouter.post('/List', UserController.getALLUserList);
 
 UserRouter.post('/SecurityAnswer/update', UserController.updateUserAnswer);
 

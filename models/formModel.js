@@ -390,12 +390,12 @@ const updateOfficialApproval = (officialID, officialProcessID, ubicationID, stat
 };
 
 const updateMovPersonalApproval = (movPersonalID, movPersonalProcessID, employeeID, movementTypeID,
-  ubicationID, statusProcessFormID, accountatTypeID, programID, observation, isActive, isDeleted,
-  userID, callback) => {
+  ubicationID, statusProcessFormID, accountatTypeID, programID, observation, admissionDate,
+  isActive, isDeleted, userID, callback) => {
   try {
-    const query = util.format("SELECT form_data.mov_personal_form_update_approval(param_id := %d, param_mov_personal_form_process_id := %d, param_employee_id := %d, param_movement_type_id := %d, param_ubication_id := %d, param_status_process_form_id := %d, param_accountant_type_id := %d, param_progam_type_id := %d, param_observation := '%s', param_is_active := '%d', param_is_deleted := '%d', param_user_id := %d) as result;",
+    const query = util.format("SELECT form_data.mov_personal_form_update_approval(param_id := %d, param_mov_personal_form_process_id := %d, param_employee_id := %d, param_movement_type_id := %d, param_ubication_id := %d, param_status_process_form_id := %d, param_accountant_type_id := %d, param_progam_type_id := %d, param_observation := '%s', param_admission_date := '%s'::DATE, param_is_active := '%d', param_is_deleted := '%d', param_user_id := %d) as result;",
       movPersonalID, movPersonalProcessID, employeeID, movementTypeID, ubicationID,
-      statusProcessFormID, accountatTypeID, programID, observation, isActive,
+      statusProcessFormID, accountatTypeID, programID, observation, admissionDate, isActive,
       isDeleted, userID);
     const data = {};
     return pool.query(query, (err, res) => {

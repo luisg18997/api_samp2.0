@@ -337,7 +337,10 @@ const updateMovPersonalApproval = (req, res) => {
       const movPersonalID = req.body.param_id;
       const movPersonalProcessID = req.body.param_mov_personal_form_process_id;
       const employeeID = req.body.param_employee_id;
+      const employeeIdacID = req.body.param_employee_idac_id;
       const movementTypeID = req.body.param_movement_type_id;
+      const idacCodeID = req.body.param_idac_id;
+      const employeeSalaryID = req.body.param_employee_salary_id;
       const ubicationID = req.body.param_ubication_id;
       const statusProcessFormID = req.body.param_status_process_form_id;
       const accountatTypeID = req.body.param_accountant_type_id;
@@ -348,8 +351,9 @@ const updateMovPersonalApproval = (req, res) => {
       const isDeleted = req.body.param_is_deleted;
       const userID = req.body.param_user_id;
       formModel.updateMovPersonalApproval(movPersonalID, movPersonalProcessID, employeeID,
-        movementTypeID, ubicationID, statusProcessFormID, accountatTypeID, programID,
-        observation, admissionDate, isActive, isDeleted, userID, (err, data) => {
+        employeeIdacID, movementTypeID, idacCodeID, employeeSalaryID, ubicationID,
+        statusProcessFormID, accountatTypeID, programID, observation, admissionDate, isActive,
+        isDeleted, userID, (err, data) => {
           if (err) {
             result.messageError = err;
             res.send(result);

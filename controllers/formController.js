@@ -329,7 +329,7 @@ const updateOfficialApproval = (req, res) => {
 const updateMovPersonalApproval = (req, res) => {
   const result = {};
   try {
-    if (Object.keys(req.body).length !== 13) {
+    if (Object.keys(req.body).length !== 16) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);

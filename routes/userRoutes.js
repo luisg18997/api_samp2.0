@@ -24,6 +24,8 @@ UserRouter.post('/Validate/update', UserController.updateUserValidate);
 
 UserRouter.post('/', UserController.getUser);
 
+UserRouter.post('/update', UserController.updateUserAllData);
+
 UserRouter.post('/Deleted/update', UserController.updateUserIsDeleted);
 
 UserRouter.post('/Recovery/update', UserController.updateUserIsRecovery);

@@ -480,6 +480,32 @@ const updateUserIsRecovery = (userID, adminID, callback) => {
   }
 };
 
+const updateUserAllData = (userID, name, surname, email, ubicationID, schoolID, instituteID,
+  coordinationID, isActive, adminID, callback) => {
+  try {
+    const query = util.format("SELECT user_data.user_update_all_columns(param_id := %d, param_name := '%s',param_surname := '%s', param_email := '%s',param_ubication_id := %d, param_school_id := %d, param_institute_id := %d, param_coordination_id := %d, param_is_active := '%d', param_user_id := %d) as result;",
+      userID, name, surname, email, ubicationID, schoolID, instituteID, coordinationID, isActive,
+      adminID);
+    const data = {};
+    return pool.query(query, (err, res) => {
+      if (!err) {
+        if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+          debug('res.rows: ', res.rows[0].result.length);
+          callback(false, res.rows[0].result);
+        } else {
+          data.result = 'not found';
+          callback(false, data);
+        }
+      } else {
+        callback(err.stack, null);
+      }
+    });
+  } catch (e) {
+    debug('error catch in the funcion updateUserAllData of UserModel: ', e);
+    return callback(e, null);
+  }
+};
+
 module.exports = {
   getRolesList,
   getSecurityQuestionsList,
@@ -498,4 +524,5 @@ module.exports = {
   getUserSecurityAnswerCompare,
   updateUserIsDeleted,
   updateUserIsRecovery,
+  updateUserAllData,
 };

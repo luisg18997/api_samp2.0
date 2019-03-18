@@ -4,80 +4,84 @@ const debug = require('debug')(appName);
 const UserModel = require('../models/UsersModel.js');
 
 const getAllRolesList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    UserModel.getRolesList((err, Roles) => {
+    UserModel.getRolesList((err, data) => {
       if (err) {
         result.messageError = err;
         res.status(404).send(result);
       } else {
-        debug('getAllRolesList: ', Roles);
-        res.send(Roles);
+        debug('getAllRolesList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
     debug('error catch in the funcion getAllRolesList of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllSecurityQuestionsList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    UserModel.getSecurityQuestionsList((err, SecurityQuestions) => {
+    UserModel.getSecurityQuestionsList((err, data) => {
       if (err) {
         result.messageError = err;
         res.status(404).send(result);
       } else {
-        debug('getAllSecurityQuestionsList: ', SecurityQuestions);
-        res.send(SecurityQuestions);
+        debug('getAllSecurityQuestionsList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
     debug('error catch in the funcion getAllSecurityQuestionsList of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllUbicationsList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    UserModel.getUbicationsList((err, getUbicationsListData) => {
+    UserModel.getUbicationsList((err, data) => {
       if (err) {
         result.messageError = err;
         res.status(404).send(result);
       } else {
-        debug('getAllUbicationsList: ', getUbicationsListData);
-        res.send(getUbicationsListData);
+        debug('getAllUbicationsList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
     debug('error catch in the funcion getAllUbicationsList of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getAllUserRoleList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    UserModel.getUserRoleList((err, getUserRoleListData) => {
+    UserModel.getUserRoleList((err, data) => {
       if (err) {
         result.messageError = err;
         res.status(404).send(result);
       } else {
-        debug('getAllUserRoleList: ', getUserRoleListData);
-        res.send(getUserRoleListData);
+        debug('getAllUserRoleList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
     debug('error catch in the funcion getAllUserRoleList of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const addUser = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (Object.keys(req.body).length !== 8) {
       debug('request bad params not received');
@@ -94,25 +98,26 @@ const addUser = (req, res) => {
       const coordinationID = req.body.param_coordination_id;
       debug('req.body: ', req.body);
       UserModel.addNewUser(name, surname, email, pass, ubicationId, schoolID,
-        instituteID, coordinationID, (err, userInsert) => {
+        instituteID, coordinationID, (err, data) => {
           if (err) {
             result.messageError = err;
             res.status(400).send(result);
           } else {
-            debug('addUser: ', userInsert);
-            res.send(userInsert);
+            debug('addUser: ', data);
+            res.send(data);
           }
         });
     }
   } catch (e) {
     debug('error catch in the funcion addUser of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const addUserByAdmin = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (Object.keys(req.body).length !== 10) {
       debug('request bad params not received');
@@ -131,25 +136,26 @@ const addUserByAdmin = (req, res) => {
       const coordinationID = req.body.param_coordination_id;
       debug('req.body: ', req.body);
       UserModel.addNewUserByAdmin(name, surname, email, pass, ubicationId, roleUserID, userID,
-        schoolID, instituteID, coordinationID, (err, userInsert) => {
+        schoolID, instituteID, coordinationID, (err, data) => {
           if (err) {
             result.messageError = err;
             res.status(400).send(result);
           } else {
-            debug('addUserByAdmin: ', userInsert);
-            res.send(userInsert);
+            debug('addUserByAdmin: ', data);
+            res.send(data);
           }
         });
     }
   } catch (e) {
     debug('error catch in the funcion addUserByAdmin of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const login = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body: ', req.body);
     debug('req.body.length: ', Object.keys(req.body).length);
     if (Object.keys(req.body).length !== 2) {
@@ -160,43 +166,45 @@ const login = (req, res) => {
       const email = req.body.param_email;
       const pass = req.body.param_password;
       debug('req.body: ', req.body);
-      UserModel.login(email, pass, (err, aunthenticate) => {
+      UserModel.login(email, pass, (err, data) => {
         if (err) {
           result.messageError = err;
           res.status(400).send(result);
         } else {
-          debug('login: ', aunthenticate);
-          res.send(aunthenticate);
+          debug('login: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
     debug('error catch in the funcion login of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getALLUserValidateList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
-    UserModel.getALLUserValidateList((err, UserValidateList) => {
+    UserModel.getALLUserValidateList((err, data) => {
       if (err) {
         result.messageError = err;
         res.status(404).send(result);
       } else {
-        debug('getALLUserValidateList: ', UserValidateList);
-        res.send(UserValidateList);
+        debug('getALLUserValidateList: ', data);
+        res.send(data);
       }
     });
   } catch (e) {
     debug('error catch in the funcion getALLUserValidateList of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const updateUserValidate = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     debug('req.body: ', req.body);
     if (Object.keys(req.body).length !== 6) {
@@ -212,25 +220,26 @@ const updateUserValidate = (req, res) => {
       const userId = req.body.param_user_id;
       debug('req.body: ', req.body);
       UserModel.updateUserValidate(userID, userRoleID, roleID, isActive, isDeleted,
-        userId, (err, updateValidate) => {
+        userId, (err, data) => {
           if (err) {
             result.messageError = err;
             res.status(400).send(result);
           } else {
-            debug('updateUserValidate: ', updateValidate);
-            res.send(updateValidate);
+            debug('updateUserValidate: ', data);
+            res.send(data);
           }
         });
     }
   } catch (e) {
     debug('error catch in the funcion updateUserValidate of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getUser = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (Object.keys(req.body).length !== 1) {
       debug('request bad params not received');
@@ -239,25 +248,26 @@ const getUser = (req, res) => {
     } else {
       const userID = req.body.param_user_id;
       debug('req.body: ', req.body);
-      UserModel.getUser(userID, (err, user) => {
+      UserModel.getUser(userID, (err, data) => {
         if (err) {
           result.messageError = err;
           res.status(400).send(result);
         } else {
-          debug('getUser: ', user);
-          res.send(user);
+          debug('getUser: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
     debug('error catch in the funcion getUser of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getALLUserList = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (Object.keys(req.body).length !== 1) {
       debug('request bad params not received');
@@ -266,25 +276,26 @@ const getALLUserList = (req, res) => {
     } else {
       const userID = req.body.param_user_id;
       debug('req.body: ', req.body);
-      UserModel.getALLUserList(userID, (err, UserList) => {
+      UserModel.getALLUserList(userID, (err, data) => {
         if (err) {
           result.messageError = err;
           res.status(404).send(result);
         } else {
-          debug('getALLUserList: ', UserList);
-          res.send(UserList);
+          debug('getALLUserList: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
     debug('error catch in the funcion getALLUserList of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const updateUserAnswer = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (Object.keys(req.body).length !== 4) {
       debug('request bad params not received');
@@ -296,25 +307,26 @@ const updateUserAnswer = (req, res) => {
       const questionID = req.body.param_question_id;
       const answer = req.body.param_answer;
       debug('req.body: ', req.body);
-      UserModel.updateUserAnswer(answerID, userID, questionID, answer, (err, updateAnswer) => {
+      UserModel.updateUserAnswer(answerID, userID, questionID, answer, (err, data) => {
         if (err) {
           result.messageError = err;
           res.status(400).send(result);
         } else {
-          debug('updateUserAnswer: ', updateAnswer);
-          res.send(updateAnswer);
+          debug('updateUserAnswer: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
     debug('error catch in the funcion updateUserAnswer of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const updateUserPassword = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (Object.keys(req.body).length !== 2) {
       debug('request bad params not received');
@@ -324,25 +336,26 @@ const updateUserPassword = (req, res) => {
       const userID = req.body.param_id;
       const password = req.body.param_password;
       debug('req.body: ', req.body);
-      UserModel.updateUserPassword(userID, password, (err, updatePassword) => {
+      UserModel.updateUserPassword(userID, password, (err, data) => {
         if (err) {
           result.messageError = err;
           res.status(400).send(result);
         } else {
-          debug('updateUserPassword: ', updatePassword);
-          res.send(updatePassword);
+          debug('updateUserPassword: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
     debug('error catch in the funcion updateUserPassword of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getUserForChangePassword = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (Object.keys(req.body).length !== 1) {
       debug('request bad params not received');
@@ -351,25 +364,26 @@ const getUserForChangePassword = (req, res) => {
     } else {
       const email = req.body.param_email;
       debug('req.body: ', req.body);
-      UserModel.getUserForChangePassword(email, (err, user) => {
+      UserModel.getUserForChangePassword(email, (err, data) => {
         if (err) {
           result.messageError = err;
           res.status(400).send(result);
         } else {
-          debug('getUserForChangePassword: ', user);
-          res.send(user);
+          debug('getUserForChangePassword: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
     debug('error catch in the funcion getUserForChangePassword of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const getUserSecurityAnswerCompare = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (Object.keys(req.body).length !== 2) {
       debug('request bad params not received');
@@ -379,25 +393,26 @@ const getUserSecurityAnswerCompare = (req, res) => {
       const userID = req.body.param_id;
       const answer = req.body.param_answer;
       debug('req.body: ', req.body);
-      UserModel.getUserSecurityAnswerCompare(userID, answer, (err, user) => {
+      UserModel.getUserSecurityAnswerCompare(userID, answer, (err, data) => {
         if (err) {
           result.messageError = err;
           res.status(400).send(result);
         } else {
-          debug('getUserSecurityAnswerCompare: ', user);
-          res.send(user);
+          debug('getUserSecurityAnswerCompare: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
     debug('error catch in the funcion getUserSecurityAnswerCompare of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const updateUserIsRecovery = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (Object.keys(req.body).length !== 2) {
       debug('request bad params not received');
@@ -407,25 +422,26 @@ const updateUserIsRecovery = (req, res) => {
       const userID = req.body.param_id;
       const adminID = req.body.param_user_id;
       debug('req.body: ', req.body);
-      UserModel.updateUserIsRecovery(userID, adminID, (err, updatePassword) => {
+      UserModel.updateUserIsRecovery(userID, adminID, (err, data) => {
         if (err) {
           result.messageError = err;
           res.status(400).send(result);
         } else {
-          debug('updateUserIsRecovery: ', updatePassword);
-          res.send(updateUserIsRecovery);
+          debug('updateUserIsRecovery: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
     debug('error catch in the funcion updateUserIsRecovery of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
 const updateUserIsDeleted = (req, res) => {
+  const result = {};
   try {
-    const result = {};
     debug('req.body.length: ', Object.keys(req.body).length);
     if (Object.keys(req.body).length !== 2) {
       debug('request bad params not received');
@@ -435,19 +451,58 @@ const updateUserIsDeleted = (req, res) => {
       const userID = req.body.param_id;
       const adminID = req.body.param_user_id;
       debug('req.body: ', req.body);
-      UserModel.updateUserIsDeleted(userID, adminID, (err, updatePassword) => {
+      UserModel.updateUserIsDeleted(userID, adminID, (err, data) => {
         if (err) {
           result.messageError = err;
           res.status(400).send(result);
         } else {
-          debug('updateUserIsDeleted: ', updatePassword);
-          res.send(updateUserIsDeleted);
+          debug('updateUserIsDeleted: ', data);
+          res.send(data);
         }
       });
     }
   } catch (e) {
     debug('error catch in the funcion updateUserIsDeleted of UserController: ', e);
-    res.status(500).send(e);
+    result.messageError = e;
+    res.send(result);
+  }
+};
+
+const updateUserAllData = (req, res) => {
+  const result = {};
+  try {
+    debug('req.body.length: ', Object.keys(req.body).length);
+    if (Object.keys(req.body).length !== 10) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const userID = req.body.param_id;
+      const name = req.body.param_name;
+      const surname = req.body.param_surname;
+      const email = req.body.param_email;
+      const ubicationID = req.body.param_ubication_id;
+      const schoolID = req.body.param_school_id;
+      const instituteID = req.body.param_institute_id;
+      const coordinationID = req.body.param_coordination_id;
+      const isActive = req.body.param_is_active;
+      const adminID = req.body.param_user_id;
+      debug('req.body: ', req.body);
+      UserModel.updateUserAllData(userID, name, surname, email, ubicationID, schoolID, instituteID,
+        coordinationID, isActive, adminID, (err, data) => {
+          if (err) {
+            result.messageError = err;
+            res.status(400).send(result);
+          } else {
+            debug('updateUserAllData: ', data);
+            res.send(data);
+          }
+        });
+    }
+  } catch (e) {
+    debug('error catch in the funcion updateUserAllData of UserController: ', e);
+    result.messageError = e;
+    res.send(result);
   }
 };
 
@@ -469,4 +524,5 @@ module.exports = {
   getUserSecurityAnswerCompare,
   updateUserIsDeleted,
   updateUserIsRecovery,
+  updateUserAllData,
 };

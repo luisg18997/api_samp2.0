@@ -481,11 +481,11 @@ const updateUserIsRecovery = (userID, adminID, callback) => {
 };
 
 const updateUserAllData = (userID, name, surname, email, ubicationID, schoolID, instituteID,
-  coordinationID, isActive, adminID, callback) => {
+  coordinationID, userRoleID, roleID, answerID, isActive, adminID, callback) => {
   try {
-    const query = util.format("SELECT user_data.user_update_all_columns(param_id := %d, param_name := '%s',param_surname := '%s', param_email := '%s',param_ubication_id := %d, param_school_id := %d, param_institute_id := %d, param_coordination_id := %d, param_is_active := '%d', param_user_id := %d) as result;",
-      userID, name, surname, email, ubicationID, schoolID, instituteID, coordinationID, isActive,
-      adminID);
+    const query = util.format("SELECT user_data.user_update_all_columns(param_id := %d, param_name := '%s',param_surname := '%s', param_email := '%s',param_ubication_id := %d, param_school_id := %d, param_institute_id := %d, param_coordination_id := %d, param_user_role_id := %d, param_role_id := %d, param_answer_user_id := %d, param_is_active := '%d', param_user_id := %d) as result;",
+      userID, name, surname, email, ubicationID, schoolID, instituteID, coordinationID, userRoleID,
+      roleID, answerID, isActive, adminID);
     const data = {};
     return pool.query(query, (err, res) => {
       if (!err) {

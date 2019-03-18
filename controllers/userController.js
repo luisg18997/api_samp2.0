@@ -472,7 +472,7 @@ const updateUserAllData = (req, res) => {
   const result = {};
   try {
     debug('req.body.length: ', Object.keys(req.body).length);
-    if (Object.keys(req.body).length !== 10) {
+    if (Object.keys(req.body).length !== 13) {
       debug('request bad params not received');
       result.parambad = 'request bad';
       res.status(400).send(result);
@@ -485,11 +485,14 @@ const updateUserAllData = (req, res) => {
       const schoolID = req.body.param_school_id;
       const instituteID = req.body.param_institute_id;
       const coordinationID = req.body.param_coordination_id;
+      const userRoleID = req.body.param_user_role_id;
+      const roleID = req.body.param_role_id;
+      const answerID = req.body.param_answer_user_id;
       const isActive = req.body.param_is_active;
       const adminID = req.body.param_user_id;
       debug('req.body: ', req.body);
       UserModel.updateUserAllData(userID, name, surname, email, ubicationID, schoolID, instituteID,
-        coordinationID, isActive, adminID, (err, data) => {
+        coordinationID, userRoleID, roleID, answerID, isActive, adminID, (err, data) => {
           if (err) {
             result.messageError = err;
             res.status(400).send(result);

@@ -29,6 +29,10 @@ try {
 }
 
 // start the server
-app.listen(port, () => {
+app.listen(port, (err) => {
+  if(err){
+  debug('Error at server creation.', err);
+}else {
   debug('server on port :', port);
+}
 });

@@ -399,7 +399,7 @@ const updateMovPersonalApproval = (movPersonalID, movPersonalProcessID, employee
   movementTypeID, idacCodeID, employeeSalaryID, ubicationID, statusProcessFormID, accountatTypeID,
   programID, observation, admissionDate, isActive, isDeleted, userID, callback) => {
   try {
-    const query = util.format("SELECT form_data.mov_personal_form_update_approval(param_id := %d, param_mov_personal_form_process_id := %d, param_employee_id := %d, param_employee_idac_id := %d, param_movement_type_id := %d, param_idac_id := %d, param_employee_salary_id := %d, param_ubication_id := %d, param_status_process_form_id := %d, param_accountant_type_id := %d, param_progam_type_id := %d, param_observation := '%s', param_admission_date := '%s'::DATE, param_is_active := '%d', param_is_deleted := '%d', param_user_id := %d) as result;",
+    const query = util.format("SELECT form_data.mov_personal_form_update_approval(param_id := %d, param_mov_personal_form_process_id := %d, param_employee_id := %d, param_employee_idac_id := %d, param_movement_type_id := %d, param_idac_id := %d, param_employee_salary_id := %d, param_ubication_id := %d, param_status_process_form_id := %d, param_accountant_type_id := %d, param_progam_type_id := %d, param_observation := '%s', param_admission_date := '%s', param_is_active := '%d', param_is_deleted := '%d', param_user_id := %d) as result;",
       movPersonalID, movPersonalProcessID, employeeID, employeeIdacID, movementTypeID, idacCodeID,
       employeeSalaryID, ubicationID, statusProcessFormID, accountatTypeID, programID, observation,
       admissionDate, isActive, isDeleted, userID);

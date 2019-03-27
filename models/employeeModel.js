@@ -609,9 +609,32 @@ const getAllEmployeesList = (schoolID, instituteID, coordinationID, callback) =>
   }
 };
 
+const getEmployee = (employeeID, callback) => {
+  try {
+    const query = util.format('SELECT employee_data.get_employee(param_id := %d) as result;',
+      employeeID);
+    const data = {};
+    return pool.query(query, (err, res) => {
+      if (!err) {
+        if ((res.rowCount !== 0) && (res.rows[0].result != null)) {
+          debug('res.rows: ', res.rows[0].result.length);
+          callback(false, res.rows[0].result);
+        } else {
+          data.result = 'not found';
+          callback(false, data);
+        }
+      } else {
+        callback(err.stack, null);
+      }
+    });
+  } catch(e) {
+    debug('error catch in the funcion getEmployee of EmployeeModel: ', e);
+    return callback(e, null);
+  }
+};
+
 
 module.exports = {
-
   getStatesList,
   getMunicipalitiesList,
   getNacionalitiesList,
@@ -638,4 +661,5 @@ module.exports = {
   getSalaryList,
   getExecuntingUnitForFilterList,
   getAllEmployeesList,
+  getEmployee,
 };

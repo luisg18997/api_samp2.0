@@ -56,5 +56,6 @@ employeeRouter.get('/Salary', EmployeeController.getAllSalaryList);
 
 employeeRouter.post('/list', EmployeeController.getEmployeesList);
 
+employeeRouter.post('/', EmployeeController.getEmployee);
 
 module.exports = employeeRouter;

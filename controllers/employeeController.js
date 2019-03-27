@@ -576,6 +576,32 @@ const getEmployeesList = (req, res) => {
   }
 };
 
+const getEmployee = (req, res) => {
+  const result = {};
+  try {
+    if (Object.keys(req.body).length !== 1) {
+      debug('request bad params not received');
+      result.parambad = 'request bad';
+      res.status(400).send(result);
+    } else {
+      const employeeID = req.body.param_id;
+      EmployeeModel.getEmployee(employeeID, (err, data) => {
+        if (err) {
+          result.messageError = err;
+          res.send(result);
+        } else {
+          debug('getEmployee: ', data);
+          res.send(data);
+        }
+      });
+    }
+  } catch (e) {
+    debug('error catch in the funcion getEmployee of EmployeeController: ', e);
+    result.messageError = e;
+    res.send(result);
+  }
+};
+
 module.exports = {
   getAllStatesList,
   getAllMunicipalitiesList,
@@ -602,4 +628,5 @@ module.exports = {
   getAllSalaryList,
   getAllExecuntingUnitFilter,
   getEmployeesList,
+  getEmployee,
 };
